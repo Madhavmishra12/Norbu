@@ -45,6 +45,11 @@ img{max-width:100%}
 .hero-slides{position:absolute;inset:0;overflow:hidden}
 .hero-slides img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 50%;opacity:0;transition:opacity 1.1s ease}
 .hero-slides img.visible{opacity:1}
+.hero h1{width:min(1100px,90%);white-space:normal}
+.info-column p i{display:none}
+.hamb-lines,.hamb-lines::before,.hamb-lines::after{display:block;width:17px;height:1.5px;background:#fff;position:relative;margin:auto}
+.hamb-lines::before,.hamb-lines::after{content:'';position:absolute;left:0}
+.hamb-lines::before{top:-5px}.hamb-lines::after{top:5px}
 button,a{-webkit-tap-highlight-color:transparent}
 button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #E75526;outline-offset:3px}
 .bookhead,.booknow,.outline,.exclusive-arrow{transition:background-color .2s ease,color .2s ease,transform .2s ease}

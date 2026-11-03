@@ -1,4 +1,4 @@
-# Norbu The Montanna — SeleQtions
+# Norbu The Montanna
 
 A responsive hotel page recreation built with Next.js and React.
 
