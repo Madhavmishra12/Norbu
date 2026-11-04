@@ -296,7 +296,7 @@ export default function Home() {
         {menuOpen && (
           <nav className="nh-menu-panel" aria-label="Main navigation">
             <button onClick={() => scrollTo('discover')}>Discover</button>
-            <button onClick={() => scrollTo('suites')}>Suites</button>
+            <button onClick={() => scrollTo('suites')}>Rooms</button>
             <button onClick={() => scrollTo('dining')}>Dining</button>
             <button onClick={() => scrollTo('gallery')}>Gallery</button>
             <button onClick={() => scrollTo('experiences')}>Experiences</button>
