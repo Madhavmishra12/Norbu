@@ -121,3 +121,41 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #E755
 .amenities-more{margin:5px 0 0 46px;padding:0;background:none;border:0;color:#626268;font-size:15px}
 @media(max-width:760px){.amenities{padding:65px 20px 75px}.amenities-title{margin-bottom:32px}.amenities-title h2{font-size:25px;letter-spacing:.13em}.amenities-grid{grid-template-columns:1fr}.amenity-group{min-height:0;padding:25px 8px}.amenity-group:nth-child(odd){border-right:0}.amenity-group:not(:last-child){border-bottom:1px solid #aaa}.amenity-group-heading h3{font-size:19px}.amenity-group ul{font-size:14px}}
 @media(prefers-reduced-motion:reduce){.hero-slides img{transition:none}.roomimage img,.offercard>img,.bookhead,.booknow,.outline,.exclusive-arrow{transition:none}html{scroll-behavior:auto}}
+
+/* Hotel information paper pattern and reference-style footer */
+.information{padding:72px 2.6% 68px;background-color:#f8f7f4;background-image:radial-gradient(circle at 24px 24px,transparent 0 15px,rgba(153,145,132,.13) 16px 17px,transparent 18px),radial-gradient(circle at 0 0,transparent 0 18px,rgba(153,145,132,.1) 19px 20px,transparent 21px),radial-gradient(circle at 48px 0,transparent 0 12px,rgba(153,145,132,.1) 13px 14px,transparent 15px);background-size:96px 72px,96px 72px,96px 72px}
+.information-frame{position:relative;border:1px solid #77756f;padding:0 2.4% 8px;background:rgba(255,255,255,.18)}
+.information-frame>.eyebrow{margin-top:28px}
+.information-frame>h2{font-size:clamp(27px,2.2vw,38px);letter-spacing:.17em;color:#927250;margin:0 0 40px}
+.information-frame .infogrid{grid-template-columns:repeat(3,minmax(0,1fr));gap:0;padding:0;border:0}
+.information-frame .info-column{padding:0 5% 12px}
+.information-frame .info-column+.info-column{border-left:1px solid #8a8984}
+.information-frame .info-column article{padding:0 0 20px;margin:0 0 18px;border-bottom:1px solid #999791}
+.information-frame .info-column article:last-child{border-bottom:0}
+.information-frame .info-column h3{font-size:17px;margin:0 0 18px}
+.information-frame .info-column p{font-size:14px;gap:14px}
+.information-frame .info-column p i{display:block;width:18px;height:18px;flex:0 0 18px}
+.information-frame .info-column p i:before{content:'◷';font-style:normal;color:#ad7444;font-size:18px;line-height:1}
+.information-frame .contact-column p i:before{content:'⌖'}
+.information-frame .contact-column>a:not(.maplink){margin-left:32px}
+.factsheet-link{position:relative;display:block;width:max-content;margin:0 auto -26px;transform:translateY(23px);padding:12px 25px;background:#fff;color:#666;font-size:13px;text-decoration:underline;letter-spacing:.025em}
+.factsheet-link:first-letter{color:#b27a48}
+.site-footer{background:#57585b;color:#fff;display:grid;grid-template-columns:1.05fr 1.25fr .9fr .42fr;gap:46px 5%;padding:58px 4% 25px}
+.site-footer h4{color:#fff;font-size:15px;letter-spacing:0;font-weight:500;margin:0 0 17px;text-transform:none}
+.site-footer a{color:#f3f3f1;text-decoration:none;font-size:13px;line-height:1.7}
+.footer-norbu{display:block;font:300 21px 'Manrope',sans-serif;letter-spacing:.08em;margin-bottom:31px}
+.footer-norbu span{font-size:11px;letter-spacing:.18em}
+.footer-contact h4{margin:0 0 12px}
+.footer-contact>a:not(.footer-norbu){display:block;font-size:15px;margin:5px 0}
+.footer-contact p,.footer-newsletter p{font-size:13px;line-height:1.7;color:#e1e1df;margin:14px 0 0}
+.site-footer .subscribe{display:flex;gap:12px;max-width:600px;margin-top:18px;border:0;padding:0;align-items:stretch}
+.site-footer .subscribe input{min-width:0;padding:14px 4px;border-bottom:1px solid #eee;color:#fff;font-size:13px}
+.site-footer .subscribe input::placeholder{color:#eee}
+.site-footer .subscribe button{min-width:150px;background:#a6a6a8;color:#46474a;border:0;border-radius:3px;padding:0 20px;font-size:12px;letter-spacing:.1em}
+.site-footer .support-heading{margin:34px 0 8px}
+.footer-links>div{display:grid;grid-template-columns:1fr;gap:8px}
+.footer-social a{display:block;margin:8px 0}
+.site-footer .copyright{grid-column:1/-1;border-top:1px solid #9a9a9a;margin-top:18px;padding-top:19px;color:#f0f0ef;font-size:10px;letter-spacing:.04em}
+.site-footer .copyright span{font-size:10px;letter-spacing:.04em}
+@media(max-width:760px){.information{padding:52px 16px 48px}.information-frame{padding:0 16px 8px}.information-frame>.eyebrow{margin-top:22px}.information-frame>h2{font-size:23px;letter-spacing:.11em;margin-bottom:30px}.information-frame .infogrid{grid-template-columns:1fr}.information-frame .info-column{padding:0 0 8px}.information-frame .info-column+.info-column{border:0;border-top:1px solid #aaa;padding-top:22px;margin-top:8px}.information-frame .info-column article{padding-bottom:16px;margin-bottom:15px}.information-frame .info-column p{font-size:13px}.factsheet-link{font-size:11px;padding:10px 16px}.site-footer{grid-template-columns:1fr 1fr;gap:30px 22px;padding:42px 22px 22px}.footer-contact,.footer-newsletter{grid-column:1/-1}.site-footer .subscribe{max-width:100%}.site-footer .subscribe button{min-width:110px;padding:0 10px}.site-footer .copyright{display:flex;flex-direction:column;gap:8px;line-height:1.8}.site-footer .copyright span{display:block}}
+@media(max-width:420px){.site-footer{grid-template-columns:1fr}.footer-contact,.footer-newsletter{grid-column:auto}.footer-links,.footer-social{grid-column:auto}.site-footer .copyright{grid-column:1/-1}}
