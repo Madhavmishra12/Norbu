@@ -26,8 +26,8 @@ img { max-width: 100%; }
 .nh-hero { z-index: 1; }
 .nh-discover { z-index: 2; }
 .nh-suites { z-index: 3; }
-.nh-dining { z-index: 4; }
-.nh-gallery { z-index: 5; }
+.nh-gallery { z-index: 4; }
+.nh-dining { z-index: 5; }
 .nh-experiences { z-index: 6; }
 .nh-events { z-index: 7; }
 .nh-footer { position: relative; z-index: 8; }
