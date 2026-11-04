@@ -360,15 +360,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="nh-gallery" id="gallery">
-        <div className="nh-gallery-heading" data-reveal="up">
-          <p className="nh-kicker">A CLOSER LOOK</p>
-          <h2>Moments in the mountains</h2>
-        </div>
-        <PhotoRail images={gallerySlides} index={galleryIndex} onChange={setGalleryIndex} label="Gallery" />
-        <div className="nh-gallery-note"><span>DHARAMSHALA, AT YOUR OWN PACE</span><span>0{galleryIndex + 1} <i>/ 05</i></span></div>
-      </section>
-
       <section className="nh-dining" id="dining">
         <div className="nh-dining-illustration" data-reveal="left">
           <img className="nh-dining-plate" data-scroll-parallax="0" data-scroll-rotate="40" src={`${media}/04/platonamak.png`} alt="A selection of dishes from Namak restaurant" />
@@ -382,6 +373,15 @@ export default function Home() {
           <p>Namak is the word for salt, and in our kitchen we use varieties. Choose from a selection of Indian, Tibetan and international cuisine, or find a new delight in the chef’s special menu. All-day dining that’s worth its salt.</p>
           <a className="nh-dark-button" href="tel:+918894055112">BOOK A TABLE <span aria-hidden="true">↗</span></a>
         </div>
+      </section>
+
+      <section className="nh-gallery" id="gallery">
+        <div className="nh-gallery-heading" data-reveal="up">
+          <p className="nh-kicker">A CLOSER LOOK</p>
+          <h2>Moments in the mountains</h2>
+        </div>
+        <PhotoRail images={gallerySlides} index={galleryIndex} onChange={setGalleryIndex} label="Gallery" />
+        <div className="nh-gallery-note"><span>DHARAMSHALA, AT YOUR OWN PACE</span><span>0{galleryIndex + 1} <i>/ 05</i></span></div>
       </section>
 
       <section className="nh-experiences" id="experiences">
