@@ -52,6 +52,14 @@ const suites = [
 ];
 
 const gallerySlides = [
+  `${media}/06/Gallery-1d-scaled.webp`,
+  `${media}/06/Gallery-1a-scaled.webp`,
+  `${media}/06/gallery-1b-scaled.webp`,
+  `${media}/06/Gallery-1c-scaled.webp`,
+  `${media}/06/Gallery-1e-scaled.webp`,
+];
+
+const experienceSlides = [
   `${media}/06/Gallery-1a-scaled.webp`,
   `${media}/06/gallery-1b-scaled.webp`,
   `${media}/06/Gallery-1c-scaled.webp`,
@@ -124,7 +132,7 @@ function SocialLinks({ footer = false }: { footer?: boolean }) {
   );
 }
 
-function PhotoRail({
+function PhotoSlider({
   images,
   index,
   onChange,
@@ -135,20 +143,17 @@ function PhotoRail({
   onChange: (next: number) => void;
   label: string;
 }) {
-  const leftIndex = index;
-  const rightIndex = (index + 1) % images.length;
   const advance = (step: number) => onChange((index + step + images.length) % images.length);
   return (
-    <div className="nh-photo-rail" aria-label={label} data-reveal="up">
-      <div className="nh-photo-pair" aria-live="polite">
-        <img src={images[leftIndex]} alt={`${label} view ${leftIndex + 1}`} />
-        <img src={images[rightIndex]} alt={`${label} view ${rightIndex + 1}`} />
+    <div className="nh-photo-slider" aria-label={label}>
+      <div className="nh-photo-frame" aria-live="polite">
+        <img key={images[index]} src={images[index]} alt={`${label} view ${index + 1}`} />
       </div>
-      <button className="nh-round-arrow nh-rail-prev" onClick={() => advance(-1)} aria-label={`Previous ${label.toLowerCase()} photos`}>
-        <span aria-hidden="true">←</span>
+      <button className="nh-gallery-arrow nh-rail-prev" onClick={() => advance(-1)} aria-label={`Previous ${label.toLowerCase()} photo`}>
+        <span aria-hidden="true">‹</span>
       </button>
-      <button className="nh-round-arrow nh-rail-next" onClick={() => advance(1)} aria-label={`Next ${label.toLowerCase()} photos`}>
-        <span aria-hidden="true">→</span>
+      <button className="nh-gallery-arrow nh-rail-next" onClick={() => advance(1)} aria-label={`Next ${label.toLowerCase()} photo`}>
+        <span aria-hidden="true">›</span>
       </button>
       <div className="nh-rail-dots" aria-label={`${label} slide ${index + 1} of ${images.length}`}>
         {images.map((_, dot) => (
@@ -376,12 +381,7 @@ export default function Home() {
       </section>
 
       <section className="nh-gallery" id="gallery">
-        <div className="nh-gallery-heading" data-reveal="up">
-          <p className="nh-kicker">A CLOSER LOOK</p>
-          <h2>Moments in the mountains</h2>
-        </div>
-        <PhotoRail images={gallerySlides} index={galleryIndex} onChange={setGalleryIndex} label="Gallery" />
-        <div className="nh-gallery-note"><span>DHARAMSHALA, AT YOUR OWN PACE</span><span>0{galleryIndex + 1} <i>/ 05</i></span></div>
+        <PhotoSlider images={gallerySlides} index={galleryIndex} onChange={setGalleryIndex} label="Moments in the mountains" />
       </section>
 
       <section className="nh-experiences" id="experiences">
@@ -392,7 +392,7 @@ export default function Home() {
           <button className="nh-text-link" onClick={() => scrollTo('meetings')}>FIND YOUR MOUNTAIN MOMENT <span aria-hidden="true">↗</span></button>
         </div>
         <div className="nh-experience-image" data-reveal="right">
-          <img data-scroll-parallax="0.035" src={gallerySlides[experienceIndex]} alt="A view of Norbu and its mountain setting" />
+          <img data-scroll-parallax="0.035" src={experienceSlides[experienceIndex]} alt="A view of Norbu and its mountain setting" />
           <div className="nh-image-caption"><span>0{experienceIndex + 1} / 05</span><p>Make time for the view.</p></div>
           <button className="nh-round-arrow nh-exp-prev" aria-label="Previous experience view" onClick={() => setExperienceIndex((experienceIndex - 1 + gallerySlides.length) % gallerySlides.length)}>←</button>
           <button className="nh-round-arrow nh-exp-next" aria-label="Next experience view" onClick={() => setExperienceIndex((experienceIndex + 1) % gallerySlides.length)}>→</button>
