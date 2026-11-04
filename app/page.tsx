@@ -1,74 +1,372 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 
-const hero = [
-  'https://cdn.sanity.io/images/ocl5w36p/ihcl_prod/5dae4c9f6f1940dde84f38bb66c229861555ded4-1920x660.jpg?auto=format&fit=max&w=2000',
-  'https://cdn.sanity.io/images/ocl5w36p/ihcl_prod/a28e2223289f1375274f200285ac292d0e22a61b-1920x660.jpg?auto=format&fit=max&w=2000',
-  'https://cdn.sanity.io/images/ocl5w36p/ihcl_prod/f5c6675f6fe257f7c0dcbb426d13c9dd8d710546-1920x660.jpg?auto=format&fit=max&w=2000',
-  'https://cdn.sanity.io/images/ocl5w36p/ihcl_prod/9db7a477cfbcc07e8f76f496e62520ae4f8d79b5-1920x660.jpg?auto=format&fit=max&w=2000',
+const media = 'https://www.norbuhotels.com/wp-content/uploads/2022';
+const heroSlides = [
+  `${media}/06/Home.webp`,
+  `${media}/06/Gallery-1a-scaled.webp`,
+  `${media}/06/gallery-1b-scaled.webp`,
+  `${media}/06/Gallery-1c-scaled.webp`,
+  `${media}/06/meetings-solo-ilustra-scaled-1-scaled.webp`,
 ];
-const rooms = [
-  ['Deluxe Villa Tea Gardens View','Wake up to crisp mountain air and tranquil views of the in-house tea garden, with the Himalayas beyond.','ac863ef2dcdc6b6079a69921541a6201ed7f3c79-1600x1066.jpg'],
-  ['Deluxe Villa Mountain View','Take in the Dhauladhar range from your private balcony, where Tibetan artistry meets contemporary comfort.','703e61aa027f12bd86943524fc28c0e404a91346-1600x1066.jpg'],
-  ['Pawcations Room','Bring your four-legged companion along for a relaxed mountain escape made to enjoy together.','3b58d326c97ba075c4b74060d6fbdd96fa844af1-1920x1432.jpg'],
-  ['Premium Villa Tea Garden View','Settle into a calm retreat with views of the lush tea garden and the hills beyond.','9f65bc97941f562b91b9804eb5ff5fbab6911267-1280x739.jpg'],
-  ['Premium Grand Villa','Make room for everyone in a spacious villa designed for slow mornings and time together.','38c52ec78b6be8ccf78d32ac7b77f6066461d1b3-1600x1200.jpg'],
-  ['Signature Suite','Enjoy extra space, a private terrace and a quiet place to take in the mountain air.','16bc9cbd58d151523f0bf619ac245dcbd305eb49-1600x1066.jpg'],
+
+const suites = [
+  {
+    name: "Yeti's Abode",
+    description: 'Live it up yeti-style in our stunning presidential suite. Luxurious interiors, a deep soak tub, panoramic mountain views, a private bar, a large terrace and your personal butler.',
+    image: `${media}/04/yetisabode.jpg`,
+    anchor: 'yetisab',
+  },
+  {
+    name: "Yeti's A-pha",
+    description: 'Discover a sumptuous one-bedroom sanctuary wrapped in views of majestic valleys, with a bar, private terrace and a glass-walled shower area.',
+    image: `${media}/04/yestiapha1.jpg`,
+    anchor: 'yetisap',
+  },
+  {
+    name: "Yeti's Ku-Gu",
+    description: 'Unwind in complete privacy, with unobstructed corner views of the mountains and lake.',
+    image: `${media}/04/yestkugu.jpg`,
+    anchor: 'yetiskg',
+  },
+  {
+    name: 'Mountain View Suites',
+    description: 'Wake to changing mountain light, then linger on your private terrace above the Kangra Valley.',
+    image: `${media}/05/habitacionmont.jpg`,
+    anchor: 'mountain-view',
+  },
+  {
+    name: 'Tea Garden Suites',
+    description: 'A peaceful hideaway surrounded by the colour and quiet of Dharamshala’s tea gardens.',
+    image: `${media}/04/teagardensuite.jpg`,
+    anchor: 'tea-garden',
+  },
+  {
+    name: 'Tea Experience Suites',
+    description: 'Settle into a spacious suite inspired by the gardens, flavours and stories of Kangra tea.',
+    image: `${media}/04/teaexperiencesuite.jpg`,
+    anchor: 'tea-experience',
+  },
 ];
-const roomImage = (asset:string) => `https://cdn.sanity.io/images/ocl5w36p/ihcl_prod/${asset.replace(/-(jpg|png|webp)$/,'.$1')}`;
-const amenityGroups = [
-  { title:'Hotel', icon:'hotel', items:['Smoking Room','In-Room Dining','Concierge','14 km from Kangra Airport','Multilingual Staff','Outdoor Pool','Fitness Centre','Parking','Doctor on Call','Wi-Fi','Coffee Shop','Currency Exchange','Laundry'] },
-  { title:'Dining', icon:'dining', items:['Namak (Local Tibetan, Global)'] },
-  { title:'Wellness', icon:'wellness', items:['Spa at Norbu The Montanna, Dharamshala'] },
-  { title:'Room', icon:'room', items:['24-hour Room Service','Bathtub','Air conditioning','Smoke detector'] },
+
+const gallerySlides = [
+  `${media}/06/Gallery-1a-scaled.webp`,
+  `${media}/06/gallery-1b-scaled.webp`,
+  `${media}/06/Gallery-1c-scaled.webp`,
+  `${media}/06/Gallery-1d-scaled.webp`,
+  `${media}/06/Gallery-1e-scaled.webp`,
 ];
-const nav = ['OVERVIEW','ROOMS & SUITES','DINING','VENUES','WELLNESS','EXPERIENCES','GALLERY','LOCAL ATTRACTIONS'];
-const experienceSlides = [
-  { title:'EPICURE', description:'Enjoy an array of unparalleled privileges and elevate your lifestyle like never before with Epicure memberships. Crafted for sheer indulgence, experience exceptional stays, unique dining, wellness therapies and more.', background:'2f82f2f6022d876cf9e3f6eb1cbbf4b5076fa048-3840x2228-jpg', image:'070e55a37280cf9d079109c4705ac71051f7a7f9-1892x860-jpg' },
-  { title:'WEDDINGS', description:'Discover beautiful wedding destinations, from regal palaces and coastal escapes to tranquil mountain retreats. Each venue turns your celebration into a memorable experience, crafted with elegance and personal charm.', background:'615a2b209092a13e7a3211cc5befb5ac9d9ea5d6-1920x920-jpg', image:'e5229e6616477ee4ca583f471d1774281375eece-902x410-jpg' },
-  { title:'GIFTING', description:'Delight your loved ones with unique Taj experiences, from memorable stays to special moments across hotels and restaurants.', background:'0196d7b82dc7ad951ba1df6f7462cb681f5883b1-800x464-jpg', image:'9b7eb8a3825d7c1809be87e56ffea61fc5477c25-1920x2076-jpg' },
+
+const meetingSlides = [
+  `${media}/06/meetings-solo-ilustra-scaled-1-scaled.webp`,
+  `${media}/05/met02y03.webp`,
+  `${media}/05/met03y04.webp`,
+  `${media}/05/met04y05.webp`,
+  `${media}/05/met05y06.webp`,
 ];
-const sightSlides = [
-  ['1a5797ac2dab52145b341929637bc8c805dfee9e-921x660.jpg','Stunning Dhauladhar mountain views'],
-  ['93d1d0ed054d7b91d70ed16cb56275079d125022-921x660.jpg','Tibetan-inspired decor and motifs'],
-  ['3f7831867b08eb8051669bef254f44f5ed740bdd-921x660.jpg','Seven acres of lush landscape'],
-  ['d1bae050c9abcb3c8b1d3eb019fb11ad8fd3e344-921x660.jpg','Seasonal snow-covered surroundings'],
-  ['296f9b199d2bd2ae9c23c0a569e14b259751039e-921x660.jpg','An immersive cultural and spiritual retreat'],
-].map(([asset,caption])=>[`https://cdn.sanity.io/images/ocl5w36p/ihcl_prod/${asset}`,caption] as const);
+
+const socialLinks = [
+  { label: 'WhatsApp', href: 'https://wa.link/2s1udm', mark: 'wa' },
+  { label: 'Instagram', href: 'https://www.instagram.com/norbuhotels/', mark: 'ig' },
+  { label: 'Facebook', href: 'https://www.facebook.com/Norbu-Hotels-102476561129707', mark: 'f' },
+  { label: 'YouTube', href: 'https://www.youtube.com/channel/UCdkMlfsz8WOM_B9iQ6PeGBQ', mark: '▶' },
+  { label: 'Twitter', href: 'https://twitter.com/HotelsNorbu', mark: '𝕏' },
+];
+
+function SocialLinks({ footer = false }: { footer?: boolean }) {
+  return (
+    <div className={`nh-social${footer ? ' nh-social-footer' : ''}`} aria-label="Norbu on social media">
+      {socialLinks.map((item) => (
+        <a key={item.label} href={item.href} aria-label={item.label} target="_blank" rel="noreferrer">
+          {item.mark}
+        </a>
+      ))}
+    </div>
+  );
+}
+
+function PhotoRail({
+  images,
+  index,
+  onChange,
+  label,
+}: {
+  images: string[];
+  index: number;
+  onChange: (next: number) => void;
+  label: string;
+}) {
+  const leftIndex = index;
+  const rightIndex = (index + 1) % images.length;
+  const advance = (step: number) => onChange((index + step + images.length) % images.length);
+  return (
+    <div className="nh-photo-rail" aria-label={label} data-reveal="up">
+      <div className="nh-photo-pair" aria-live="polite">
+        <img src={images[leftIndex]} alt={`${label} view ${leftIndex + 1}`} />
+        <img src={images[rightIndex]} alt={`${label} view ${rightIndex + 1}`} />
+      </div>
+      <button className="nh-round-arrow nh-rail-prev" onClick={() => advance(-1)} aria-label={`Previous ${label.toLowerCase()} photos`}>
+        <span aria-hidden="true">←</span>
+      </button>
+      <button className="nh-round-arrow nh-rail-next" onClick={() => advance(1)} aria-label={`Next ${label.toLowerCase()} photos`}>
+        <span aria-hidden="true">→</span>
+      </button>
+      <div className="nh-rail-dots" aria-label={`${label} slide ${index + 1} of ${images.length}`}>
+        {images.map((_, dot) => (
+          <button key={dot} aria-label={`Show ${label.toLowerCase()} photos ${dot + 1}`} aria-pressed={index === dot} className={index === dot ? 'is-active' : ''} onClick={() => onChange(dot)} />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default function Home() {
-  const [slide,setSlide]=useState(0),[heroPaused,setHeroPaused]=useState(false),[experienceSlide,setExperienceSlide]=useState(1),[sightSlide,setSightSlide]=useState(0),[roomSlide,setRoomSlide]=useState(0),[amenitiesExpanded,setAmenitiesExpanded]=useState(false),[destinationsOpen,setDestinationsOpen]=useState(false),[menu,setMenu]=useState(false);
-  const sectionTargets:Record<string,string>={'OVERVIEW':'overview','ROOMS & SUITES':'rooms-suites','DINING':'dining','VENUES':'dining','WELLNESS':'dining','EXPERIENCES':'exclusive','GALLERY':'gallery','LOCAL ATTRACTIONS':'hotel-information'};
-  const go=(label:string)=>document.getElementById(sectionTargets[label]??'overview')?.scrollIntoView({behavior:'smooth'});
-  useEffect(()=>{
-    if(heroPaused || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const timer=window.setInterval(()=>setSlide(current=>(current+1)%hero.length),5500);
-    return ()=>window.clearInterval(timer);
-  },[heroPaused]);
-  return <main>
-    <section className="hero" onMouseEnter={()=>setHeroPaused(true)} onMouseLeave={()=>setHeroPaused(false)} onFocusCapture={()=>setHeroPaused(true)} onBlurCapture={event=>{if(!event.currentTarget.contains(event.relatedTarget as Node|null))setHeroPaused(false)}}>
-      <div className="hero-slides" aria-hidden="true">{hero.map((source,index)=><img src={source} alt="" className={index===slide?'visible':''} key={source}/>)}</div>
-      <header className="topbar"><div className="account">LOGIN / JOIN</div><button className="bookhead" onClick={()=>document.getElementById('booking')?.scrollIntoView({behavior:'smooth'})}>BOOK A STAY</button><button className="hamb" aria-label={menu?'Close navigation':'Open navigation'} aria-expanded={menu} onClick={()=>setMenu(!menu)}><span className="hamb-lines" aria-hidden="true"/></button></header>
-      {menu&&<div className="mobilemenu">{nav.map(n=><button key={n} onClick={()=>{go(n);setMenu(false)}}>{n}</button>)}</div>}
-      <h1>NORBU THE MONTANNA<br/><span>DHARAMSHALA</span></h1>
-      <div className="hero-actions"><button onClick={()=>go('LOCAL ATTRACTIONS')}>LOCATION</button><button onClick={()=>go('GALLERY')}>VIEW GALLERY</button></div>
-      <div className="dots" aria-label="Hotel photo slides">{hero.map((_,i)=><button aria-label={`Show hero slide ${i+1}`} aria-pressed={slide===i} onClick={()=>setSlide(i)} className={slide===i?'active':''} key={i}/>)}</div>
-    </section>
-    <section className="booking" id="booking"><button className="booknow">BOOK NOW</button></section>
-    <nav className="tabs">{nav.map((n,i)=><button onClick={()=>go(n)} className={i===0?'selected':''} key={n}>{n}</button>)}</nav>
-    <section className="intro section" id="overview"><p className="eyebrow">A MOUNTAIN RETREAT IN DHARAMSHALA</p><h2>COME CLOSER TO THE<br/>DHAULADHAR HIMALAYAS</h2><p className="introtext">Set among the Dhauladhar mountains in Himachal Pradesh, Norbu The Montanna is a peaceful place to slow down and settle in. “Norbu” means jewel in Tibetan—a fitting name for a retreat shaped by mountain views, Tibetan-inspired design and the warmth of thoughtful hospitality.</p><a className="textlink" href="#rooms-suites">FIND YOUR ROOM&nbsp; ↗</a></section>
-    <section className="sight section" id="gallery"><div className="sight-heading"><p className="eyebrow">TAKE IN THE SURROUNDINGS</p><h2>SIGHT <span>&amp;</span> SOUND</h2><p>Mountain air, quiet moments and a closer look at life in the Himalayas.</p></div><div className="sight-carousel" aria-roledescription="carousel" aria-label="Norbu The Montanna photo gallery"><div className="sight-track">{[-1,0,1].map(offset=>{const index=(sightSlide+offset+sightSlides.length)%sightSlides.length;const [source,caption]=sightSlides[index];return <article className={`sight-slide ${offset===0?'current':'neighbor'} ${offset===-1?'previous':'next'}`} key={`${offset}-${index}`} aria-hidden={offset!==0}><img src={source} alt={offset===0?caption:''}/><div className="sight-caption">{caption}</div></article>})}</div><button className="sight-arrow sight-prev" aria-label="Previous gallery image" onClick={()=>setSightSlide((sightSlide+sightSlides.length-1)%sightSlides.length)}>←</button><button className="sight-arrow sight-next" aria-label="Next gallery image" onClick={()=>setSightSlide((sightSlide+1)%sightSlides.length)}>→</button></div><div className="sight-pagination" aria-label={`Image ${sightSlide+1} of ${sightSlides.length}`}>{sightSlides.map((_,index)=><button key={index} aria-label={`Show gallery image ${index+1}`} aria-pressed={sightSlide===index} onClick={()=>setSightSlide(index)} className={sightSlide===index?'active':''}/>)}</div></section>
-    <section className="rooms section" id="rooms-suites"><div className="sectionhead"><div><p className="eyebrow">REST, RECHARGE, RECONNECT</p><h2>ROOMS &amp; SUITES</h2><p className="sectioncopy">Tea garden mornings, mountain views and room to unwind. Find a stay that feels right for your time in Dharamshala.</p></div><button className="outline" onClick={()=>document.getElementById('booking')?.scrollIntoView({behavior:'smooth'})}>EXPLORE YOUR STAY ↗</button></div><div className="room-carousel" aria-roledescription="carousel" aria-label="Rooms and suites"><div className="room-carousel-track">{rooms.map(([name,copy,photo],index)=>{const position=(index-roomSlide+rooms.length)%rooms.length;const offset=position-1;return <article className={`roomcard room-slide ${offset===0?'room-current':''}`} key={name} style={{left:`calc(13% + ${offset*39}%)`}} aria-hidden={offset<0||offset>1}><div className="roomimage"><img src={roomImage(photo)} alt={offset<0||offset>1?'':name}/><span>0{index+1} / 06</span></div><div className="roomcopy"><h3>{name}</h3><p>{copy}</p><div><button onClick={()=>document.getElementById('booking')?.scrollIntoView({behavior:'smooth'})}>BOOK NOW ↗</button><a href="#booking">ROOM DETAILS&nbsp; +</a></div></div></article>})}</div><button className="room-arrow room-prev" aria-label="Previous room" onClick={()=>setRoomSlide((roomSlide+rooms.length-1)%rooms.length)}>←</button><button className="room-arrow room-next" aria-label="Next room" onClick={()=>setRoomSlide((roomSlide+1)%rooms.length)}>→</button></div><div className="room-pagination" aria-label={`Room ${roomSlide+1} of ${rooms.length}`}>{rooms.map(([name],index)=><button key={name} aria-label={`Show ${name}`} aria-pressed={roomSlide===index} className={roomSlide===index?'active':''} onClick={()=>setRoomSlide(index)}/>)}</div></section>
-    <section className="amenities section" id="dining"><div className="amenities-title"><h2>AMENITIES &amp; FACILITIES</h2></div><div className="amenities-grid">{amenityGroups.map(group=><article className="amenity-group" key={group.title}><div className="amenity-group-heading"><svg viewBox="0 0 32 32" aria-hidden="true">{group.icon==='hotel'?<><rect x="8" y="8" width="16" height="19" rx="2"/><path d="M12 8V5h8v3M8 14h16M12 27v2m8-2v2"/></>:group.icon==='dining'?<><path d="m7 7 8 8m-6-10 8 8m-10-4 8 8m11-8-8 8m8-12-9 9m5 5-4-4"/><path d="M6 5v7m3-7v5m-3 2h3"/></>:group.icon==='wellness'?<><path d="M16 27c-1-9-1-14 0-22 5 5 7 10 0 16-7-6-5-11 0-16M16 27c-4-7-8-10-13-12 0 8 4 13 13 12Zm0 0c4-7 8-10 13-12 0 8-4 13-13 12Z"/></>:<><path d="M5 19h22v7H5zM7 19v-7a3 3 0 0 1 3-3h4a3 3 0 0 1 3 3v7m0-5h7a3 3 0 0 1 3 3v2M8 26v2m16-2v2"/></>}</svg><h3>{group.title}</h3></div><ul>{(group.title==='Hotel'&&!amenitiesExpanded?group.items.slice(0,4):group.items).map(item=><li key={item}>{item}</li>)}</ul>{group.title==='Hotel'&&<button className="amenities-more" onClick={()=>setAmenitiesExpanded(!amenitiesExpanded)}>{amenitiesExpanded?'Show less':'...more'}</button>}</article>)}</div></section>
-    <section className="information section" id="hotel-information"><div className="information-frame"><p className="eyebrow">GOOD TO KNOW BEFORE YOU ARRIVE</p><h2>HOTEL INFORMATION</h2><div className="infogrid"><div className="info-column"><article><h3>Check-in &amp; Check-out time</h3><p><i aria-hidden="true"/><span>Check-in from 2:00 PM<br/>Check-out till 12:00 Noon</span></p></article><article><h3>Dining</h3><p><i aria-hidden="true"/><span>Namak</span></p></article><article><h3>Current Temperature</h3><p><i aria-hidden="true"/><span>17.8°C</span></p></article></div><div className="info-column"><article><h3>Rooms &amp; Suites</h3><p><i aria-hidden="true"/><span>Choose from villas and suites with garden or mountain views.</span></p></article><article><h3>Wellness</h3><p><i aria-hidden="true"/><span>Spa at Norbu The Montanna, Dharamshala</span></p></article><article><h3>Hotel Essentials</h3><p><span>GSTIN: 02ASJPG3154CIZE</span></p></article></div><div className="info-column contact-column"><article><h3>Contact Address</h3><p><i aria-hidden="true"/><span>Village Banordu, Dharamshala,<br/>Himachal Pradesh, 176053, India</span></p><a className="maplink" href="https://maps.google.com/?q=Norbu+The+Montanna+Dharamshala">VIEW MAP&nbsp; ›</a></article><a href="mailto:book.norbu@seleqtionshotels.com">EMAIL THE HOTEL</a><a href="tel:+918894055112">+91 8894055112</a></div></div><a className="factsheet-link" href="mailto:book.norbu@seleqtionshotels.com?subject=Norbu%20The%20Montanna%20factsheet">↓&nbsp;&nbsp; DOWNLOAD FACTSHEET</a></div></section>
-    <section className="exclusive" id="exclusive" aria-label="Exclusively for you" style={{backgroundImage:`linear-gradient(90deg,rgba(20,22,21,.56),rgba(20,22,21,.43)),url('${roomImage(experienceSlides[experienceSlide].background)}')`}}>
-      <div className="exclusive-heading"><h2>EXCLUSIVELY <b>FOR YOU</b></h2><p>Enjoy tailored experiences, premium access, and a personal touch that transforms every journey<br className="desktop-break"/> into an unforgettable story</p></div>
-      <div className="exclusive-carousel" aria-live="polite">
-        {[-1,0,1].map(offset=>{const index=(experienceSlide+offset+experienceSlides.length)%experienceSlides.length;const item=experienceSlides[index];return offset===0?<article className="experience-card" key={item.title}><img src={roomImage(item.image)} alt={item.title==='WEDDINGS'?'A couple celebrating their wedding at a mountain resort':item.title==='EPICURE'?'Epicure experiences':'Taj gifting experiences'}/><div className="experience-card-copy"><h3>{item.title}</h3><p>{item.description}</p><a href={item.title==='WEDDINGS'?'https://www.seleqtionshotels.com/en-in/wedding':item.title==='EPICURE'?'https://www.tajhotels.com/en-in/epicureprogram':'https://www.tajhotels.com/en-in/gifting-and-shopping'}>MORE&nbsp; ›</a></div></article>:<button className={`experience-side ${offset<0?'side-left':'side-right'}`} key={item.title} style={{backgroundImage:`linear-gradient(0deg,rgba(18,19,18,.3),rgba(18,19,18,.2)),url('${roomImage(item.background)}')`}} onClick={()=>setExperienceSlide(index)} aria-label={`Show ${item.title}`}><span>{item.title}</span></button>})}
-      </div>
-      <button className="exclusive-arrow prev" aria-label="Previous experience" onClick={()=>setExperienceSlide((experienceSlide+experienceSlides.length-1)%experienceSlides.length)}>←</button><button className="exclusive-arrow next" aria-label="Next experience" onClick={()=>setExperienceSlide((experienceSlide+1)%experienceSlides.length)}>→</button>
-    </section>
-    <footer className="global-footer"><a className="ihcl-mark" href="#overview" aria-label="Norbu The Montanna">NORBU</a><div className="global-footer-top"><div className="footer-newsletter"><h4>Subscribe To Our Newsletter</h4><form className="subscribe" onSubmit={event=>event.preventDefault()}><input type="email" placeholder="Enter Your Email Address" aria-label="Enter your email address"/><button type="submit">SUBSCRIBE</button></form><div className="footer-contact"><h4>For Booking Contact</h4><a href="tel:1800111825">1-800-111-825</a><a href="tel:+912266011825">+91 22660 11825</a><a href="mailto:reservations@ihcltata.com">reservations@ihcltata.com</a><div className="norbu-footer-contact"><b>Norbu The Montanna</b><a href="tel:+918894055112">+91 8894055112</a><a href="mailto:book.norbu@seleqtionshotels.com">EMAIL THE HOTEL</a><span>Village Banordu, Dharamshala,<br/>Himachal Pradesh, 176053, India</span></div></div></div><div className="footer-social"><h4>Connect with Us:</h4><a href="https://www.facebook.com/SeleQtions/" aria-label="Facebook">f</a><a href="https://www.instagram.com/seleqtions/" aria-label="Instagram">◎</a></div></div><button className="footer-destinations-toggle" aria-expanded={destinationsOpen} onClick={()=>setDestinationsOpen(!destinationsOpen)}>Destinations <span>{destinationsOpen?'−':'+'}</span></button>{destinationsOpen&&<div className="footer-destinations">Agra · Ajmer · Ayodhya · Bhubaneswar · Bhutan · Dharamshala · Diu · Goa · Jaipur · Kolkata · Manali · Mumbai · New Delhi · Rishikesh · Varanasi</div>}<div className="global-footer-bottom"><span>© 2026 Norbu The Montanna. All Rights Reserved.</span><nav><a href="https://www.ihcltata.com/">Corporate</a><a href="https://www.ihcltata.com/press-room">Pressroom</a><a href="https://www.ihcltata.com/careers">Work With Us</a><a href="https://www.seleqtionshotels.com/en-in/about-us/terms-of-use">Terms of Service</a><a href="https://www.seleqtionshotels.com/en-in/about-us/accessibility">Accessibility</a><a href="https://www.ihcltata.com/investors/">Investor Relations</a><a href="https://www.tajhotels.com/en-in/partners-and-alliances">Partners</a><a href="https://www.seleqtionshotels.com/en-in/about-us/privacy-policy">Privacy Policy</a><a href="https://www.seleqtionshotels.com/en-in/about-us/cookies-policy">Cookies Policy</a></nav></div></footer>
-  </main>;
+  const [heroSlide, setHeroSlide] = useState(0);
+  const [heroPaused, setHeroPaused] = useState(false);
+  const [suiteStart, setSuiteStart] = useState(0);
+  const [galleryIndex, setGalleryIndex] = useState(0);
+  const [experienceIndex, setExperienceIndex] = useState(0);
+  const [meetingIndex, setMeetingIndex] = useState(0);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [sent, setSent] = useState(false);
+
+  useEffect(() => {
+    if (heroPaused || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const timer = window.setInterval(() => setHeroSlide((current) => (current + 1) % heroSlides.length), 6000);
+    return () => window.clearInterval(timer);
+  }, [heroPaused]);
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
+    const site = document.querySelector('.norbu-site');
+    if (!site) return;
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14, rootMargin: '0px 0px -36px 0px' });
+
+    const observeRevealItems = (node: ParentNode) => {
+      node.querySelectorAll<HTMLElement>('[data-reveal]:not(.is-visible)').forEach((element) => revealObserver.observe(element));
+    };
+
+    site.classList.add('nh-motion-ready');
+    observeRevealItems(site);
+    const contentObserver = new MutationObserver((changes) => {
+      changes.forEach((change) => change.addedNodes.forEach((node) => {
+        if (node instanceof HTMLElement) {
+          if (node.matches('[data-reveal]:not(.is-visible)')) revealObserver.observe(node);
+          observeRevealItems(node);
+        }
+      }));
+    });
+    contentObserver.observe(site, { childList: true, subtree: true });
+
+    return () => {
+      revealObserver.disconnect();
+      contentObserver.disconnect();
+      site.classList.remove('nh-motion-ready');
+    };
+  }, []);
+
+  const scrollTo = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    setMenuOpen(false);
+  };
+
+  const submitMessage = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setSent(true);
+  };
+
+  const visibleSuites = [-1, 0, 1].map((offset) => suites[(suiteStart + offset + suites.length) % suites.length]);
+
+  return (
+    <main className="norbu-site">
+      <section
+        className="nh-hero"
+        id="home"
+        onMouseEnter={() => setHeroPaused(true)}
+        onMouseLeave={() => setHeroPaused(false)}
+        onFocusCapture={() => setHeroPaused(true)}
+        onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setHeroPaused(false); }}
+      >
+        <div className="nh-hero-backgrounds" aria-hidden="true">
+          {heroSlides.map((image, index) => <img key={image} src={image} alt="" className={heroSlide === index ? 'is-active' : ''} />)}
+        </div>
+        <div className="nh-utility">
+          <a className="nh-phone" href="tel:+918894055112"><span aria-hidden="true">↗</span> CALL US: +91 8894055112</a>
+          <SocialLinks />
+        </div>
+        <header className="nh-header">
+          <button className={`nh-menu-button${menuOpen ? ' is-open' : ''}`} aria-label={menuOpen ? 'Close menu' : 'Open menu'} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>
+            <span /><span /><span />
+          </button>
+          <button className="nh-header-link nh-table-link" onClick={() => scrollTo('dining')}>BOOK A TABLE</button>
+          <a href="#home" className="nh-logo" aria-label="Norbu The Montanna home">
+            <img src={`${media}/03/Recurso-2-300x106.png`} alt="Norbu The Montanna" />
+          </a>
+          <button className="nh-header-link nh-room-link" onClick={() => scrollTo('suites')}>BOOK A ROOM</button>
+          <span className="nh-header-spacer" aria-hidden="true" />
+        </header>
+        {menuOpen && (
+          <nav className="nh-menu-panel" aria-label="Main navigation">
+            <button onClick={() => scrollTo('discover')}>Discover</button>
+            <button onClick={() => scrollTo('suites')}>Suites</button>
+            <button onClick={() => scrollTo('dining')}>Dining</button>
+            <button onClick={() => scrollTo('gallery')}>Gallery</button>
+            <button onClick={() => scrollTo('experiences')}>Experiences</button>
+            <button onClick={() => scrollTo('contact')}>Contact</button>
+          </nav>
+        )}
+        <div className="nh-hero-center" data-reveal="up">
+          <img className="nh-hero-seal" src={`${media}/04/NNARANJA.png`} alt="" />
+          <p className="nh-hero-kicker">A HIMALAYAN HIDEAWAY</p>
+          <h1>Norbu The Montanna</h1>
+          <p className="nh-hero-place">DHARAMSHALA <span>·</span> HIMACHAL PRADESH</p>
+          <button className="nh-hero-cta" onClick={() => scrollTo('discover')}>DISCOVER THE MOUNTAIN <span aria-hidden="true">↓</span></button>
+        </div>
+        <div className="nh-hero-bottom">
+          <button onClick={() => scrollTo('contact')}>LOCATION <span aria-hidden="true">↗</span></button>
+          <div className="nh-hero-dots" aria-label={`Hero photo ${heroSlide + 1} of ${heroSlides.length}`}>
+            {heroSlides.map((_, index) => <button key={index} aria-label={`Show hero photo ${index + 1}`} aria-pressed={heroSlide === index} className={heroSlide === index ? 'is-active' : ''} onClick={() => setHeroSlide(index)} />)}
+          </div>
+          <button onClick={() => scrollTo('gallery')}>VIEW GALLERY <span aria-hidden="true">↗</span></button>
+        </div>
+        <button className="nh-hero-arrow nh-hero-prev" aria-label="Previous hero image" onClick={() => setHeroSlide((heroSlide + heroSlides.length - 1) % heroSlides.length)}>←</button>
+        <button className="nh-hero-arrow nh-hero-next" aria-label="Next hero image" onClick={() => setHeroSlide((heroSlide + 1) % heroSlides.length)}>→</button>
+      </section>
+
+      <section className="nh-discover" id="discover">
+        <div className="nh-discover-art" data-reveal="left">
+          <img className="nh-discover-mark" src={`${media}/04/NNARANJA.png`} alt="" />
+          <img className="nh-discover-leaves" src={`${media}/04/naranjahojas.png`} alt="" />
+          <span className="nh-art-caption">A JEWEL IN THE KANGRA VALLEY</span>
+        </div>
+        <div className="nh-discover-copy" data-reveal="right">
+          <p className="nh-kicker">A PLACE TO FIND YOUR PACE</p>
+          <h2>Discover Norbu<br />The Montanna</h2>
+          <p className="nh-discover-lead">Something new is coming to the Kangra Valley. Timeless traditions meet contemporary comfort on the edge of the Himalayas.</p>
+          <p>Settle into Dharamshala’s slower rhythm, surrounded by cedar-covered hills, mountain air and a rich Tibetan heritage. Here, every day begins with a view and leaves room for a little discovery.</p>
+          <div className="nh-location-line"><span className="nh-location-mark" aria-hidden="true">⌖</span><span>Dharamshala<br /><small>Himachal Pradesh, India</small></span></div>
+          <button className="nh-text-link" onClick={() => scrollTo('suites')}>EXPLORE YOUR STAY <span aria-hidden="true">↗</span></button>
+        </div>
+      </section>
+
+      <section className="nh-suites" id="suites">
+        <div className="nh-section-intro nh-suite-intro" data-reveal="up">
+          <p className="nh-kicker">ROOMS &amp; SUITES</p>
+          <h2>Settle in. Look out.</h2>
+          <p>Six considered hideaways, each with its own way of bringing the mountains close. Find the space that feels like yours.</p>
+        </div>
+        <div className="nh-suite-carousel" aria-roledescription="carousel" aria-label="Norbu rooms and suites">
+          <div className="nh-suite-track">
+            {visibleSuites.map((suite, slot) => (
+              <article className={`nh-suite-card nh-suite-card-${slot}`} key={`${suite.anchor}-${slot}`} data-reveal="up" style={{ transitionDelay: `${slot * 90}ms` }}>
+                <img src={suite.image} alt={suite.name} />
+                <div className="nh-suite-shade" />
+                <div className="nh-suite-card-copy">
+                  <span className="nh-suite-count">0{(suites.indexOf(suite) + 1).toString()} <i>/ 06</i></span>
+                  <h3>{suite.name}</h3>
+                  <p>{suite.description}</p>
+                  <button onClick={() => scrollTo('contact')}>EXPLORE <span aria-hidden="true">↗</span></button>
+                </div>
+              </article>
+            ))}
+          </div>
+          <button className="nh-round-arrow nh-suite-prev" aria-label="Previous suite" onClick={() => setSuiteStart((suiteStart - 1 + suites.length) % suites.length)}>←</button>
+          <button className="nh-round-arrow nh-suite-next" aria-label="Next suite" onClick={() => setSuiteStart((suiteStart + 1) % suites.length)}>→</button>
+        </div>
+        <div className="nh-suite-dots" aria-label={`Suite ${suiteStart + 1} of ${suites.length}`}>
+          {suites.map((suite, index) => <button key={suite.anchor} aria-label={`Show ${suite.name}`} aria-pressed={suiteStart === index} className={suiteStart === index ? 'is-active' : ''} onClick={() => setSuiteStart(index)} />)}
+        </div>
+      </section>
+
+      <section className="nh-dining" id="dining">
+        <div className="nh-dining-illustration" data-reveal="left">
+          <img className="nh-dining-plate" src={`${media}/04/platonamak.png`} alt="A selection of dishes from Namak restaurant" />
+          <img className="nh-dining-flower" src={`${media}/04/floresamarillas-1.png`} alt="" />
+          <span className="nh-dining-stamp">GATHER<br />AROUND<br />THE TABLE</span>
+        </div>
+        <div className="nh-dining-copy" data-reveal="right">
+          <p className="nh-kicker">FLAVOURS OF THE HILLS</p>
+          <img className="nh-namak-logo" src={`${media}/04/namak-300x56.png`} alt="Namak" />
+          <h2>Good food.<br />Good company.</h2>
+          <p>Namak is the word for salt, and in our kitchen we use varieties. Choose from a selection of Indian, Tibetan and international cuisine, or find a new delight in the chef’s special menu. All-day dining that’s worth its salt.</p>
+          <button className="nh-dark-button" onClick={() => scrollTo('contact')}>BOOK A TABLE <span aria-hidden="true">↗</span></button>
+        </div>
+      </section>
+
+      <section className="nh-gallery" id="gallery">
+        <div className="nh-gallery-heading" data-reveal="up">
+          <p className="nh-kicker">A CLOSER LOOK</p>
+          <h2>Moments in the mountains</h2>
+        </div>
+        <PhotoRail images={gallerySlides} index={galleryIndex} onChange={setGalleryIndex} label="Gallery" />
+        <div className="nh-gallery-note"><span>DHARAMSHALA, AT YOUR OWN PACE</span><span>0{galleryIndex + 1} <i>/ 05</i></span></div>
+      </section>
+
+      <section className="nh-experiences" id="experiences">
+        <div className="nh-experience-copy" data-reveal="left">
+          <p className="nh-kicker">EXPERIENCES</p>
+          <h2>Do D’shala<br />in style.</h2>
+          <p>Discover the quiet splendour of the hills. Cedar forests, Tibetan culture and fresh mountain air set the scene for days that can be as restful or adventurous as you like.</p>
+          <button className="nh-text-link" onClick={() => scrollTo('meetings')}>FIND YOUR MOUNTAIN MOMENT <span aria-hidden="true">↗</span></button>
+        </div>
+        <div className="nh-experience-image" data-reveal="right">
+          <img src={gallerySlides[experienceIndex]} alt="A view of Norbu and its mountain setting" />
+          <div className="nh-image-caption"><span>0{experienceIndex + 1} / 05</span><p>Make time for the view.</p></div>
+          <button className="nh-round-arrow nh-exp-prev" aria-label="Previous experience view" onClick={() => setExperienceIndex((experienceIndex - 1 + gallerySlides.length) % gallerySlides.length)}>←</button>
+          <button className="nh-round-arrow nh-exp-next" aria-label="Next experience view" onClick={() => setExperienceIndex((experienceIndex + 1) % gallerySlides.length)}>→</button>
+        </div>
+      </section>
+
+      <section className="nh-events" id="meetings" style={{ backgroundImage: `linear-gradient(90deg, rgba(9, 26, 25, .8), rgba(14, 34, 33, .18)), url("${meetingSlides[meetingIndex]}")` }}>
+        <div className="nh-event-copy" data-reveal="left">
+          <p className="nh-kicker">GATHER IN THE HIMALAYAS</p>
+          <h2>Meetings &amp; events</h2>
+          <p>Planning a meeting or special event? Let us handle it. Against a backdrop of stunning natural beauty, Norbu The Montanna offers a thoughtful setting for gatherings of all kinds.</p>
+          <button className="nh-light-button" onClick={() => scrollTo('contact')}>TALK TO OUR TEAM <span aria-hidden="true">↗</span></button>
+        </div>
+        <div className="nh-event-controls">
+          <span>0{meetingIndex + 1} <i>/ 05</i></span>
+          <div>{meetingSlides.map((_, index) => <button key={index} aria-label={`Show event photo ${index + 1}`} aria-pressed={meetingIndex === index} className={meetingIndex === index ? 'is-active' : ''} onClick={() => setMeetingIndex(index)} />)}</div>
+          <button className="nh-event-next" aria-label="Next event photo" onClick={() => setMeetingIndex((meetingIndex + 1) % meetingSlides.length)}>→</button>
+        </div>
+      </section>
+
+      <footer className="nh-footer" id="contact">
+        <div className="nh-footer-top">
+          <div className="nh-footer-contact" data-reveal="up">
+            <a className="nh-footer-logo" href="#home"><img src={`${media}/03/Recurso-2-300x106.png`} alt="Norbu The Montanna" /></a>
+            <p className="nh-kicker">COME FIND YOUR MOUNTAIN</p>
+            <a className="nh-footer-phone" href="tel:+918894055112">+91 8894055112</a>
+            <address>Village Banordu,<br />Dharamshala,<br />Himachal Pradesh, 176052<br />India</address>
+            <div className="nh-footer-links"><a href="mailto:careers@norbuhotels.com">Careers</a><a href="#contact">Hotel policies</a></div>
+            <SocialLinks footer />
+          </div>
+          <div className="nh-contact-form" data-reveal="up" style={{ transitionDelay: '120ms' }}>
+            <p className="nh-kicker">WE’RE HERE TO HELP</p>
+            <h2>Get in touch</h2>
+            <form onSubmit={submitMessage}>
+              <label>Name <span>*</span><input name="name" autoComplete="name" required /></label>
+              <div className="nh-form-row">
+                <label>Email <span>*</span><input name="email" type="email" autoComplete="email" required /></label>
+                <label>Telephone <span>*</span><input name="telephone" type="tel" autoComplete="tel" required /></label>
+              </div>
+              <label>Your message to the mountain<textarea name="message" rows={3} /></label>
+              <button className="nh-light-button" type="submit">SEND <span aria-hidden="true">↗</span></button>
+              {sent && <p className="nh-form-note" role="status">Your enquiry isn’t sent online yet. Please call +91 8894055112 to reach our team.</p>}
+            </form>
+          </div>
+        </div>
+        <div className="nh-footer-bottom"><span>© {new Date().getFullYear()} Norbu The Montanna</span><a href="#home">BACK TO TOP ↑</a></div>
+      </footer>
+    </main>
+  );
 }
