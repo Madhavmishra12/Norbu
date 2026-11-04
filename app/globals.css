@@ -185,7 +185,7 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #E755
 /* IHCL site-wide footer shown on the reference property page */
 .global-footer{display:block;background:#57585b;color:#fff;padding:42px 4% 24px}
 .ihcl-mark{display:inline-block;color:#fff;text-decoration:none;font:700 36px/.95 Georgia,'Times New Roman',serif;letter-spacing:-.08em;margin-bottom:48px}
-.global-footer-top{display:grid;grid-template-columns:minmax(520px,1.45fr) minmax(430px,1fr) minmax(130px,.3fr);gap:5%;padding-bottom:40px}
+.global-footer-top{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:5%;padding-bottom:40px}
 .global-footer h4{font-size:16px;letter-spacing:0;font-weight:500;color:#fff;margin:0 0 18px;text-transform:none}
 .global-footer a{color:#f5f5f5;text-decoration:none}
 .global-footer .footer-newsletter .subscribe{display:flex;align-items:center;gap:32px;border:0;padding:0;margin:0 0 54px;max-width:750px}
@@ -213,6 +213,7 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #E755
 .global-footer-bottom nav{display:flex;justify-content:flex-end;flex-wrap:wrap;gap:0}
 .global-footer-bottom nav a{font-size:12px;padding:0 9px;border-right:1px solid #ddd;white-space:nowrap}
 .global-footer-bottom nav a:last-child{border-right:0}
-@media(max-width:1100px){.global-footer-top{grid-template-columns:1.2fr 1fr .4fr;gap:4%}.quick-link-columns{gap:15px}.quick-link-columns a{font-size:13px}.brand-logos{justify-content:flex-start}}
+@media(max-width:1100px){.global-footer-top{grid-template-columns:minmax(0,1fr) auto;gap:4%}.quick-link-columns{gap:15px}.quick-link-columns a{font-size:13px}.brand-logos{justify-content:flex-start}}
 @media(max-width:760px){.global-footer{padding:32px 22px 22px}.ihcl-mark{font-size:30px;margin-bottom:32px}.global-footer-top{grid-template-columns:1fr 1fr;gap:35px 24px;padding-bottom:25px}.footer-newsletter{grid-column:1/-1}.global-footer .footer-newsletter .subscribe{gap:12px;margin-bottom:32px}.global-footer .footer-newsletter .subscribe input{min-width:0}.global-footer .footer-newsletter .subscribe button{min-width:38%;font-size:11px}.global-footer .footer-contact>a{font-size:15px}.global-footer .footer-contact .support-heading{margin-top:25px}.global-footer .norbu-footer-contact{font-size:11px}.global-footer .footer-links h4,.global-footer .footer-social h4{font-size:14px}.quick-link-columns{grid-template-columns:1fr;gap:12px}.quick-link-columns>div{gap:8px}.quick-link-columns a{font-size:12px;white-space:normal}.global-footer .footer-destinations-toggle{padding:17px 0;font-size:14px}.brand-logos{gap:22px}.brand-logos img{height:36px;max-width:95px}.global-footer-bottom{display:block;font-size:10px}.global-footer-bottom nav{justify-content:flex-start;margin-top:10px;gap:7px}.global-footer-bottom nav a{padding:0 7px 0 0;font-size:10px}}
 @media(max-width:440px){.global-footer-top{grid-template-columns:1fr}.footer-newsletter{grid-column:auto}.global-footer .footer-newsletter .subscribe{display:grid;grid-template-columns:1fr auto}.global-footer .footer-newsletter .subscribe button{height:46px;min-width:112px}.quick-link-columns{grid-template-columns:1fr 1fr}.global-footer .footer-social{grid-column:auto}}
+.account{margin-left:auto}
