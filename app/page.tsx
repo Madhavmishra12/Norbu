@@ -14,7 +14,7 @@ const heroSlides = [
 
 const suites = [
   {
-    name: "Yeti's Abode",
+    name: 'Presidential Suite',
     description: 'Live it up yeti-style in our stunning presidential suite. Luxurious interiors, a deep soak tub, panoramic mountain views, a private bar, a large terrace and your personal butler.',
     image: `${media}/04/yetisabode.jpg`,
     anchor: 'yetisab',
