@@ -3,9 +3,9 @@
 import { useEffect, useState } from 'react';
 
 const hero = [
+  'https://cdn.sanity.io/images/ocl5w36p/ihcl_prod/5dae4c9f6f1940dde84f38bb66c229861555ded4-1920x660.jpg?auto=format&fit=max&w=2000',
   'https://cdn.sanity.io/images/ocl5w36p/ihcl_prod/a28e2223289f1375274f200285ac292d0e22a61b-1920x660.jpg?auto=format&fit=max&w=2000',
   'https://cdn.sanity.io/images/ocl5w36p/ihcl_prod/f5c6675f6fe257f7c0dcbb426d13c9dd8d710546-1920x660.jpg?auto=format&fit=max&w=2000',
-  'https://cdn.sanity.io/images/ocl5w36p/ihcl_prod/5dae4c9f6f1940dde84f38bb66c229861555ded4-1920x660.jpg?auto=format&fit=max&w=2000',
   'https://cdn.sanity.io/images/ocl5w36p/ihcl_prod/9db7a477cfbcc07e8f76f496e62520ae4f8d79b5-1920x660.jpg?auto=format&fit=max&w=2000',
 ];
 const rooms = [
