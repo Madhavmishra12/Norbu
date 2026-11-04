@@ -142,14 +142,15 @@ export default function Home() {
     const site = document.querySelector('.norbu-site');
     if (!site) return;
 
+    const revealThreshold = 0.16;
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && entry.intersectionRatio >= revealThreshold) {
           entry.target.classList.add('is-visible');
           revealObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.14, rootMargin: '0px 0px -36px 0px' });
+    }, { threshold: revealThreshold, rootMargin: '0px 0px -20px 0px' });
 
     const observeRevealItems = (node: ParentNode) => {
       node.querySelectorAll<HTMLElement>('[data-reveal]:not(.is-visible)').forEach((element) => revealObserver.observe(element));
