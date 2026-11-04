@@ -2,7 +2,7 @@
 
 import { FormEvent, useEffect, useState } from 'react';
 
-const media = 'https://www.norbuhotels.com/wp-content/uploads/2022';
+const media = '/norbu/2022';
 const bookingUrl = 'https://staahmax.staah.net/be/indexpackdetail?propertyId=NDAxNg%3D%3D&individual=true';
 const heroSlides = [
   `${media}/06/Home.webp`,
