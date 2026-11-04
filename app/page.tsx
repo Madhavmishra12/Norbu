@@ -32,11 +32,11 @@ const experienceSlides = [
   ['photo-1519681393784-d120267933ba','Make room for the mountains','Take a breath, look out to the Dhauladhar range and let the day find its own pace.'],
 ];
 const sightSlides = [
-  ['image-1a5797ac2dab52145b341929637bc8c805dfee9e-921x660-jpg','Stunning Dhauladhar mountain views'],
-  ['image-93d1d0ed054d7b91d70ed16cb56275079d125022-921x660-jpg','Tibetan-inspired decor and motifs'],
-  ['image-3f7831867b08eb8051669bef254f44f5ed740bdd-921x660-jpg','Seven acres of lush landscape'],
-  ['image-d1bae050c9abcb3c8b1d3eb019fb11ad8fd3e344-921x660-jpg','Seasonal snow-covered surroundings'],
-  ['image-296f9b199d2bd2ae9c23c0a569e14b259751039e-921x660-jpg','An immersive cultural and spiritual retreat'],
+  ['1a5797ac2dab52145b341929637bc8c805dfee9e-921x660.jpg','Stunning Dhauladhar mountain views'],
+  ['93d1d0ed054d7b91d70ed16cb56275079d125022-921x660.jpg','Tibetan-inspired decor and motifs'],
+  ['3f7831867b08eb8051669bef254f44f5ed740bdd-921x660.jpg','Seven acres of lush landscape'],
+  ['d1bae050c9abcb3c8b1d3eb019fb11ad8fd3e344-921x660.jpg','Seasonal snow-covered surroundings'],
+  ['296f9b199d2bd2ae9c23c0a569e14b259751039e-921x660.jpg','An immersive cultural and spiritual retreat'],
 ].map(([asset,caption])=>[`https://cdn.sanity.io/images/ocl5w36p/ihcl_prod/${asset}`,caption] as const);
 
 export default function Home() {
