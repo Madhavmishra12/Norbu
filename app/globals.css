@@ -235,6 +235,9 @@ img { max-width: 100%; }
 .nh-motion-ready .nh-experience-image>img { transform: translate3d(0, var(--nh-parallax-y, 0px), 0) scale(1.06); }
 
 @media (max-width: 900px) {
+  /* Keep mobile and tablet sections in document flow; sticky stacking makes
+     the next panel cover the current one before it has finished scrolling. */
+  .norbu-site > section { position: relative; top: auto; }
   .nh-hero { min-height: 690px; }
   .nh-discover { min-height: 540px; }
   .nh-discover-art { min-height: 540px; }
