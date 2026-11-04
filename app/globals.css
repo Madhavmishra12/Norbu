@@ -104,4 +104,20 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #E755
 .room-pagination button.active{width:48px;background:#98724f}
 @media(max-width:760px){.room-carousel{height:clamp(490px,148vw,680px);margin:24px -18px 0}.room-slide{width:86%;left:7%!important;opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s}.room-slide.room-current{opacity:1;visibility:visible;z-index:2}.room-slide .roomimage{height:clamp(245px,72vw,360px)}.room-slide .roomcopy{min-height:210px;padding:21px}.room-slide .roomcopy h3{font-size:18px}.room-slide .roomcopy p{font-size:13px}.room-arrow{top:36%;width:44px;height:44px;font-size:24px}.room-prev{left:5%}.room-next{right:5%}.room-pagination{margin-top:14px}}
 @media(prefers-reduced-motion:reduce){.room-slide,.room-arrow,.room-pagination button{transition:none}}
+
+/* Amenities and facilities, matching the hotel's information grid */
+.amenities{background:#fff;color:var(--ink);padding:86px 8% 110px}
+.amenities-title{text-align:center;margin-bottom:54px}
+.amenities-title h2{font:500 clamp(27px,2.3vw,40px) 'Manrope',sans-serif;letter-spacing:.19em;color:#98724f;margin:0}
+.amenities-grid{display:grid;grid-template-columns:1fr 1fr;max-width:1550px;margin:auto}
+.amenity-group{min-height:270px;padding:30px 7% 32px}
+.amenity-group:nth-child(odd){border-right:1px solid #777}
+.amenity-group:nth-child(-n+2){border-bottom:1px solid #aaa}
+.amenity-group-heading{display:flex;align-items:center;gap:14px;margin:0 0 18px}
+.amenity-group-heading svg{width:32px;height:32px;fill:none;stroke:#ad7444;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto}
+.amenity-group-heading h3{font:700 22px 'DM Sans',sans-serif;color:#55565a;margin:0}
+.amenity-group ul{margin:0 0 0 46px;padding-left:17px;color:#626268;font-size:16px;line-height:1.9}
+.amenity-group li{padding-left:3px;margin:0 0 4px}
+.amenities-more{margin:5px 0 0 46px;padding:0;background:none;border:0;color:#626268;font-size:15px}
+@media(max-width:760px){.amenities{padding:65px 20px 75px}.amenities-title{margin-bottom:32px}.amenities-title h2{font-size:25px;letter-spacing:.13em}.amenities-grid{grid-template-columns:1fr}.amenity-group{min-height:0;padding:25px 8px}.amenity-group:nth-child(odd){border-right:0}.amenity-group:not(:last-child){border-bottom:1px solid #aaa}.amenity-group-heading h3{font-size:19px}.amenity-group ul{font-size:14px}}
 @media(prefers-reduced-motion:reduce){.hero-slides img{transition:none}.roomimage img,.offercard>img,.bookhead,.booknow,.outline,.exclusive-arrow{transition:none}html{scroll-behavior:auto}}
