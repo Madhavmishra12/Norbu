@@ -49,6 +49,12 @@ const suites = [
     image: `${media}/04/teaexperiencesuite.jpg`,
     anchor: 'tea-experience',
   },
+  {
+    name: 'Happy Paws Suite',
+    description: 'A welcoming retreat for you and your four-legged companion, with thoughtful comforts and room to unwind together.',
+    image: 'https://cdn.sanity.io/images/ocl5w36p/ihcl_prod/eedd12bddd6695b0f4656c9cca0c4b189612e05d-6720x4480.jpg?w=1366&auto=format&dpr=2',
+    anchor: 'happy-paws',
+  },
 ];
 
 const gallerySlides = [
@@ -80,7 +86,6 @@ const socialLinks = [
   { label: 'Instagram', href: 'https://www.instagram.com/norbuhotels/', icon: 'instagram' },
   { label: 'Facebook', href: 'https://www.facebook.com/Norbu-Hotels-102476561129707%20', icon: 'facebook' },
   { label: 'YouTube', href: 'https://www.youtube.com/channel/UCdkMlfsz8WOM_B9iQ6PeGBQ', icon: 'youtube' },
-  { label: 'Twitter', href: 'https://twitter.com/HotelsNorbu%20', icon: 'twitter' },
 ];
 
 function SocialIcon({ name }: { name: string }) {
@@ -113,11 +118,7 @@ function SocialIcon({ name }: { name: string }) {
     </svg>
   );
 
-  return (
-    <svg {...common}>
-      <path fill="currentColor" d="M23.95 4.57a10 10 0 0 1-2.83.78 4.93 4.93 0 0 0 2.16-2.72 9.86 9.86 0 0 1-3.13 1.2 4.92 4.92 0 0 0-8.39 4.48A13.98 13.98 0 0 1 1.64 3.16a4.92 4.92 0 0 0 1.52 6.57 4.9 4.9 0 0 1-2.23-.62v.06a4.93 4.93 0 0 0 3.95 4.83 4.93 4.93 0 0 1-2.22.08 4.94 4.94 0 0 0 4.6 3.42A9.9 9.9 0 0 1 0 19.54a13.96 13.96 0 0 0 7.56 2.22c9.05 0 14-7.5 14-14v-.64a10 10 0 0 0 2.39-2.55Z" />
-    </svg>
-  );
+  return null;
 }
 
 function SocialLinks({ footer = false }: { footer?: boolean }) {
@@ -340,7 +341,7 @@ export default function Home() {
         <div className="nh-section-intro nh-suite-intro" data-reveal="up">
           <p className="nh-kicker">ROOMS &amp; SUITES</p>
           <h2>Settle in. Look out.</h2>
-          <p>Six considered hideaways, each with its own way of bringing the mountains close. Find the space that feels like yours.</p>
+          <p>Seven considered hideaways, each with its own way of bringing the mountains close. Find the space that feels like yours.</p>
         </div>
         <div className="nh-suite-carousel" aria-roledescription="carousel" aria-label="Norbu rooms and suites">
           <div className="nh-suite-track">
@@ -349,7 +350,7 @@ export default function Home() {
                 <img src={suite.image} alt={suite.name} />
                 <div className="nh-suite-shade" />
                 <div className="nh-suite-card-copy">
-                  <span className="nh-suite-count">0{(suites.indexOf(suite) + 1).toString()} <i>/ 06</i></span>
+                  <span className="nh-suite-count">0{(suites.indexOf(suite) + 1).toString()} <i>/ 07</i></span>
                   <h3>{suite.name}</h3>
                   <p>{suite.description}</p>
                   <a href={bookingUrl} target="_blank" rel="noopener noreferrer">CHECK AVAILABILITY <span aria-hidden="true">↗</span></a>
