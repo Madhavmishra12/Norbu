@@ -506,8 +506,8 @@ export default function Home() {
           <p>Experience a sense of calm through nature-inspired moments within the property. From quiet outdoor pursuits to unhurried leisure, each experience reflects the serenity of the hills. Simple yet immersive, these moments invite you to slow down and take in the quiet beauty of the mountains.</p>
         </div>
         <div className="nh-experience-grid">
-          {experiences.map((experience, index) => (
-            <article className="nh-experience-card" key={experience.title} data-reveal="up" style={{ transitionDelay: `${index * 100}ms` }}>
+          {experiences.map((experience) => (
+            <article className="nh-experience-card" key={experience.title}>
               <img src={experience.image} alt={experience.alt} />
               <div className="nh-experience-card-copy">
                 <h3>{experience.title}</h3>
