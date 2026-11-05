@@ -12,18 +12,17 @@ const heroSlides = [
   `${media}/06/meetings-solo-ilustra-scaled-1-scaled.webp`,
 ];
 
+const formatBookingDate = (date: string) => {
+  const [year, month, day] = date.split('-');
+  return `${day}-${month}-${year}`;
+};
+
 const suites = [
   {
     name: 'Presidential Suite',
     description: 'Live it up yeti-style in our stunning presidential suite. Luxurious interiors, a deep soak tub, panoramic mountain views, a private bar, a large terrace and your personal butler.',
     image: `${media}/04/yetisabode.jpg`,
     anchor: 'yetisab',
-  },
-  {
-    name: "Yeti's A-pha",
-    description: 'Discover a sumptuous one-bedroom sanctuary wrapped in views of majestic valleys, with a bar, private terrace and a glass-walled shower area.',
-    image: `${media}/04/yestiapha1.jpg`,
-    anchor: 'yetisap',
   },
   {
     name: "Yeti's Ku-Gu",
@@ -50,9 +49,9 @@ const suites = [
     anchor: 'tea-experience',
   },
   {
-    name: 'Happy Paws Suite',
+    name: 'Pawcations Room',
     description: 'A welcoming retreat for you and your four-legged companion, with thoughtful comforts and room to unwind together.',
-    image: 'https://cdn.sanity.io/images/ocl5w36p/ihcl_prod/eedd12bddd6695b0f4656c9cca0c4b189612e05d-6720x4480.jpg?w=1366&auto=format&dpr=2',
+    image: '/norbu/2026/pawcations-room.jpg',
     anchor: 'happy-paws',
   },
 ];
@@ -63,6 +62,7 @@ const gallerySlides = [
   `${media}/06/gallery-1b-scaled.webp`,
   `${media}/06/Gallery-1c-scaled.webp`,
   `${media}/06/Gallery-1e-scaled.webp`,
+  '/norbu/2026/bathroom.jpg',
 ];
 
 const experiences = [
@@ -89,6 +89,33 @@ const experiences = [
   },
 ];
 
+const wellnessPractices = [
+  'Yoga',
+  'Meditation',
+  'Rebirthing & inner-child breathwork',
+  'Aura reading',
+  'Spiritual counselling',
+  'Chakra balancing',
+  'Sound healing',
+  'Past-life regression',
+];
+
+const astrologyReadings = [
+  'Natal horoscope',
+  'Yearly horoscope',
+  'Marital compatibility horoscope',
+  'Medical horoscope',
+  'Miscellaneous calculations',
+];
+
+const venueSpaces = [
+  { name: 'Pool', description: 'Enjoy time by the outdoor pool, a relaxed setting to pause between mountain adventures.' },
+  { name: 'Pool deck', description: 'An open-air setting beside the water for intimate gatherings and easy-going celebrations.' },
+  { name: 'Lawns', description: 'Fresh air and mountain scenery create a natural backdrop for outdoor occasions.' },
+  { name: 'Banquet', description: 'A dedicated indoor setting for celebrations, meetings and private gatherings.' },
+  { name: 'Gufa', description: 'A distinctive, intimate space for a gathering with a sense of place.' },
+];
+
 const meetingSlides = [
   `${media}/06/meetings-solo-ilustra-scaled-1-scaled.webp`,
   `${media}/05/met02y03.webp`,
@@ -100,8 +127,6 @@ const meetingSlides = [
 const socialLinks = [
   { label: 'WhatsApp', href: 'https://wa.link/2s1udm', icon: 'whatsapp' },
   { label: 'Instagram', href: 'https://www.instagram.com/norbuhotels/', icon: 'instagram' },
-  { label: 'Facebook', href: 'https://www.facebook.com/Norbu-Hotels-102476561129707%20', icon: 'facebook' },
-  { label: 'YouTube', href: 'https://www.youtube.com/channel/UCdkMlfsz8WOM_B9iQ6PeGBQ', icon: 'youtube' },
 ];
 
 function SocialIcon({ name }: { name: string }) {
@@ -119,18 +144,6 @@ function SocialIcon({ name }: { name: string }) {
       <rect x="3.25" y="3.25" width="17.5" height="17.5" rx="5" fill="none" stroke="currentColor" strokeWidth="1.8" />
       <circle cx="12" cy="12" r="4.1" fill="none" stroke="currentColor" strokeWidth="1.8" />
       <circle cx="17.65" cy="6.5" r="1.15" fill="currentColor" />
-    </svg>
-  );
-
-  if (name === 'facebook') return (
-    <svg {...common}>
-      <path fill="currentColor" d="M13.35 21v-8.2h2.78l.42-3.2h-3.2V7.55c0-.93.26-1.56 1.6-1.56h1.72V3.12c-.3-.04-1.36-.13-2.58-.13-2.56 0-4.31 1.56-4.31 4.43V9.6H6.9v3.2h2.88V21h3.57Z" />
-    </svg>
-  );
-
-  if (name === 'youtube') return (
-    <svg {...common}>
-      <path fill="currentColor" d="M23.5 7.2a3 3 0 0 0-2.1-2.1C19.55 4.6 12 4.6 12 4.6s-7.55 0-9.4.5A3 3 0 0 0 .5 7.2 31.2 31.2 0 0 0 0 12a31.2 31.2 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.85.5 9.4.5 9.4.5s7.55 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.2 31.2 0 0 0 24 12a31.2 31.2 0 0 0-.5-4.8ZM9.6 15.4V8.6l6.3 3.4-6.3 3.4Z" />
     </svg>
   );
 
@@ -163,8 +176,8 @@ function PhotoSlider({
   const advance = (step: number) => onChange((index + step + images.length) % images.length);
   return (
     <div className="nh-photo-slider" aria-label={label}>
-      <div className="nh-photo-frame" aria-live="polite">
-        <img key={images[index]} src={images[index]} alt={`${label} view ${index + 1}`} />
+      <div className={`nh-photo-frame${images[index].endsWith('/bathroom.jpg') ? ' is-contained' : ''}`} aria-live="polite">
+        <img key={images[index]} src={images[index]} alt={images[index].endsWith('/bathroom.jpg') ? 'Bathroom with freestanding bath and mountain view' : `${label} view ${index + 1}`} />
       </div>
       <button className="nh-gallery-arrow nh-rail-prev" onClick={() => advance(-1)} aria-label={`Previous ${label.toLowerCase()} photo`}>
         <span aria-hidden="true">‹</span>
@@ -189,6 +202,12 @@ export default function Home() {
   const [meetingIndex, setMeetingIndex] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
   const [sent, setSent] = useState(false);
+  const [bookingOpen, setBookingOpen] = useState(false);
+  const [checkIn, setCheckIn] = useState('');
+  const [checkOut, setCheckOut] = useState('');
+  const [todayDate, setTodayDate] = useState('');
+  const [rooms, setRooms] = useState('1');
+  const [guests, setGuests] = useState('2');
 
   useEffect(() => {
     if (heroPaused || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -268,9 +287,59 @@ export default function Home() {
     };
   }, []);
 
+  useEffect(() => {
+    if (!bookingOpen) return;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setBookingOpen(false);
+    };
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', closeOnEscape);
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', closeOnEscape);
+    };
+  }, [bookingOpen]);
+
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
     setMenuOpen(false);
+  };
+
+  const openBooking = () => {
+    const localDate = (date: Date) => {
+      const year = date.getFullYear();
+      const month = `${date.getMonth() + 1}`.padStart(2, '0');
+      const day = `${date.getDate()}`.padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    };
+    const arrival = new Date();
+    arrival.setDate(arrival.getDate() + 1);
+    const today = new Date();
+    const selectedArrival = checkIn || localDate(arrival);
+    setTodayDate(localDate(today));
+    if (!checkIn) setCheckIn(selectedArrival);
+    if (!checkOut || checkOut <= selectedArrival) {
+      const selectedDeparture = new Date(`${selectedArrival}T12:00:00`);
+      selectedDeparture.setDate(selectedDeparture.getDate() + 1);
+      setCheckOut(localDate(selectedDeparture));
+    }
+    setBookingOpen(true);
+  };
+
+  const continueBooking = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const params = new URLSearchParams({
+      checkIn: formatBookingDate(checkIn),
+      checkOut: formatBookingDate(checkOut),
+      roomadult: guests,
+      roomchild: '0',
+      rooms,
+      currency: 'INR',
+      submit: 'Search',
+      promoCode: '',
+    });
+    window.open(`${bookingUrl}&${params.toString()}`, '_blank', 'noopener,noreferrer');
+    setBookingOpen(false);
   };
 
   const submitMessage = (event: FormEvent<HTMLFormElement>) => {
@@ -305,7 +374,7 @@ export default function Home() {
           <a href="#home" className="nh-logo" aria-label="Norbu The Montanna home">
             <img src={`${media}/03/Recurso-2-300x106.png`} alt="Norbu The Montanna" />
           </a>
-          <a className="nh-header-link nh-room-link" href={bookingUrl} target="_blank" rel="noopener noreferrer">BOOK A ROOM</a>
+          <button className="nh-header-link nh-room-link" onClick={openBooking}>BOOK A ROOM</button>
           <span className="nh-header-spacer" aria-hidden="true" />
         </header>
         {menuOpen && (
@@ -315,6 +384,9 @@ export default function Home() {
             <button onClick={() => scrollTo('dining')}>Dining</button>
             <button onClick={() => scrollTo('gallery')}>Gallery</button>
             <button onClick={() => scrollTo('experiences')}>Experiences</button>
+            <button onClick={() => scrollTo('wellness')}>Wellness</button>
+            <button onClick={() => scrollTo('event-spaces')}>Event spaces</button>
+            <button onClick={() => scrollTo('weddings')}>Weddings</button>
             <button onClick={() => scrollTo('contact')}>Contact</button>
           </nav>
         )}
@@ -356,19 +428,19 @@ export default function Home() {
         <div className="nh-section-intro nh-suite-intro" data-reveal="up">
           <p className="nh-kicker">ROOMS &amp; SUITES</p>
           <h2>Settle in. Look out.</h2>
-          <p>Seven considered hideaways, each with its own way of bringing the mountains close. Find the space that feels like yours.</p>
+          <p>Thoughtful hideaways, each with its own way of bringing the mountains close. Find the space that feels like yours.</p>
         </div>
         <div className="nh-suite-carousel" aria-roledescription="carousel" aria-label="Norbu rooms and suites">
           <div className="nh-suite-track">
             {visibleSuites.map((suite, slot) => (
-              <article className={`nh-suite-card nh-suite-card-${slot}`} key={`${suite.anchor}-${slot}`} data-reveal="up" style={{ transitionDelay: `${slot * 90}ms` }}>
+              <article className={`nh-suite-card nh-suite-card-${slot}${suite.anchor === 'happy-paws' ? ' nh-suite-card-pawcations' : ''}`} key={`${suite.anchor}-${slot}`} data-reveal="up" style={{ transitionDelay: `${slot * 90}ms` }}>
                 <img src={suite.image} alt={suite.name} />
                 <div className="nh-suite-shade" />
                 <div className="nh-suite-card-copy">
-                  <span className="nh-suite-count">0{(suites.indexOf(suite) + 1).toString()} <i>/ 07</i></span>
+                  <span className="nh-suite-count">0{(suites.indexOf(suite) + 1).toString()} <i>/ {`${suites.length}`.padStart(2, '0')}</i></span>
                   <h3>{suite.name}</h3>
                   <p>{suite.description}</p>
-                  <a href={bookingUrl} target="_blank" rel="noopener noreferrer">CHECK AVAILABILITY <span aria-hidden="true">↗</span></a>
+                  <button type="button" onClick={openBooking}>CHECK AVAILABILITY <span aria-hidden="true">↗</span></button>
                 </div>
               </article>
             ))}
@@ -422,6 +494,73 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="nh-wellness" id="wellness">
+        <div className="nh-wellness-heading" data-reveal="up">
+          <p className="nh-kicker">RESTORE YOUR RHYTHM</p>
+          <h2>Wellness, with room to breathe.</h2>
+          <p>Find space for stillness, reflection and renewal in the calm of the mountains.</p>
+        </div>
+        <div className="nh-wellness-grid">
+          <article className="nh-wellness-card" data-reveal="left">
+            <p className="nh-kicker">LONGER RETREATS</p>
+            <h3>Practices for a deeper pause</h3>
+            <p>These wellness experiences are offered as longer retreats. Please get in touch with our team for more information, planning and availability.</p>
+            <ul className="nh-wellness-practices">
+              {wellnessPractices.map((practice) => <li key={practice}>{practice}</li>)}
+            </ul>
+          </article>
+          <article className="nh-wellness-card nh-tibetan-card" data-reveal="right">
+            <p className="nh-kicker">TIBETAN WELLNESS</p>
+            <h3>Traditional knowledge</h3>
+            <p>Enquire about consultations with a Tibetan doctor and astrology services through the Men-Tsee-Khang organisation.</p>
+            <h4>Tibetan astrology readings</h4>
+            <ul className="nh-reading-list">
+              {astrologyReadings.map((reading) => <li key={reading}>{reading}</li>)}
+            </ul>
+            <button className="nh-text-link" onClick={() => scrollTo('contact')}>ASK OUR TEAM <span aria-hidden="true">↗</span></button>
+          </article>
+        </div>
+      </section>
+
+      <section className="nh-amenities" id="amenities">
+        <div className="nh-amenity-copy" data-reveal="left">
+          <p className="nh-kicker">TIME TO UNWIND</p>
+          <h2>Make room for a slower day.</h2>
+          <p>Take a refreshing dip in the outdoor pool, then make time for a restorative visit to the spa. Ask our team about current facilities, treatments and availability during your stay.</p>
+          <button className="nh-dark-button" onClick={() => scrollTo('contact')}>ASK ABOUT AMENITIES <span aria-hidden="true">↗</span></button>
+        </div>
+        <div className="nh-amenity-list" data-reveal="right">
+          <article><span>01</span><div><h3>Outdoor pool</h3><p>A refreshing pause with the mountain air all around.</p></div></article>
+          <article><span>02</span><div><h3>Spa</h3><p>Make time to slow down and enquire about spa experiences.</p></div></article>
+        </div>
+      </section>
+
+      <section className="nh-spaces" id="event-spaces">
+        <div className="nh-spaces-heading" data-reveal="up">
+          <p className="nh-kicker">GATHER IN THE HILLS</p>
+          <h2>Spaces for your occasion</h2>
+          <p>From a celebration outdoors to a private gathering indoors, speak with our team to find the right setting and plan the details.</p>
+        </div>
+        <div className="nh-space-grid">
+          {venueSpaces.map((space, index) => (
+            <article className="nh-space-card" key={space.name} data-reveal="up" style={{ transitionDelay: `${index * 70}ms` }}>
+              <span>0{index + 1}</span>
+              <h3>{space.name}</h3>
+              <p>{space.description}</p>
+              <button onClick={() => scrollTo('contact')} aria-label={`Enquire about ${space.name}`}>ENQUIRE <span aria-hidden="true">↗</span></button>
+            </article>
+          ))}
+        </div>
+        <div className="nh-wedding-callout" id="weddings" data-reveal="up">
+          <div>
+            <p className="nh-kicker">A DAY TO REMEMBER</p>
+            <h3>Weddings in the mountains</h3>
+            <p>Share your plans with us and our team can help you explore the available spaces and arrangements.</p>
+          </div>
+          <button onClick={() => scrollTo('contact')} aria-label="Enquire about weddings">ENQUIRE ABOUT WEDDINGS <span aria-hidden="true">↗</span></button>
+        </div>
+      </section>
+
       <section className="nh-events" id="meetings" style={{ backgroundImage: `linear-gradient(90deg, rgba(9, 26, 25, .8), rgba(14, 34, 33, .18)), url("${meetingSlides[meetingIndex]}")` }}>
         <div className="nh-event-copy" data-reveal="left">
           <p className="nh-kicker">GATHER IN THE HIMALAYAS</p>
@@ -443,8 +582,26 @@ export default function Home() {
             <p className="nh-kicker">COME FIND YOUR MOUNTAIN</p>
             <a className="nh-footer-phone" href="tel:+918894055112">+91 8894055112</a>
             <address>Village Banordu,<br />Dharamshala,<br />Himachal Pradesh, 176052<br />India</address>
-            <div className="nh-footer-links"><a href="mailto:careers@norbuhotels.com">Careers</a><a href="https://www.norbuhotels.com/#elementor-action%3Aaction%3Dpopup%3Aopen%26settings%3DeyJpZCI6IjE2MzkiLCJ0b2dnbGUiOmZhbHNlfQ%3D%3D" target="_blank" rel="noopener noreferrer">Hotel policies</a></div>
+            <div className="nh-footer-links"><a href="mailto:hr@norbuhotels.com">Careers</a><a href="#hotel-policies">Hotel policies</a></div>
             <SocialLinks footer />
+            <details className="nh-policy" id="hotel-policies">
+              <summary>Hotel policies <span aria-hidden="true">＋</span></summary>
+              <div className="nh-policy-copy">
+                <h3>Reservations</h3>
+                <p>Reservations must be secured by credit card, cash deposit, bank transfer or an approved credit facility. Contact the hotel directly to arrange an advance deposit or guarantee and to confirm the current payment details.</p>
+                <h3>Cancellation and retention</h3>
+                <p>For cancellations, the hotel’s published policy applies: 25% of the full-stay accommodation charge plus taxes within 15 days of arrival; 50% within 10 days; and 100% within 7 days.</p>
+                <h3>Occupancy and additional guests</h3>
+                <p>Rooms are designed for two adults. Rollaway beds are subject to availability. Up to two children below 6 years may stay at no extra charge using existing bedding. Children aged 6–12 are charged INR 5,000 plus taxes with an extra bed, subject to availability. Guests above 12 are charged INR 8,000 plus taxes with an extra bed, subject to availability.</p>
+                <h3>Check-in and check-out</h3>
+                <p>Check-in is from 2:00 pm and check-out is by 12:00 noon. Early arrival and late departure are subject to availability and may incur an additional charge.</p>
+                <h3>Payments and visitors</h3>
+                <p>A card may be pre-authorised for accommodation, taxes and INR 5,000 per day for incidentals. Currency exchange is available for in-house guests on presentation of passport and visa. Visitors must register at reception between 10:00 am and 8:00 pm; unregistered visitors are not permitted in guest rooms outside these hours.</p>
+                <h3>Dining, smoking and consideration</h3>
+                <p>Please use the hotel’s food and beverage facilities; outside food and drink are not permitted. Guest rooms, restaurants and public areas are non-smoking, including hookah, shisha and vaping. Smoking in a guest room may incur deep-cleaning charges. Narcotics are prohibited. Please keep music and noise at a considerate level.</p>
+                <p className="nh-policy-note">Please confirm current charges and conditions with the hotel when booking, as policies may change.</p>
+              </div>
+            </details>
           </div>
           <div className="nh-contact-form" data-reveal="up" style={{ transitionDelay: '120ms' }}>
             <p className="nh-kicker">WE’RE HERE TO HELP</p>
@@ -463,6 +620,36 @@ export default function Home() {
         </div>
         <div className="nh-footer-bottom"><span>© {new Date().getFullYear()} Norbu The Montanna</span><a href="#home">BACK TO TOP ↑</a></div>
       </footer>
+
+      {bookingOpen && (
+        <div className="nh-booking-overlay" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) setBookingOpen(false); }}>
+          <section className="nh-booking-dialog" role="dialog" aria-modal="true" aria-labelledby="nh-booking-title">
+            <button className="nh-booking-close" aria-label="Close booking calendar" onClick={() => setBookingOpen(false)}>×</button>
+            <p className="nh-kicker">PLAN YOUR STAY</p>
+            <h2 id="nh-booking-title">Find your dates.</h2>
+            <form onSubmit={continueBooking}>
+              <div className="nh-booking-dates">
+                <label>Check in<input type="date" min={todayDate || undefined} required value={checkIn} onChange={(event) => {
+                  const nextCheckIn = event.target.value;
+                  setCheckIn(nextCheckIn);
+                  if (nextCheckIn && checkOut && checkOut <= nextCheckIn) {
+                    const nextDay = new Date(`${nextCheckIn}T12:00:00`);
+                    nextDay.setDate(nextDay.getDate() + 1);
+                    const nextCheckout = `${nextDay.getFullYear()}-${`${nextDay.getMonth() + 1}`.padStart(2, '0')}-${`${nextDay.getDate()}`.padStart(2, '0')}`;
+                    setCheckOut(nextCheckout);
+                  }
+                }} /></label>
+                <label>Check out<input type="date" required min={checkIn || undefined} value={checkOut} onChange={(event) => setCheckOut(event.target.value)} /></label>
+              </div>
+              <div className="nh-booking-guests">
+                <label>Rooms<select value={rooms} onChange={(event) => setRooms(event.target.value)}>{[1, 2, 3, 4].map((count) => <option key={count} value={count}>{count} {count === 1 ? 'room' : 'rooms'}</option>)}</select></label>
+                <label>Guests<select value={guests} onChange={(event) => setGuests(event.target.value)}>{[1, 2, 3, 4, 5, 6, 7, 8].map((count) => <option key={count} value={count}>{count} {count === 1 ? 'guest' : 'guests'}</option>)}</select></label>
+              </div>
+              <button className="nh-dark-button nh-booking-submit" type="submit">CHECK AVAILABILITY <span aria-hidden="true">↗</span></button>
+            </form>
+          </section>
+        </div>
+      )}
     </main>
   );
 }
