@@ -68,24 +68,52 @@ const gallerySlides = [
 const experiences = [
   {
     title: 'BARBEQUE BY THE RIVER',
-    description: 'Gather by the Lhasa river for a fireside barbeque under the stars, with live music and cool mountain breezes.',
-    details: 'Gather around a fire pit by the Lhasa river for an elegant barbeque experience, accompanied by live music and the cool mountain breeze under a starry sky.',
-    image: 'https://cdn.sanity.io/images/ocl5w36p/ihcl_prod/9d4c225844bb9df12e2ba6ad6c5701ce17fb208f-520x517.jpg?w=1200&auto=format',
+    description: 'A riverside fire pit, live music and the cool mountain air set the scene for an evening outdoors.',
+    details: 'Gather with friends beside the Lhasa river for a fireside barbecue, mountain breezes and an evening under the stars. Ask our team about availability and arrangements.',
+    image: '/norbu/2026/experiences/barbeque-by-the-river.jpg',
     alt: 'Barbeque by a riverside fire pit',
   },
   {
     title: 'HILLTOP LUNCH',
-    description: 'Enjoy a relaxed barbeque lunch on a scenic hilltop, with freshly prepared dishes and panoramic mountain views.',
-    details: 'As the mountain air sharpens your appetite, savour freshly prepared dishes amid the quiet beauty of the heights.',
-    image: 'https://cdn.sanity.io/images/ocl5w36p/ihcl_prod/e8d97bf654d55e4b93faecc8ed155a728c988475-520x517.jpg?w=1200&auto=format',
+    description: 'Take a slow, freshly prepared lunch above the valley with open views of the surrounding mountains.',
+    details: 'Enjoy an easy-paced barbecue lunch on a scenic hilltop, surrounded by panoramic views and drifting clouds. Contact the team to plan a private meal.',
+    image: '/norbu/2026/experiences/hilltop-lunch.jpg',
     alt: 'A long outdoor lunch table among the hills',
   },
   {
     title: 'COSMIC CONVERSATIONS',
-    description: 'Join visiting monks for meditation, spiritual teachings and personal conversations that invite reflection.',
-    details: 'Personal consultations offer space to explore life’s deeper meanings, reflection, mindfulness, and renewed perspective.',
-    image: 'https://cdn.sanity.io/images/ocl5w36p/ihcl_prod/de3a6893f278e58d15a95a1a8e33e3d630ff1886-520x517.jpg?w=1200&auto=format',
+    description: 'Spend time in meditation and thoughtful conversation with visiting monks in the quiet of the hills.',
+    details: 'Visiting guest monks share spiritual teachings and offer personal consultations, making space for reflection, mindfulness and a renewed perspective.',
+    image: '/norbu/2026/experiences/cosmic-conversations.jpg',
     alt: 'Two visiting monks in the gardens',
+  },
+  {
+    title: 'ADVENTURES IN GASTRONOMY',
+    description: 'Discover Tibetan flavours through an eight-course tasting menu made with fresh, organic ingredients.',
+    details: 'A considered eight-course Tibetan degustation brings together organic ingredients, regional flavours and a mountain setting. Ask our team about menus and availability.',
+    image: '/norbu/2026/experiences/adventures-in-gastronomy.jpg',
+    alt: 'A carefully presented Tibetan tasting menu',
+  },
+  {
+    title: 'CULINARY SESSIONS',
+    description: 'Join the chefs for a hands-on session, from baking something sweet to creating a gourmet dish.',
+    details: 'Learn alongside the hotel’s chefs as they share techniques and ideas for everything from artisanal baking to gourmet cooking.',
+    image: '/norbu/2026/experiences/culinary-sessions.jpg',
+    alt: 'A chef preparing a dish in the kitchen',
+  },
+  {
+    title: 'LAKESIDE EXPERIENCES',
+    description: 'Enjoy a private riverside dinner, cocktail soirée or intimate barbecue beside the water.',
+    details: 'Spend an unhurried evening by the Lhasa river with private dining, cocktails or a small barbecue arranged for your group.',
+    image: '/norbu/2026/experiences/lakeside-experiences.jpg',
+    alt: 'A private dining experience beside the river',
+  },
+  {
+    title: 'MIXOLOGY SESSIONS',
+    description: 'Explore cocktail-making with an expert mixologist at the poolside bar.',
+    details: 'Discover new flavours and techniques in an interactive session led by the hotel’s mixologist. Contact the team for current timings and availability.',
+    image: '/norbu/2026/experiences/mixology-sessions.jpg',
+    alt: 'A colourful cocktail prepared at the poolside bar',
   },
 ];
 
@@ -109,11 +137,11 @@ const astrologyReadings = [
 ];
 
 const venueSpaces = [
-  { name: 'Pool', description: 'Enjoy time by the outdoor pool, a relaxed setting to pause between mountain adventures.' },
-  { name: 'Pool deck', description: 'An open-air setting beside the water for intimate gatherings and easy-going celebrations.' },
-  { name: 'Lawns', description: 'Fresh air and mountain scenery create a natural backdrop for outdoor occasions.' },
-  { name: 'Banquet', description: 'A dedicated indoor setting for celebrations, meetings and private gatherings.' },
-  { name: 'Gufa', description: 'A distinctive, intimate space for a gathering with a sense of place.' },
+  { name: 'Pool', description: 'Enjoy time by the outdoor pool, a relaxed setting to pause between mountain adventures.', image: `${media}/05/met05y06.webp`, alt: 'The outdoor pool with the mountains beyond' },
+  { name: 'Pool deck', description: 'An open-air setting beside the water for intimate gatherings and easy-going celebrations.', image: `${media}/06/meetings-solo-ilustra-scaled-1-scaled.webp`, alt: 'An open-air terrace with mountain views' },
+  { name: 'Lawns', description: 'Fresh air and mountain scenery create a natural backdrop for outdoor occasions.', image: `${media}/05/met02y03.webp`, alt: 'Outdoor dining surrounded by the hills' },
+  { name: 'Banquet', description: 'A dedicated indoor setting for celebrations, meetings and private gatherings.', image: `${media}/06/Gallery-1e-scaled.webp`, alt: 'The hotel dining room set for guests' },
+  { name: 'Gufa', description: 'A distinctive, intimate space for a gathering with a sense of place.', image: `${media}/06/Gallery-1a-scaled.webp`, alt: 'A warm hotel lounge with views of the valley' },
 ];
 
 const meetingSlides = [
@@ -485,8 +513,9 @@ export default function Home() {
                 <h3>{experience.title}</h3>
                 <p>{experience.description}</p>
                 <details>
-                  <summary>KNOW MORE <span aria-hidden="true">↗</span></summary>
+                  <summary><span className="nh-know-more">KNOW MORE</span><span className="nh-know-less">KNOW LESS</span><span className="nh-experience-arrow" aria-hidden="true">↗</span></summary>
                   <p>{experience.details}</p>
+                  <button className="nh-experience-enquire" onClick={() => scrollTo('contact')}>ENQUIRE <span aria-hidden="true">↗</span></button>
                 </details>
               </div>
             </article>
@@ -544,10 +573,13 @@ export default function Home() {
         <div className="nh-space-grid">
           {venueSpaces.map((space, index) => (
             <article className="nh-space-card" key={space.name} data-reveal="up" style={{ transitionDelay: `${index * 70}ms` }}>
-              <span>0{index + 1}</span>
-              <h3>{space.name}</h3>
-              <p>{space.description}</p>
-              <button onClick={() => scrollTo('contact')} aria-label={`Enquire about ${space.name}`}>ENQUIRE <span aria-hidden="true">↗</span></button>
+              <img src={space.image} alt={space.alt} />
+              <div className="nh-space-card-copy">
+                <span>0{index + 1}</span>
+                <h3>{space.name}</h3>
+                <p>{space.description}</p>
+                <button onClick={() => scrollTo('contact')} aria-label={`Enquire about ${space.name}`}>ENQUIRE <span aria-hidden="true">↗</span></button>
+              </div>
             </article>
           ))}
         </div>

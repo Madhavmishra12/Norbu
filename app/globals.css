@@ -176,18 +176,26 @@ img { max-width: 100%; }
 .nh-experience-card h3 { margin: 0 0 14px; color: #57585b; font-size: clamp(17px, 1.3vw, 22px); font-weight: 700; line-height: 1.35; }
 .nh-experience-card-copy>p { min-height: 3.2em; margin: 0 0 20px; color: #636368; font-size: 14px; line-height: 1.65; }
 .nh-experience-card details { color: #57585b; }
-.nh-experience-card summary { display: inline-flex; align-items: center; gap: 12px; cursor: pointer; list-style: none; font-size: 12px; font-weight: 600; letter-spacing: .1em; }
+.nh-experience-card summary { display: inline-flex; align-items: center; gap: 12px; padding-bottom: 6px; border-bottom: 1px solid currentColor; cursor: pointer; list-style: none; font-size: 12px; font-weight: 600; letter-spacing: .1em; }
 .nh-experience-card summary::-webkit-details-marker { display: none; }
-.nh-experience-card summary span { font-size: 16px; transition: transform .2s ease; }
-.nh-experience-card details[open] summary span { transform: rotate(45deg); }
+.nh-experience-card summary .nh-experience-arrow { font-size: 16px; transition: transform .2s ease; }
+.nh-experience-card details[open] summary .nh-experience-arrow { transform: rotate(45deg); }
 .nh-experience-card details>p { margin: 15px 0 0; color: #636368; font-size: 13px; line-height: 1.65; }
+.nh-experience-card .nh-know-less { display: none; }
+.nh-experience-card details[open] .nh-know-more { display: none; }
+.nh-experience-card details[open] .nh-know-less { display: inline; }
+.nh-experience-enquire { display: inline-flex; align-items: center; gap: 10px; margin-top: 15px; padding: 0 0 5px; border: 0; border-bottom: 1px solid #747d78; color: #314a43; background: transparent; font-size: 10px; font-weight: 700; letter-spacing: .12em; cursor: pointer; }
+.nh-experience-enquire:hover { color: #a08351; }
 
 /* Retreats and traditional wellness */
-.nh-wellness { padding: 105px 7vw 110px; background: #f2eee5; color: var(--nh-ink); }
+.nh-wellness { padding: 0 7vw 110px; background: #f2eee5; color: var(--nh-ink); }
 .nh-wellness-heading, .nh-spaces-heading { max-width: 860px; margin: 0 auto 58px; text-align: center; }
+.nh-wellness-heading { position: relative; isolation: isolate; display: flex; min-height: clamp(320px, 36vw, 490px); flex-direction: column; align-items: center; justify-content: center; max-width: none; margin: 0 -7vw 64px; padding: 70px 7vw; background-image: linear-gradient(90deg, rgba(18, 34, 32, .72), rgba(18, 34, 32, .3)), url('/norbu/2022/06/gallery-1b-scaled.webp'); background-position: center 56%; background-size: cover; }
 .nh-wellness-heading .nh-kicker, .nh-spaces-heading .nh-kicker { color: #a08351; }
 .nh-wellness-heading h2, .nh-spaces-heading h2, .nh-amenity-copy h2 { margin: 0 0 18px; font-family: var(--nh-display); font-size: clamp(38px, 4.7vw, 62px); font-weight: 400; letter-spacing: -.03em; line-height: 1.1; color: #293b36; }
+.nh-wellness-heading h2 { color: #fff; text-shadow: 0 2px 18px #10242170; }
 .nh-wellness-heading>p:last-child, .nh-spaces-heading>p:last-child { max-width: 700px; margin: 0 auto; color: #69716a; font-size: 15px; line-height: 1.75; }
+.nh-wellness-heading>p:last-child { color: #f4f3ed; text-shadow: 0 1px 8px #10242170; }
 .nh-wellness-grid { display: grid; grid-template-columns: 1.08fr .92fr; gap: 24px; max-width: 1220px; margin: 0 auto; }
 .nh-wellness-card { padding: clamp(27px, 4vw, 52px); background: #fff; border: 1px solid #e1dacb; }
 .nh-wellness-card .nh-kicker { margin-bottom: 17px; color: #a08351; }
@@ -216,16 +224,22 @@ img { max-width: 100%; }
 .nh-spaces { padding: 105px 6vw 85px; background: var(--nh-paper); color: var(--nh-ink); }
 .nh-spaces-heading { margin-bottom: 56px; }
 .nh-space-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); max-width: 1440px; margin: 0 auto; border-top: 1px solid #c7c0b2; border-left: 1px solid #c7c0b2; }
-.nh-space-card { min-height: 245px; padding: 26px 21px; border-right: 1px solid #c7c0b2; border-bottom: 1px solid #c7c0b2; background: #fff; }
-.nh-space-card>span { color: #a08351; font-size: 10px; letter-spacing: .15em; }
-.nh-space-card h3 { margin: 28px 0 11px; font-family: var(--nh-display); font-size: 28px; font-weight: 400; color: #293b36; }
+.nh-space-card { min-width: 0; display: flex; flex-direction: column; border-right: 1px solid #c7c0b2; border-bottom: 1px solid #c7c0b2; background: #fff; }
+.nh-space-card>img { display: block; width: 100%; aspect-ratio: 1.45 / 1; object-fit: cover; }
+.nh-space-card-copy { display: flex; flex: 1; flex-direction: column; align-items: flex-start; padding: 23px 21px 24px; }
+.nh-space-card-copy>span { color: #a08351; font-size: 10px; letter-spacing: .15em; }
+.nh-space-card h3 { margin: 23px 0 11px; font-family: var(--nh-display); font-size: 28px; font-weight: 400; color: #293b36; }
 .nh-space-card p { min-height: 65px; margin: 0 0 20px; color: #6c706a; font-size: 12px; line-height: 1.65; }
 .nh-space-card button, .nh-wedding-callout button { display: inline-flex; align-items: center; gap: 12px; padding: 0 0 6px; border: 0; border-bottom: 1px solid currentColor; color: #314a43; background: transparent; font-size: 10px; font-weight: 600; letter-spacing: .12em; }
-.nh-wedding-callout { display: flex; align-items: center; justify-content: space-between; gap: 35px; max-width: 1440px; margin: 28px auto 0; padding: 34px 42px; background: #e9ddcc; }
-.nh-wedding-callout .nh-kicker { margin-bottom: 10px; color: #977c4d; }
-.nh-wedding-callout h3 { margin: 0 0 7px; font-family: var(--nh-display); font-size: clamp(27px, 3vw, 38px); font-weight: 400; color: #293b36; }
-.nh-wedding-callout p:not(.nh-kicker) { max-width: 620px; margin: 0; color: #606861; font-size: 13px; line-height: 1.65; }
+.nh-space-card button { margin-top: auto; cursor: pointer; }
+.nh-wedding-callout { position: relative; overflow: hidden; display: flex; align-items: center; justify-content: space-between; gap: 35px; max-width: 1440px; min-height: 250px; margin: 28px auto 0; padding: 38px 42px; background: linear-gradient(90deg, rgba(20, 38, 35, .78), rgba(20, 38, 35, .28)), url('/norbu/2022/06/meetings-solo-ilustra-scaled-1-scaled.webp') center 57% / cover; color: #fff; }
+.nh-wedding-callout>div { position: relative; z-index: 1; }
+.nh-wedding-callout .nh-kicker { margin-bottom: 10px; color: #ecd7a5; }
+.nh-wedding-callout h3 { margin: 0 0 7px; font-family: var(--nh-display); font-size: clamp(27px, 3vw, 38px); font-weight: 400; color: #fff; }
+.nh-wedding-callout p:not(.nh-kicker) { max-width: 620px; margin: 0; color: #f0f1ec; font-size: 13px; line-height: 1.65; }
 .nh-wedding-callout button { flex: 0 0 auto; }
+.nh-wedding-callout button { position: relative; z-index: 1; color: #fff; cursor: pointer; }
+.nh-wedding-callout button:hover { color: #ecd7a5; }
 
 /* Events feature and contact footer */
 .nh-events { position: relative; min-height: 610px; display: flex; align-items: center; color: #fff; background-color: #203e3b; background-position: center; background-size: cover; }
@@ -408,9 +422,11 @@ img { max-width: 100%; }
   .nh-experience-card-copy { padding-top: 20px; }
   .nh-experience-card h3 { font-size: 18px; }
   .nh-experience-card-copy>p { min-height: 0; font-size: 13px; }
-  .nh-wellness { padding: 68px 20px 72px; }
+  .nh-wellness { padding: 0 20px 72px; }
   .nh-wellness-heading, .nh-spaces-heading { margin-bottom: 34px; }
+  .nh-wellness-heading { min-height: 320px; margin: 0 -20px 34px; padding: 54px 23px 48px; background-position: 58% center; }
   .nh-wellness-heading h2, .nh-spaces-heading h2, .nh-amenity-copy h2 { font-size: 39px; }
+  .nh-wellness-heading h2 { color: #fff; }
   .nh-wellness-heading>p:last-child, .nh-spaces-heading>p:last-child { font-size: 13px; line-height: 1.7; }
   .nh-wellness-grid { grid-template-columns: 1fr; gap: 15px; }
   .nh-wellness-card { padding: 24px 21px; }
@@ -424,8 +440,8 @@ img { max-width: 100%; }
   .nh-amenity-list h3 { font-size: 27px; }
   .nh-spaces { padding: 68px 18px 54px; }
   .nh-space-grid { grid-template-columns: 1fr 1fr; }
-  .nh-space-card { min-height: 225px; padding: 21px 17px; }
-  .nh-space-card h3 { margin-top: 22px; font-size: 25px; }
+  .nh-space-card-copy { padding: 18px 14px 20px; }
+  .nh-space-card h3 { margin-top: 20px; font-size: 25px; }
   .nh-space-card p { min-height: 75px; font-size: 11px; }
   .nh-wedding-callout { align-items: flex-start; flex-direction: column; gap: 22px; padding: 26px 22px; }
   .nh-wedding-callout p:not(.nh-kicker) { font-size: 12px; }
