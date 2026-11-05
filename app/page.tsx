@@ -131,7 +131,7 @@ const wellnessPractices = [
 const kidsPlayPhotos = [
   { image: '/norbu/2026/kids-play-area/playroom-wide.jpg', alt: 'Wide view of the indoor kids play area with a slide and climbing wall' },
   { image: '/norbu/2026/kids-play-area/play-structure-ball-pit.jpg', alt: 'Indoor play structure with a ball pit and climbing steps' },
-  { image: '/norbu/2026/kids-play-area/ball-pit-slide.jpg', alt: 'A tunnel slide leading into the ball pit' },
+  { image: '/norbu/2026/kids-play-area/indoor-slide.jpg', alt: 'Close view of the colourful indoor slide' },
   { image: '/norbu/2026/kids-play-area/climbing-wall-slide.jpg', alt: 'Colourful climbing wall and slide in the kids playroom' },
   { image: '/norbu/2026/kids-play-area/climbing-corner.jpg', alt: 'Illustrative indoor playroom corner with a climbing wall and soft play tunnel' },
 ];
