@@ -122,10 +122,18 @@ const wellnessPractices = [
   { name: 'Meditation', image: '/norbu/2026/experiences/cosmic-conversations.jpg', alt: 'Visiting monks in the gardens' },
   { name: 'Rebirthing & inner-child breathwork', image: `${media}/06/gallery-1b-scaled.webp`, alt: 'Mountain landscape and prayer flags' },
   { name: 'Aura reading', image: '/norbu/2026/wellness/spa.jpg', alt: 'Spa stones arranged among green leaves' },
-  { name: 'Spiritual counselling', image: '/norbu/2026/experiences/cosmic-conversations.jpg', alt: 'Visiting monks in the gardens' },
-  { name: 'Chakra balancing', image: '/norbu/2026/wellness/spa.jpg', alt: 'Spa stones arranged among green leaves' },
-  { name: 'Sound healing', image: '/norbu/2026/wellness/yoga-deck.jpg', alt: 'The hotel yoga deck with mountain views' },
-  { name: 'Past-life regression', image: `${media}/06/gallery-1b-scaled.webp`, alt: 'Mountain landscape and prayer flags' },
+  { name: 'Spiritual counselling', image: `${media}/06/meetings-solo-ilustra-scaled-1-scaled.webp`, alt: 'A terrace overlooking the mountain valley' },
+  { name: 'Chakra balancing', image: `${media}/06/Gallery-1c-scaled.webp`, alt: 'A colourful lounge inside the hotel' },
+  { name: 'Sound healing', image: `${media}/06/Gallery-1a-scaled.webp`, alt: 'A quiet lounge with mountain views' },
+  { name: 'Past-life regression', image: '/norbu/2026/experiences/lakeside-experiences.jpg', alt: 'A calm riverside setting among the hills' },
+];
+
+const kidsPlayPhotos = [
+  { image: '/norbu/2026/kids-play-area/playroom-wide.jpg', alt: 'Wide view of the indoor kids play area with a slide and climbing wall' },
+  { image: '/norbu/2026/kids-play-area/play-structure-ball-pit.jpg', alt: 'Indoor play structure with a ball pit and climbing steps' },
+  { image: '/norbu/2026/kids-play-area/ball-pit-slide.jpg', alt: 'A tunnel slide leading into the ball pit' },
+  { image: '/norbu/2026/kids-play-area/climbing-wall-slide.jpg', alt: 'Colourful climbing wall and slide in the kids playroom' },
+  { image: '/norbu/2026/kids-play-area/indoor-slide.jpg', alt: 'A bright indoor slide and play structure' },
 ];
 
 const astrologyReadings = [
@@ -418,7 +426,10 @@ export default function Home() {
           {heroSlides.map((image, index) => <img key={image} src={image} alt="" className={heroSlide === index ? 'is-active' : ''} />)}
         </div>
         <div className="nh-utility">
-          <a className="nh-phone" href="tel:+918894055112"><span aria-hidden="true">↗</span> CALL US: +91 8894055112</a>
+          <div className="nh-utility-contact">
+            <a className="nh-phone" href="tel:+918894055112"><span aria-hidden="true">↗</span><span className="nh-phone-label">CALL US: </span>+91 8894055112</a>
+            <a className="nh-email" href="mailto:reservations@norbuhotels.com">reservations@norbuhotels.com</a>
+          </div>
           <SocialLinks />
         </div>
         <header className="nh-header">
@@ -441,6 +452,7 @@ export default function Home() {
             <button onClick={() => scrollTo('experiences')}>Experiences</button>
             <button onClick={() => scrollTo('wellness')}>Wellness</button>
             <button onClick={() => scrollTo('event-spaces')}>Event spaces</button>
+            <button onClick={() => scrollTo('kids-play-area')}>Kids play area</button>
             <button onClick={() => scrollTo('weddings')}>Weddings</button>
             <button onClick={() => scrollTo('contact')}>Contact</button>
           </nav>
@@ -578,7 +590,7 @@ export default function Home() {
             <ul className="nh-reading-list">
               {astrologyReadings.map((reading) => <li key={reading}>{reading}</li>)}
             </ul>
-            <button className="nh-text-link" onClick={() => scrollTo('contact')}>ASK OUR TEAM <span aria-hidden="true">↗</span></button>
+            <button className="nh-text-link" onClick={() => scrollTo('contact')}>REACH OUT TO US <span aria-hidden="true">↗</span></button>
           </article>
         </div>
       </section>
@@ -593,6 +605,22 @@ export default function Home() {
         <div className="nh-amenity-list" data-reveal="right">
           <article><span>01</span><div><h3>Outdoor pool</h3><p>A refreshing pause with the mountain air all around.</p></div></article>
           <article><span>02</span><div><h3>Spa</h3><p>Make time to slow down and enquire about spa experiences.</p></div></article>
+        </div>
+      </section>
+
+      <section className="nh-kids" id="kids-play-area">
+        <div className="nh-kids-copy" data-reveal="left">
+          <p className="nh-kicker">A LITTLE ROOM TO PLAY</p>
+          <h2>Little guests, big adventures.</h2>
+          <p>Our indoor kids’ play area gives younger guests space to climb, slide and play, with room for the whole family to relax during your stay.</p>
+          <button className="nh-kids-link" onClick={() => scrollTo('contact')}>ASK ABOUT FAMILY STAYS <span aria-hidden="true">↗</span></button>
+        </div>
+        <div className="nh-kids-gallery" aria-label="Photos of the indoor kids play area">
+          {kidsPlayPhotos.map((photo, index) => (
+            <figure className={`nh-kids-photo nh-kids-photo-${index + 1}`} key={photo.image} data-reveal="up">
+              <img src={photo.image} alt={photo.alt} loading="lazy" />
+            </figure>
+          ))}
         </div>
       </section>
 
@@ -645,6 +673,7 @@ export default function Home() {
             <a className="nh-footer-logo" href="#home"><img src={`${media}/03/Recurso-2-300x106.png`} alt="Norbu The Montanna" /></a>
             <p className="nh-kicker">COME FIND YOUR MOUNTAIN</p>
             <a className="nh-footer-phone" href="tel:+918894055112">+91 8894055112</a>
+            <a className="nh-footer-email" href="mailto:reservations@norbuhotels.com">reservations@norbuhotels.com</a>
             <address>Village Banordu,<br />Dharamshala,<br />Himachal Pradesh, 176052<br />India</address>
             <div className="nh-footer-links"><a href="mailto:hr@norbuhotels.com">Careers</a><a href="#hotel-policies">Hotel policies</a></div>
             <SocialLinks footer />
