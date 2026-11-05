@@ -115,13 +115,6 @@ const experiences = [
     image: '/norbu/2026/experiences/lakeside-experiences.jpg',
     alt: 'A private dining experience beside the river',
   },
-  {
-    title: 'MIXOLOGY SESSIONS',
-    description: 'Explore cocktail-making with an expert mixologist at the poolside bar.',
-    details: 'Discover new flavours and techniques in an interactive session led by the hotel’s mixologist. Contact the team for current timings and availability.',
-    image: null,
-    alt: '',
-  },
 ];
 
 const wellnessPractices = [
@@ -541,8 +534,8 @@ export default function Home() {
         </div>
         <div className="nh-experience-grid">
           {experiences.map((experience) => (
-            <article className={`nh-experience-card${experience.image ? '' : ' nh-experience-card-text-only'}`} key={experience.title}>
-              {experience.image && <img src={experience.image} alt={experience.alt} />}
+            <article className="nh-experience-card" key={experience.title}>
+              <img src={experience.image} alt={experience.alt} />
               <div className="nh-experience-card-copy">
                 <h3>{experience.title}</h3>
                 <p>{experience.description}</p>

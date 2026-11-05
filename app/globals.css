@@ -176,9 +176,6 @@ img { max-width: 100%; }
 .nh-experience-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
 .nh-experience-card { min-width: 0; padding: 22px; border: 1px solid #767676; background: #fff; }
 .nh-experience-card>img { display: block; width: 100%; aspect-ratio: 1.15 / 1; object-fit: cover; }
-.nh-experience-card-text-only { min-height: 300px; display: flex; align-items: stretch; background: #e9dfd0; border-color: #cfc2ad; }
-.nh-experience-card-text-only .nh-experience-card-copy { display: flex; flex: 1; flex-direction: column; justify-content: center; }
-.nh-experience-card-text-only .nh-experience-card-copy>p { min-height: 0; }
 .nh-experience-card-copy { padding: 18px 0 8px; }
 .nh-experience-card h3 { margin: 0 0 14px; color: #57585b; font-size: clamp(17px, 1.3vw, 22px); font-weight: 700; line-height: 1.35; }
 .nh-experience-card-copy>p { min-height: 3.2em; margin: 0 0 20px; color: #636368; font-size: 14px; line-height: 1.65; }
@@ -224,6 +221,7 @@ img { max-width: 100%; }
 .nh-amenity-copy .nh-kicker { color: #ddc796; }
 .nh-amenity-copy h2 { max-width: 500px; color: #fff; }
 .nh-amenity-copy>p:not(.nh-kicker) { max-width: 510px; margin: 0 0 28px; color: #e6ece6; font-size: 15px; line-height: 1.8; }
+.nh-amenities .nh-dark-button:hover, .nh-amenities .nh-dark-button:focus-visible { color: var(--nh-deep); background: #fff; border-color: #fff; }
 .nh-amenity-list { border-top: 1px solid #ffffff70; }
 .nh-amenity-list article { display: grid; grid-template-columns: 52px 1fr; gap: 17px; padding: 28px 0; border-bottom: 1px solid #ffffff70; }
 .nh-amenity-list article>span { padding-top: 5px; color: #ddc796; font-size: 11px; letter-spacing: .14em; }
@@ -433,7 +431,6 @@ img { max-width: 100%; }
   .nh-experience-card-copy { padding-top: 20px; }
   .nh-experience-card h3 { font-size: 18px; }
   .nh-experience-card-copy>p { min-height: 0; font-size: 13px; }
-  .nh-experience-card-text-only { min-height: 260px; }
   .nh-wellness { padding: 0 20px 72px; }
   .nh-wellness-heading, .nh-spaces-heading { margin-bottom: 34px; }
   .nh-wellness-heading { min-height: 320px; margin: 0 -20px 34px; padding: 54px 23px 48px; background-position: 58% center; }
