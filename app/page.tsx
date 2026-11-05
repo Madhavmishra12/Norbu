@@ -17,6 +17,13 @@ const formatBookingDate = (date: string) => {
   return `${day}-${month}-${year}`;
 };
 
+const toInputDate = (date: Date) => {
+  const year = date.getFullYear();
+  const month = `${date.getMonth() + 1}`.padStart(2, '0');
+  const day = `${date.getDate()}`.padStart(2, '0');
+  return `${year}-${month}-${day}`;
+};
+
 const suites = [
   {
     name: 'Presidential Suite',
@@ -112,20 +119,20 @@ const experiences = [
     title: 'MIXOLOGY SESSIONS',
     description: 'Explore cocktail-making with an expert mixologist at the poolside bar.',
     details: 'Discover new flavours and techniques in an interactive session led by the hotel’s mixologist. Contact the team for current timings and availability.',
-    image: '/norbu/2026/experiences/mixology-sessions.jpg',
-    alt: 'A colourful cocktail prepared at the poolside bar',
+    image: null,
+    alt: '',
   },
 ];
 
 const wellnessPractices = [
-  'Yoga',
-  'Meditation',
-  'Rebirthing & inner-child breathwork',
-  'Aura reading',
-  'Spiritual counselling',
-  'Chakra balancing',
-  'Sound healing',
-  'Past-life regression',
+  { name: 'Yoga', image: '/norbu/2026/wellness/yoga-deck.jpg', alt: 'The hotel yoga deck with mountain views' },
+  { name: 'Meditation', image: '/norbu/2026/experiences/cosmic-conversations.jpg', alt: 'Visiting monks in the gardens' },
+  { name: 'Rebirthing & inner-child breathwork', image: `${media}/06/gallery-1b-scaled.webp`, alt: 'Mountain landscape and prayer flags' },
+  { name: 'Aura reading', image: '/norbu/2026/wellness/spa.jpg', alt: 'Spa stones arranged among green leaves' },
+  { name: 'Spiritual counselling', image: '/norbu/2026/experiences/cosmic-conversations.jpg', alt: 'Visiting monks in the gardens' },
+  { name: 'Chakra balancing', image: '/norbu/2026/wellness/spa.jpg', alt: 'Spa stones arranged among green leaves' },
+  { name: 'Sound healing', image: '/norbu/2026/wellness/yoga-deck.jpg', alt: 'The hotel yoga deck with mountain views' },
+  { name: 'Past-life regression', image: `${media}/06/gallery-1b-scaled.webp`, alt: 'Mountain landscape and prayer flags' },
 ];
 
 const astrologyReadings = [
@@ -231,11 +238,15 @@ export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [sent, setSent] = useState(false);
   const [bookingOpen, setBookingOpen] = useState(false);
+  const [tableBookingOpen, setTableBookingOpen] = useState(false);
   const [checkIn, setCheckIn] = useState('');
   const [checkOut, setCheckOut] = useState('');
   const [todayDate, setTodayDate] = useState('');
   const [rooms, setRooms] = useState('1');
   const [guests, setGuests] = useState('2');
+  const [tableDate, setTableDate] = useState('');
+  const [tableTime, setTableTime] = useState('19:00');
+  const [tableGuests, setTableGuests] = useState('2');
 
   useEffect(() => {
     if (heroPaused || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -316,9 +327,12 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    if (!bookingOpen) return;
+    if (!bookingOpen && !tableBookingOpen) return;
     const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setBookingOpen(false);
+      if (event.key === 'Escape') {
+        setBookingOpen(false);
+        setTableBookingOpen(false);
+      }
     };
     document.body.style.overflow = 'hidden';
     window.addEventListener('keydown', closeOnEscape);
@@ -326,7 +340,7 @@ export default function Home() {
       document.body.style.overflow = '';
       window.removeEventListener('keydown', closeOnEscape);
     };
-  }, [bookingOpen]);
+  }, [bookingOpen, tableBookingOpen]);
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -334,24 +348,27 @@ export default function Home() {
   };
 
   const openBooking = () => {
-    const localDate = (date: Date) => {
-      const year = date.getFullYear();
-      const month = `${date.getMonth() + 1}`.padStart(2, '0');
-      const day = `${date.getDate()}`.padStart(2, '0');
-      return `${year}-${month}-${day}`;
-    };
     const arrival = new Date();
     arrival.setDate(arrival.getDate() + 1);
     const today = new Date();
-    const selectedArrival = checkIn || localDate(arrival);
-    setTodayDate(localDate(today));
+    const selectedArrival = checkIn || toInputDate(arrival);
+    setTodayDate(toInputDate(today));
     if (!checkIn) setCheckIn(selectedArrival);
     if (!checkOut || checkOut <= selectedArrival) {
       const selectedDeparture = new Date(`${selectedArrival}T12:00:00`);
       selectedDeparture.setDate(selectedDeparture.getDate() + 1);
-      setCheckOut(localDate(selectedDeparture));
+      setCheckOut(toInputDate(selectedDeparture));
     }
     setBookingOpen(true);
+  };
+
+  const openTableBooking = () => {
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    setTodayDate(toInputDate(today));
+    setTableDate((current) => current || toInputDate(tomorrow));
+    setTableBookingOpen(true);
   };
 
   const continueBooking = (event: FormEvent<HTMLFormElement>) => {
@@ -368,6 +385,23 @@ export default function Home() {
     });
     window.open(`${bookingUrl}&${params.toString()}`, '_blank', 'noopener,noreferrer');
     setBookingOpen(false);
+  };
+
+  const continueTableBooking = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = new FormData(event.currentTarget);
+    const name = String(form.get('name') || '').trim();
+    const phone = String(form.get('phone') || '').trim();
+    const message = [
+      'Hello, I would like to request a table at Namak.',
+      `Name: ${name}`,
+      `Date: ${formatBookingDate(tableDate)}`,
+      `Preferred time: ${tableTime}`,
+      `Guests: ${tableGuests}`,
+      `Phone: ${phone}`,
+    ].join('\n');
+    window.open(`https://wa.me/918894055112?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
+    setTableBookingOpen(false);
   };
 
   const submitMessage = (event: FormEvent<HTMLFormElement>) => {
@@ -398,7 +432,7 @@ export default function Home() {
           <button className={`nh-menu-button${menuOpen ? ' is-open' : ''}`} aria-label={menuOpen ? 'Close menu' : 'Open menu'} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>
             <span /><span /><span />
           </button>
-          <a className="nh-header-link nh-table-link" href="tel:+918894055112">BOOK A TABLE</a>
+          <button className="nh-header-link nh-table-link" onClick={openTableBooking}>BOOK A TABLE</button>
           <a href="#home" className="nh-logo" aria-label="Norbu The Montanna home">
             <img src={`${media}/03/Recurso-2-300x106.png`} alt="Norbu The Montanna" />
           </a>
@@ -492,7 +526,7 @@ export default function Home() {
           <img className="nh-namak-logo" src={`${media}/04/namak-300x56.png`} alt="Namak" />
           <h2>Good food.<br />Good company.</h2>
           <p>Namak is the word for salt, and in our kitchen we use varieties. Choose from a selection of Indian, Tibetan and international cuisine, or find a new delight in the chef’s special menu. All-day dining that’s worth its salt.</p>
-          <a className="nh-dark-button" href="tel:+918894055112">BOOK A TABLE <span aria-hidden="true">↗</span></a>
+          <button className="nh-dark-button" onClick={openTableBooking}>BOOK A TABLE <span aria-hidden="true">↗</span></button>
         </div>
       </section>
 
@@ -507,8 +541,8 @@ export default function Home() {
         </div>
         <div className="nh-experience-grid">
           {experiences.map((experience) => (
-            <article className="nh-experience-card" key={experience.title}>
-              <img src={experience.image} alt={experience.alt} />
+            <article className={`nh-experience-card${experience.image ? '' : ' nh-experience-card-text-only'}`} key={experience.title}>
+              {experience.image && <img src={experience.image} alt={experience.alt} />}
               <div className="nh-experience-card-copy">
                 <h3>{experience.title}</h3>
                 <p>{experience.description}</p>
@@ -535,7 +569,12 @@ export default function Home() {
             <h3>Practices for a deeper pause</h3>
             <p>These wellness experiences are offered as longer retreats. Please get in touch with our team for more information, planning and availability.</p>
             <ul className="nh-wellness-practices">
-              {wellnessPractices.map((practice) => <li key={practice}>{practice}</li>)}
+              {wellnessPractices.map((practice) => (
+                <li key={practice.name}>
+                  <img src={practice.image} alt={practice.alt} loading="lazy" />
+                  <span>{practice.name}</span>
+                </li>
+              ))}
             </ul>
           </article>
           <article className="nh-wellness-card nh-tibetan-card" data-reveal="right">
@@ -678,6 +717,29 @@ export default function Home() {
                 <label>Guests<select value={guests} onChange={(event) => setGuests(event.target.value)}>{[1, 2, 3, 4, 5, 6, 7, 8].map((count) => <option key={count} value={count}>{count} {count === 1 ? 'guest' : 'guests'}</option>)}</select></label>
               </div>
               <button className="nh-dark-button nh-booking-submit" type="submit">CHECK AVAILABILITY <span aria-hidden="true">↗</span></button>
+            </form>
+          </section>
+        </div>
+      )}
+
+      {tableBookingOpen && (
+        <div className="nh-booking-overlay" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) setTableBookingOpen(false); }}>
+          <section className="nh-booking-dialog nh-table-booking-dialog" role="dialog" aria-modal="true" aria-labelledby="nh-table-booking-title">
+            <button className="nh-booking-close" aria-label="Close table reservation form" onClick={() => setTableBookingOpen(false)}>×</button>
+            <p className="nh-kicker">A TABLE AT NAMAK</p>
+            <h2 id="nh-table-booking-title">Join us for a meal.</h2>
+            <p className="nh-table-booking-note">Share your preferred date and time. Our team will confirm availability with you on WhatsApp.</p>
+            <form onSubmit={continueTableBooking}>
+              <div className="nh-booking-dates">
+                <label>Date<input name="date" type="date" min={todayDate || undefined} required value={tableDate} onChange={(event) => setTableDate(event.target.value)} /></label>
+                <label>Preferred time<input name="time" type="time" min="12:00" max="22:00" required value={tableTime} onChange={(event) => setTableTime(event.target.value)} /></label>
+              </div>
+              <div className="nh-booking-guests">
+                <label>Guests<select name="guests" value={tableGuests} onChange={(event) => setTableGuests(event.target.value)}>{[1, 2, 3, 4, 5, 6, 7, 8].map((count) => <option key={count} value={count}>{count} {count === 1 ? 'guest' : 'guests'}</option>)}</select></label>
+                <label>Your name<input name="name" type="text" autoComplete="name" required /></label>
+              </div>
+              <label>Phone / WhatsApp<input name="phone" type="tel" autoComplete="tel" required /></label>
+              <button className="nh-dark-button nh-booking-submit" type="submit">REQUEST A TABLE <span aria-hidden="true">↗</span></button>
             </form>
           </section>
         </div>

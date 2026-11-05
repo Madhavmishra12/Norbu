@@ -36,6 +36,8 @@ img { max-width: 100%; }
 .nh-footer { position: relative; z-index: 11; }
 /* The experience grid is taller than one viewport; let its rows scroll normally. */
 .norbu-site > .nh-experiences { position: relative; top: auto; }
+/* Wellness cards contain several content rows, so keep the full section in normal flow too. */
+.norbu-site > .nh-wellness { position: relative; top: auto; }
 .nh-kicker { margin: 0 0 20px; font-size: 11px; font-weight: 600; letter-spacing: .24em; line-height: 1.6; }
 
 /* Hero and two-tier navigation */
@@ -174,6 +176,9 @@ img { max-width: 100%; }
 .nh-experience-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
 .nh-experience-card { min-width: 0; padding: 22px; border: 1px solid #767676; background: #fff; }
 .nh-experience-card>img { display: block; width: 100%; aspect-ratio: 1.15 / 1; object-fit: cover; }
+.nh-experience-card-text-only { min-height: 300px; display: flex; align-items: stretch; background: #e9dfd0; border-color: #cfc2ad; }
+.nh-experience-card-text-only .nh-experience-card-copy { display: flex; flex: 1; flex-direction: column; justify-content: center; }
+.nh-experience-card-text-only .nh-experience-card-copy>p { min-height: 0; }
 .nh-experience-card-copy { padding: 18px 0 8px; }
 .nh-experience-card h3 { margin: 0 0 14px; color: #57585b; font-size: clamp(17px, 1.3vw, 22px); font-weight: 700; line-height: 1.35; }
 .nh-experience-card-copy>p { min-height: 3.2em; margin: 0 0 20px; color: #636368; font-size: 14px; line-height: 1.65; }
@@ -203,15 +208,18 @@ img { max-width: 100%; }
 .nh-wellness-card .nh-kicker { margin-bottom: 17px; color: #a08351; }
 .nh-wellness-card h3 { margin: 0 0 15px; font-family: var(--nh-display); font-size: clamp(29px, 3vw, 40px); font-weight: 400; line-height: 1.13; color: #293b36; }
 .nh-wellness-card>p:not(.nh-kicker) { margin: 0 0 24px; color: #68706a; font-size: 14px; line-height: 1.75; }
-.nh-wellness-practices { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; margin: 0; padding: 0; list-style: none; }
-.nh-wellness-practices li, .nh-reading-list li { padding: 12px 0; border-bottom: 1px solid #e5e0d7; color: #3e4a45; font-size: 13px; line-height: 1.5; }
+.nh-wellness-practices { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 18px; margin: 0; padding: 0; list-style: none; }
+.nh-wellness-practices li { min-width: 0; min-height: 68px; display: grid; grid-template-columns: 64px minmax(0, 1fr); align-items: center; gap: 12px; padding: 7px 0; border-bottom: 1px solid #e5e0d7; color: #3e4a45; font-size: 12px; font-weight: 500; line-height: 1.4; }
+.nh-wellness-practices img { display: block; width: 64px; height: 54px; object-fit: cover; background: #e8ddce; }
+.nh-wellness-practices span { min-width: 0; }
+.nh-reading-list li { padding: 12px 0; border-bottom: 1px solid #e5e0d7; color: #3e4a45; font-size: 13px; line-height: 1.5; }
 .nh-tibetan-card { background: #e8ddce; border-color: #e8ddce; }
 .nh-tibetan-card h4 { margin: 27px 0 5px; color: #35443d; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
 .nh-reading-list { margin: 0 0 25px; padding: 0; list-style: none; }
 .nh-tibetan-card .nh-text-link { color: #29413d; }
 
 /* Pool and spa */
-.nh-amenities { min-height: 560px; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 7vw; padding: 85px 10vw; background: #1d403c; color: #fff; }
+.nh-amenities { min-height: 560px; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 7vw; padding: 85px 10vw; background-color: #1d403c; background-image: linear-gradient(90deg, rgba(17, 48, 44, .92), rgba(17, 48, 44, .72)), url('/norbu/2026/wellness/spa.jpg'); background-position: center; background-size: cover; color: #fff; }
 .nh-amenity-copy { max-width: 600px; }
 .nh-amenity-copy .nh-kicker { color: #ddc796; }
 .nh-amenity-copy h2 { max-width: 500px; color: #fff; }
@@ -294,6 +302,7 @@ img { max-width: 100%; }
 .nh-booking-close { position: absolute; top: 14px; right: 18px; width: 36px; height: 36px; border: 0; background: transparent; color: #33443d; font-size: 32px; font-weight: 300; line-height: 1; }
 .nh-booking-dialog .nh-kicker { color: #a08351; }
 .nh-booking-dialog h2 { margin: 0 0 29px; font-family: var(--nh-display); font-size: clamp(36px, 5vw, 52px); font-weight: 400; }
+.nh-table-booking-note { margin: -13px 0 25px; color: #68706a; font-size: 14px; line-height: 1.65; }
 .nh-booking-dialog form { display: flex; flex-direction: column; gap: 19px; }
 .nh-booking-dates, .nh-booking-guests { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .nh-booking-dialog label { display: flex; flex-direction: column; gap: 9px; color: #53615a; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
@@ -424,6 +433,7 @@ img { max-width: 100%; }
   .nh-experience-card-copy { padding-top: 20px; }
   .nh-experience-card h3 { font-size: 18px; }
   .nh-experience-card-copy>p { min-height: 0; font-size: 13px; }
+  .nh-experience-card-text-only { min-height: 260px; }
   .nh-wellness { padding: 0 20px 72px; }
   .nh-wellness-heading, .nh-spaces-heading { margin-bottom: 34px; }
   .nh-wellness-heading { min-height: 320px; margin: 0 -20px 34px; padding: 54px 23px 48px; background-position: 58% center; }
@@ -434,8 +444,10 @@ img { max-width: 100%; }
   .nh-wellness-card { padding: 24px 21px; }
   .nh-wellness-card h3 { font-size: 31px; }
   .nh-wellness-card>p:not(.nh-kicker) { font-size: 13px; }
-  .nh-wellness-practices { gap: 0 12px; }
-  .nh-wellness-practices li, .nh-reading-list li { font-size: 12px; }
+  .nh-wellness-practices { gap: 8px 12px; }
+  .nh-wellness-practices li { grid-template-columns: 50px minmax(0, 1fr); gap: 8px; min-height: 62px; font-size: 11px; }
+  .nh-wellness-practices img { width: 50px; height: 46px; }
+  .nh-reading-list li { font-size: 12px; }
   .nh-amenities { display: flex; flex-direction: column; align-items: stretch; gap: 42px; min-height: 0; padding: 65px 24px; }
   .nh-amenity-copy>p:not(.nh-kicker) { font-size: 13px; line-height: 1.75; }
   .nh-amenity-list article { padding: 21px 0; }
