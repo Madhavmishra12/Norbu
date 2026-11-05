@@ -31,9 +31,10 @@ img { max-width: 100%; }
 .nh-experiences { z-index: 6; }
 .nh-wellness { z-index: 7; }
 .nh-amenities { z-index: 8; }
-.nh-spaces { z-index: 9; }
-.nh-events { z-index: 10; }
-.nh-footer { position: relative; z-index: 11; }
+.nh-kids { z-index: 9; }
+.nh-spaces { z-index: 10; }
+.nh-events { z-index: 11; }
+.nh-footer { position: relative; z-index: 12; }
 /* The experience grid is taller than one viewport; let its rows scroll normally. */
 .norbu-site > .nh-experiences { position: relative; top: auto; }
 /* Wellness cards contain several content rows, so keep the full section in normal flow too. */
@@ -233,7 +234,7 @@ img { max-width: 100%; }
 .nh-amenity-list p { margin: 0; color: #e6ece6; font-size: 13px; line-height: 1.65; }
 
 /* Family facilities */
-.nh-kids { z-index: 8.5; min-height: 100vh; min-height: 100svh; display: grid; grid-template-columns: minmax(260px, .72fr) minmax(0, 1.28fr); align-items: center; gap: clamp(38px, 6vw, 86px); padding: 82px 6vw; background: #f2eee5; color: var(--nh-ink); }
+.nh-kids { min-height: 100vh; min-height: 100svh; display: grid; grid-template-columns: minmax(260px, .72fr) minmax(0, 1.28fr); align-items: center; gap: clamp(38px, 6vw, 86px); padding: 82px 6vw; background: #f2eee5; color: var(--nh-ink); }
 .nh-kids-copy { max-width: 480px; }
 .nh-kids-copy .nh-kicker { color: #a08351; }
 .nh-kids-copy h2 { margin: 0 0 18px; font-family: var(--nh-display); font-size: clamp(40px, 4.4vw, 58px); font-weight: 400; letter-spacing: -.03em; line-height: 1.1; color: #293b36; }
