@@ -133,7 +133,7 @@ const kidsPlayPhotos = [
   { image: '/norbu/2026/kids-play-area/play-structure-ball-pit.jpg', alt: 'Indoor play structure with a ball pit and climbing steps' },
   { image: '/norbu/2026/kids-play-area/ball-pit-slide.jpg', alt: 'A tunnel slide leading into the ball pit' },
   { image: '/norbu/2026/kids-play-area/climbing-wall-slide.jpg', alt: 'Colourful climbing wall and slide in the kids playroom' },
-  { image: '/norbu/2026/kids-play-area/indoor-slide.jpg', alt: 'A bright indoor slide and play structure' },
+  { image: '/norbu/2026/kids-play-area/climbing-corner.jpg', alt: 'Illustrative indoor playroom corner with a climbing wall and soft play tunnel' },
 ];
 
 const astrologyReadings = [
