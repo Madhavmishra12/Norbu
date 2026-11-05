@@ -233,8 +233,7 @@ img { max-width: 100%; }
 .nh-amenity-list p { margin: 0; color: #e6ece6; font-size: 13px; line-height: 1.65; }
 
 /* Family facilities */
-.norbu-site > .nh-kids { position: relative; top: auto; z-index: 8.5; }
-.nh-kids { display: grid; grid-template-columns: minmax(260px, .72fr) minmax(0, 1.28fr); align-items: center; gap: clamp(38px, 6vw, 86px); padding: 82px 6vw; background: #f2eee5; color: var(--nh-ink); }
+.nh-kids { z-index: 8.5; min-height: 100vh; min-height: 100svh; display: grid; grid-template-columns: minmax(260px, .72fr) minmax(0, 1.28fr); align-items: center; gap: clamp(38px, 6vw, 86px); padding: 82px 6vw; background: #f2eee5; color: var(--nh-ink); }
 .nh-kids-copy { max-width: 480px; }
 .nh-kids-copy .nh-kicker { color: #a08351; }
 .nh-kids-copy h2 { margin: 0 0 18px; font-family: var(--nh-display); font-size: clamp(40px, 4.4vw, 58px); font-weight: 400; letter-spacing: -.03em; line-height: 1.1; color: #293b36; }
