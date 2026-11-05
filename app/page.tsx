@@ -68,21 +68,21 @@ const gallerySlides = [
 const experiences = [
   {
     title: 'BARBEQUE BY THE RIVER',
-    description: 'Gather around a riverside fire pit for an elegant barbeque experience, complemented by live music, cool mountain breezes, and a starlit sky.',
+    description: 'Gather by the Lhasa river for a fireside barbeque under the stars, with live music and cool mountain breezes.',
     details: 'Gather around a fire pit by the Lhasa river for an elegant barbeque experience, accompanied by live music and the cool mountain breeze under a starry sky.',
     image: 'https://cdn.sanity.io/images/ocl5w36p/ihcl_prod/9d4c225844bb9df12e2ba6ad6c5701ce17fb208f-520x517.jpg?w=1200&auto=format',
     alt: 'Barbeque by a riverside fire pit',
   },
   {
     title: 'HILLTOP LUNCH',
-    description: 'Enjoy a barbecue lunch atop a scenic hill, surrounded by panoramic views and drifting clouds.',
+    description: 'Enjoy a relaxed barbeque lunch on a scenic hilltop, with freshly prepared dishes and panoramic mountain views.',
     details: 'As the mountain air sharpens your appetite, savour freshly prepared dishes amid the quiet beauty of the heights.',
     image: 'https://cdn.sanity.io/images/ocl5w36p/ihcl_prod/e8d97bf654d55e4b93faecc8ed155a728c988475-520x517.jpg?w=1200&auto=format',
     alt: 'A long outdoor lunch table among the hills',
   },
   {
     title: 'COSMIC CONVERSATIONS',
-    description: 'Immerse yourself in meditation and spiritual teachings from visiting guest monks.',
+    description: 'Join visiting monks for meditation, spiritual teachings and personal conversations that invite reflection.',
     details: 'Personal consultations offer space to explore life’s deeper meanings, reflection, mindfulness, and renewed perspective.',
     image: 'https://cdn.sanity.io/images/ocl5w36p/ihcl_prod/de3a6893f278e58d15a95a1a8e33e3d630ff1886-520x517.jpg?w=1200&auto=format',
     alt: 'Two visiting monks in the gardens',
