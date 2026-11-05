@@ -344,8 +344,10 @@ export default function Home() {
   }, [bookingOpen, tableBookingOpen]);
 
   const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
     setMenuOpen(false);
+    window.requestAnimationFrame(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
   };
 
   const openBooking = () => {
@@ -609,7 +611,7 @@ export default function Home() {
       </section>
 
       <section className="nh-kids" id="kids-play-area">
-        <div className="nh-kids-copy" data-reveal="left">
+        <div className="nh-kids-copy">
           <p className="nh-kicker">A LITTLE ROOM TO PLAY</p>
           <h2>Little guests, big adventures.</h2>
           <p>Our indoor kids’ play area gives younger guests space to climb, slide and play, with room for the whole family to relax during your stay.</p>
@@ -617,8 +619,8 @@ export default function Home() {
         </div>
         <div className="nh-kids-gallery" aria-label="Photos of the indoor kids play area">
           {kidsPlayPhotos.map((photo, index) => (
-            <figure className={`nh-kids-photo nh-kids-photo-${index + 1}`} key={photo.image} data-reveal="up">
-              <img src={photo.image} alt={photo.alt} loading="lazy" />
+            <figure className={`nh-kids-photo nh-kids-photo-${index + 1}`} key={photo.image}>
+              <img src={photo.image} alt={photo.alt} loading={index === 0 ? 'eager' : 'lazy'} fetchPriority={index === 0 ? 'high' : 'auto'} />
             </figure>
           ))}
         </div>
