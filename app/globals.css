@@ -165,8 +165,8 @@ img { max-width: 100%; }
 .nh-experiences-heading p { max-width: 1080px; margin: 0 auto; color: #626266; font-size: clamp(14px, 1.15vw, 19px); line-height: 1.55; }
 .nh-experience-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
 .nh-experience-card { min-width: 0; padding: 22px; border: 1px solid #767676; background: #fff; }
-.nh-experience-card>img { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
-.nh-experience-card-copy { padding: 24px 0 8px; }
+.nh-experience-card>img { display: block; width: 100%; aspect-ratio: 1.15 / 1; object-fit: cover; }
+.nh-experience-card-copy { padding: 18px 0 8px; }
 .nh-experience-card h3 { margin: 0 0 14px; color: #57585b; font-size: clamp(17px, 1.3vw, 22px); font-weight: 700; line-height: 1.35; }
 .nh-experience-card-copy>p { min-height: 3.2em; margin: 0 0 20px; color: #636368; font-size: 14px; line-height: 1.65; }
 .nh-experience-card details { color: #57585b; }
