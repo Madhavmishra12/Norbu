@@ -65,12 +65,28 @@ const gallerySlides = [
   `${media}/06/Gallery-1e-scaled.webp`,
 ];
 
-const experienceSlides = [
-  `${media}/06/Gallery-1a-scaled.webp`,
-  `${media}/06/gallery-1b-scaled.webp`,
-  `${media}/06/Gallery-1c-scaled.webp`,
-  `${media}/06/Gallery-1d-scaled.webp`,
-  `${media}/06/Gallery-1e-scaled.webp`,
+const experiences = [
+  {
+    title: 'BARBEQUE BY THE RIVER',
+    description: 'Gather around a riverside fire pit for an elegant barbeque experience, complemented by live music, cool mountain breezes, and a starlit sky.',
+    details: 'Gather around a fire pit by the Lhasa river for an elegant barbeque experience, accompanied by live music and the cool mountain breeze under a starry sky.',
+    image: 'https://cdn.sanity.io/images/ocl5w36p/ihcl_prod/9d4c225844bb9df12e2ba6ad6c5701ce17fb208f-520x517-jpg',
+    alt: 'Barbeque by a riverside fire pit',
+  },
+  {
+    title: 'HILLTOP LUNCH',
+    description: 'Enjoy a barbecue lunch atop a scenic hill, surrounded by panoramic views and drifting clouds.',
+    details: 'As the mountain air sharpens your appetite, savour freshly prepared dishes amid the quiet beauty of the heights.',
+    image: 'https://cdn.sanity.io/images/ocl5w36p/ihcl_prod/e8d97bf654d55e4b93faecc8ed155a728c988475-520x517-jpg',
+    alt: 'A long outdoor lunch table among the hills',
+  },
+  {
+    title: 'COSMIC CONVERSATIONS',
+    description: 'Immerse yourself in meditation and spiritual teachings from visiting guest monks.',
+    details: 'Personal consultations offer space to explore life’s deeper meanings, reflection, mindfulness, and renewed perspective.',
+    image: 'https://cdn.sanity.io/images/ocl5w36p/ihcl_prod/de3a6893f278e58d15a95a1a8e33e3d630ff1886-520x517-jpg',
+    alt: 'Two visiting monks in the gardens',
+  },
 ];
 
 const meetingSlides = [
@@ -170,7 +186,6 @@ export default function Home() {
   const [heroPaused, setHeroPaused] = useState(false);
   const [suiteStart, setSuiteStart] = useState(0);
   const [galleryIndex, setGalleryIndex] = useState(0);
-  const [experienceIndex, setExperienceIndex] = useState(0);
   const [meetingIndex, setMeetingIndex] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
   const [sent, setSent] = useState(false);
@@ -386,17 +401,24 @@ export default function Home() {
       </section>
 
       <section className="nh-experiences" id="experiences">
-        <div className="nh-experience-copy" data-reveal="left">
-          <p className="nh-kicker">EXPERIENCES</p>
-          <h2>Do D’shala<br />in style.</h2>
-          <p>Discover the quiet splendour of the hills. Cedar forests, Tibetan culture and fresh mountain air set the scene for days that can be as restful or adventurous as you like.</p>
-          <button className="nh-text-link" onClick={() => scrollTo('meetings')}>FIND YOUR MOUNTAIN MOMENT <span aria-hidden="true">↗</span></button>
+        <div className="nh-experiences-heading" data-reveal="up">
+          <h2>STILLNESS IN <strong>THE MOUNTAINS</strong></h2>
+          <p>Experience a sense of calm through nature-inspired moments within the property. From quiet outdoor pursuits to unhurried leisure, each experience reflects the serenity of the hills. Simple yet immersive, these moments invite you to slow down and take in the quiet beauty of the mountains.</p>
         </div>
-        <div className="nh-experience-image" data-reveal="right">
-          <img data-scroll-parallax="0.035" src={experienceSlides[experienceIndex]} alt="A view of Norbu and its mountain setting" />
-          <div className="nh-image-caption"><span>0{experienceIndex + 1} / 05</span><p>Make time for the view.</p></div>
-          <button className="nh-round-arrow nh-exp-prev" aria-label="Previous experience view" onClick={() => setExperienceIndex((experienceIndex - 1 + gallerySlides.length) % gallerySlides.length)}>←</button>
-          <button className="nh-round-arrow nh-exp-next" aria-label="Next experience view" onClick={() => setExperienceIndex((experienceIndex + 1) % gallerySlides.length)}>→</button>
+        <div className="nh-experience-grid">
+          {experiences.map((experience, index) => (
+            <article className="nh-experience-card" key={experience.title} data-reveal="up" style={{ transitionDelay: `${index * 100}ms` }}>
+              <img src={experience.image} alt={experience.alt} />
+              <div className="nh-experience-card-copy">
+                <h3>{experience.title}</h3>
+                <p>{experience.description}</p>
+                <details>
+                  <summary>KNOW MORE <span aria-hidden="true">↗</span></summary>
+                  <p>{experience.details}</p>
+                </details>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 

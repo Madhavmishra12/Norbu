@@ -91,7 +91,7 @@ img { max-width: 100%; }
 .nh-art-caption { position: absolute; z-index: 2; bottom: 42px; left: 9%; font-size: 9px; letter-spacing: .19em; }
 .nh-discover-copy { max-width: 630px; padding: 85px 11% 85px 5%; }
 .nh-discover-copy .nh-kicker { color: #fff9df; }
-.nh-discover-copy h2, .nh-section-intro h2, .nh-dining-copy h2, .nh-experience-copy h2, .nh-event-copy h2, .nh-contact-form h2 { margin: 0 0 23px; font-family: var(--nh-display); font-weight: 400; letter-spacing: -.025em; }
+.nh-discover-copy h2, .nh-section-intro h2, .nh-dining-copy h2, .nh-experiences-heading h2, .nh-event-copy h2, .nh-contact-form h2 { margin: 0 0 23px; font-family: var(--nh-display); font-weight: 400; letter-spacing: -.025em; }
 .nh-discover-copy h2 { font-size: clamp(43px, 5.1vw, 68px); line-height: 1.08; }
 .nh-discover-copy>p:not(.nh-kicker) { max-width: 500px; margin: 0 0 16px; font-size: 14px; line-height: 1.8; color: #fffdf2; }
 .nh-discover-copy .nh-discover-lead { font-size: 17px !important; line-height: 1.65 !important; color: #fff !important; }
@@ -158,19 +158,23 @@ img { max-width: 100%; }
 .nh-rail-dots button { width: 8px; height: 8px; padding: 0; border: 0; border-radius: 50%; background: #ffffff80; box-shadow: 0 1px 5px #0006; transition: transform .25s, background .25s; }
 .nh-rail-dots button.is-active { width: 8px; height: 8px; transform: scale(1.2); background: #fff; }
 
-.nh-experiences { min-height: 590px; display: grid; grid-template-columns: minmax(330px, .78fr) 1.22fr; align-items: center; gap: 6%; padding: 80px 7.5%; background: #f4f0e6; }
-.nh-experience-copy { max-width: 480px; }
-.nh-experience-copy .nh-kicker { color: #9c8153; }
-.nh-experience-copy h2 { font-size: clamp(44px, 5vw, 68px); line-height: 1.08; color: #29413d; }
-.nh-experience-copy>p:not(.nh-kicker) { max-width: 420px; margin: 0 0 27px; color: #6d736e; font-size: 14px; line-height: 1.8; }
-.nh-experience-image { position: relative; min-height: 435px; height: 35vw; max-height: 560px; overflow: hidden; background: #c9c3b4; }
-.nh-experience-image>img { width: 100%; height: 100%; display: block; object-fit: cover; }
-.nh-image-caption { position: absolute; inset: auto 0 0; padding: 45px 35px 28px; color: #fff; background: linear-gradient(0deg, #14211bc4, transparent); }
-.nh-image-caption span { font-size: 10px; letter-spacing: .15em; }
-.nh-image-caption p { margin: 9px 0 0; font-family: var(--nh-display); font-size: 28px; }
-.nh-exp-prev, .nh-exp-next { position: absolute; top: 50%; transform: translateY(-50%); }
-.nh-exp-prev { left: 20px; }
-.nh-exp-next { right: 20px; }
+.nh-experiences { padding: 105px 4.1vw 110px; background: #fff; color: #57585b; }
+.nh-experiences-heading { max-width: 1120px; margin: 0 auto 150px; text-align: center; }
+.nh-experiences-heading h2 { margin: 0 0 20px; color: #956f55; font-family: inherit; font-size: clamp(24px, 2.15vw, 38px); font-weight: 400; letter-spacing: .17em; line-height: 1.2; }
+.nh-experiences-heading h2 strong { font-weight: 700; }
+.nh-experiences-heading p { max-width: 1080px; margin: 0 auto; color: #626266; font-size: clamp(14px, 1.15vw, 19px); line-height: 1.55; }
+.nh-experience-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.nh-experience-card { min-width: 0; padding: 22px; border: 1px solid #767676; background: #fff; }
+.nh-experience-card>img { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
+.nh-experience-card-copy { padding: 24px 0 8px; }
+.nh-experience-card h3 { margin: 0 0 14px; color: #57585b; font-size: clamp(17px, 1.3vw, 22px); font-weight: 700; line-height: 1.35; }
+.nh-experience-card-copy>p { min-height: 3.2em; margin: 0 0 20px; color: #636368; font-size: 14px; line-height: 1.65; }
+.nh-experience-card details { color: #57585b; }
+.nh-experience-card summary { display: inline-flex; align-items: center; gap: 12px; cursor: pointer; list-style: none; font-size: 12px; font-weight: 600; letter-spacing: .1em; }
+.nh-experience-card summary::-webkit-details-marker { display: none; }
+.nh-experience-card summary span { font-size: 16px; transition: transform .2s ease; }
+.nh-experience-card details[open] summary span { transform: rotate(45deg); }
+.nh-experience-card details>p { margin: 15px 0 0; color: #636368; font-size: 13px; line-height: 1.65; }
 
 /* Events feature and contact footer */
 .nh-events { position: relative; min-height: 610px; display: flex; align-items: center; color: #fff; background-color: #203e3b; background-position: center; background-size: cover; }
@@ -225,12 +229,10 @@ img { max-width: 100%; }
 .nh-motion-ready .nh-discover-mark,
 .nh-motion-ready .nh-discover-leaves,
 .nh-motion-ready .nh-dining-plate,
-.nh-motion-ready .nh-dining-flower,
-.nh-motion-ready .nh-experience-image>img {
+.nh-motion-ready .nh-dining-flower {
   transform: translate3d(0, var(--nh-parallax-y, 0px), 0) rotate(var(--nh-parallax-rotation, 0deg));
 }
 .nh-motion-ready .nh-dining-flower { transform: translate3d(0, var(--nh-parallax-y, 0px), 0) rotate(calc(-10deg + var(--nh-parallax-rotation, 0deg))); }
-.nh-motion-ready .nh-experience-image>img { transform: translate3d(0, var(--nh-parallax-y, 0px), 0) scale(1.06); }
 
 @media (max-width: 900px) {
   /* Keep mobile and tablet sections in document flow; sticky stacking makes
@@ -245,8 +247,8 @@ img { max-width: 100%; }
   .nh-suite-card-copy { left: 7%; right: 7%; bottom: 34px; }
   .nh-suite-card p { font-size: 11px; }
   .nh-dining, .nh-dining-illustration { min-height: 500px; }
-  .nh-experiences { grid-template-columns: minmax(260px,.8fr) 1.2fr; gap: 5%; padding-left: 6%; padding-right: 6%; }
-  .nh-experience-image { min-height: 380px; }
+  .nh-experiences-heading { margin-bottom: 80px; }
+  .nh-experience-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .nh-footer-top { gap: 7%; }
 }
 
@@ -322,15 +324,15 @@ img { max-width: 100%; }
   .nh-rail-prev { left: 4px; }
   .nh-rail-next { right: 4px; }
   .nh-rail-dots { bottom: 22px; gap: 10px; }
-  .nh-experiences { display: flex; flex-direction: column; align-items: stretch; gap: 31px; padding: 61px 0 0; }
-  .nh-experience-copy { max-width: none; padding: 0 26px; }
-  .nh-experience-copy h2 { font-size: 48px; }
-  .nh-experience-copy>p:not(.nh-kicker) { font-size: 13px; }
-  .nh-experience-image { min-height: 320px; height: 78vw; max-height: 450px; }
-  .nh-image-caption { padding: 39px 22px 22px; }
-  .nh-image-caption p { font-size: 23px; }
-  .nh-exp-prev { left: 12px; }
-  .nh-exp-next { right: 12px; }
+  .nh-experiences { padding: 62px 18px 72px; }
+  .nh-experiences-heading { margin-bottom: 42px; }
+  .nh-experiences-heading h2 { margin-bottom: 16px; font-size: clamp(22px, 6vw, 30px); letter-spacing: .1em; }
+  .nh-experiences-heading p { font-size: 13px; line-height: 1.7; }
+  .nh-experience-grid { grid-template-columns: 1fr; gap: 18px; }
+  .nh-experience-card { padding: 15px; }
+  .nh-experience-card-copy { padding-top: 20px; }
+  .nh-experience-card h3 { font-size: 18px; }
+  .nh-experience-card-copy>p { min-height: 0; font-size: 13px; }
   .nh-events { min-height: 560px; background-position: center; }
   .nh-event-copy { width: 85%; margin-left: 8%; padding: 70px 0 105px; }
   .nh-event-copy h2 { font-size: 48px; }
