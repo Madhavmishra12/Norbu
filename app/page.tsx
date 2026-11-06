@@ -3,13 +3,14 @@
 import { FormEvent, useEffect, useState } from 'react';
 
 const media = '/norbu/2022';
+const photos = '/norbu/2026/client-photos';
 const bookingUrl = 'https://staahmax.staah.net/be/indexpackdetail?propertyId=NDAxNg%3D%3D&individual=true';
 const heroSlides = [
-  `${media}/06/Home.webp`,
-  `${media}/06/Gallery-1a-scaled.webp`,
-  `${media}/06/gallery-1b-scaled.webp`,
-  `${media}/06/Gallery-1c-scaled.webp`,
-  `${media}/06/meetings-solo-ilustra-scaled-1-scaled.webp`,
+  `${photos}/overview-1.webp`,
+  `${photos}/overview-2.webp`,
+  `${photos}/overview-3.webp`,
+  `${photos}/evening-view.webp`,
+  `${photos}/lobby.webp`,
 ];
 
 const formatBookingDate = (date: string) => {
@@ -28,7 +29,7 @@ const suites = [
   {
     name: 'Presidential Suite',
     description: 'Live it up yeti-style in our stunning presidential suite. Luxurious interiors, a deep soak tub, panoramic mountain views, a private bar, a large terrace and your personal butler.',
-    image: `${media}/04/yetisabode.jpg`,
+    image: `${photos}/presidential-terrace.webp`,
     anchor: 'yetisab',
   },
   {
@@ -64,12 +65,24 @@ const suites = [
 ];
 
 const galleryItems = [
-  { image: `${media}/06/Gallery-1a-scaled.webp`, alt: 'Mountain-facing lounge at Norbu The Montanna' },
-  { image: `${media}/05/met05y06.webp`, alt: 'The outdoor pool and hotel grounds against the mountains' },
-  { image: `${media}/04/teagardensuite.jpg`, alt: 'Guest suite with a king bed and Tibetan-inspired design' },
-  { image: '/norbu/2026/bathroom.jpg', alt: 'Freestanding bathtub in a marble bathroom with a mountain view' },
-  { image: `${media}/06/Gallery-1e-scaled.webp`, alt: 'Dining room set for guests at the hotel' },
-  { image: `${media}/05/met02y03.webp`, alt: 'Outdoor terrace and water feature at the hotel' },
+  { image: `${photos}/bathroom-view.webp`, name: 'Bathroom with Mountain Views', alt: "Bathtub and marble bathroom overlooking the mountains" },
+  { image: `${photos}/bonfire.webp`, name: 'Bonfire at Dusk', alt: "Bonfire seating in the hotel gardens at dusk" },
+  { image: `${photos}/by-the-lake.webp`, name: 'By the Lake', alt: "Lhasa Lake with the hotel and mountains beyond" },
+  { image: `${photos}/evening-view.webp`, name: 'Evening at Norbu', alt: "Evening view of the pool and mountain-facing hotel" },
+  { image: `${photos}/gufa.webp`, name: 'Gufa Lounge', alt: "Colourful seating and Tibetan-inspired decor in Gufa" },
+  { image: `${photos}/lobby-night-view.webp`, name: 'Lobby at Night', alt: "Lobby terrace and mountain view at night" },
+  { image: `${photos}/lobby.webp`, name: 'The Lobby', alt: "Lobby seating with panoramic valley views" },
+  { image: `${photos}/namak-2.webp`, name: 'Namak Restaurant', alt: "Breakfast tables at Namak" },
+  { image: `${photos}/night-time-namak.webp`, name: 'Namak by Night', alt: "Candlelit dining on the Namak terrace at night" },
+  { image: `${photos}/overview-3.webp`, name: 'Morning over the Mountains', alt: "Morning light over the hotel and mountains" },
+  { image: `${photos}/pavilion.webp`, name: 'The Pavilion and Lawns', alt: "Pavilion surrounded by lawns and mountain scenery" },
+  { image: `${photos}/pizza-dining.webp`, name: 'Outdoor Pizza Dining', alt: "Outdoor pizza dining table in the gardens" },
+  { image: `${photos}/pizza-making.webp`, name: 'Pizza Making', alt: "Chef making pizza in the outdoor oven" },
+  { image: `${photos}/pool-deck.webp`, name: 'Pool Deck from Above', alt: "Aerial view of the pool and pool deck" },
+  { image: `${photos}/presidential-bathroom.webp`, name: 'Presidential Suite Bathroom', alt: "Presidential suite bathroom with a round soaking tub" },
+  { image: `${photos}/presidential-terrace.webp`, name: 'Presidential Suite Terrace', alt: "Presidential terrace with outdoor seating" },
+  { image: `${photos}/room-view.webp`, name: 'Guest Room', alt: "Guest room with a private outdoor seating area" },
+  { image: `${photos}/banquet.webp`, name: 'Banquet Hall', alt: "Banquet hall set with round tables and white chairs" },
 ];
 
 const experiences = [
@@ -77,7 +90,7 @@ const experiences = [
     title: 'BARBEQUE BY THE HOTEL LHASA LAKE',
     description: 'A lakeside fire pit, live music and the cool mountain air set the scene for an evening outdoors.',
     details: 'Gather with friends beside Lhasa Lake for a fireside barbecue, mountain breezes and an evening under the stars. Ask our team about availability and arrangements.',
-    image: '/norbu/2026/experiences/barbeque-by-the-river.jpg',
+    image: `${photos}/bonfire.webp`,
     alt: 'Barbeque by a fire pit beside Lhasa Lake',
   },
   {
@@ -105,20 +118,20 @@ const experiences = [
     title: 'CULINARY SESSIONS',
     description: 'Join the chefs for a hands-on session, from baking something sweet to creating a gourmet dish.',
     details: 'Learn alongside the hotel’s chefs as they share techniques and ideas for everything from artisanal baking to gourmet cooking.',
-    image: '/norbu/2026/experiences/culinary-sessions.jpg',
-    alt: 'A chef preparing a dish in the kitchen',
+    image: `${photos}/pizza-making.webp`,
+    alt: 'A chef making pizza in the outdoor oven',
   },
   {
     title: 'LAKESIDE EXPERIENCES',
     description: 'Enjoy a private lakeside dinner, cocktail soirée or intimate barbecue beside Lhasa Lake.',
     details: 'Spend an unhurried evening beside Lhasa Lake with private dining, cocktails or a small barbecue arranged for your group.',
-    image: '/norbu/2026/experiences/lakeside-experiences.jpg',
-    alt: 'A private dining experience beside Lhasa Lake',
+    image: `${photos}/by-the-lake.webp`,
+    alt: 'Seating beside Lhasa Lake with mountain views',
   },
 ];
 
 const wellnessPractices = [
-  { name: 'Yoga', image: '/norbu/2026/wellness/yoga.jpg', alt: 'A woman practising a standing yoga pose outdoors' },
+  { name: 'Yoga', image: `${photos}/yoga.webp`, alt: 'Yoga mats in the garden pavilion overlooking the mountains' },
   { name: 'Meditation', image: '/norbu/2026/wellness/meditation.jpg', alt: 'A woman seated quietly outdoors among greenery' },
   { name: 'Rebirthing & inner-child breathwork', image: '/norbu/2026/wellness/breathwork.jpg', alt: 'A woman sitting with her eyes closed in a breathing practice' },
   { name: 'Aura reading', image: '/norbu/2026/wellness/aura-reading.jpg', alt: 'A selection of colourful stones held in a hand' },
@@ -130,12 +143,12 @@ const wellnessPractices = [
 
 const weddingSlides = [
   {
-    image: '/norbu/2026/wellness/wedding-mountains.jpg',
-    alt: 'Illustrative outdoor wedding ceremony setup against a mountain backdrop',
+    image: '/norbu/2026/wellness/wedding-couple.webp',
+    alt: 'Newly married couple in traditional wedding attire with the mountains behind them',
   },
   {
-    image: '/norbu/2026/wellness/wedding-ceremony.jpg',
-    alt: 'Illustrative outdoor wedding ceremony with a floral arch and mountain scenery',
+    image: '/norbu/2026/wellness/wedding-ceremony-collage.webp',
+    alt: 'Wedding procession and ceremony moments beneath a flower-covered arch',
   },
   {
     image: '/norbu/2026/wellness/wedding-lights.jpg',
@@ -161,11 +174,11 @@ const astrologyReadings = [
 ];
 
 const venueSpaces = [
-  { name: 'Pool', description: 'Enjoy time by the outdoor pool, a relaxed setting to pause between mountain adventures.', image: `${media}/05/met05y06.webp`, alt: 'The outdoor pool with the mountains beyond' },
-  { name: 'Pool deck', description: 'An open-air setting beside the water for intimate gatherings and easy-going celebrations.', image: `${media}/06/meetings-solo-ilustra-scaled-1-scaled.webp`, alt: 'An open-air terrace with mountain views' },
-  { name: 'Lawns', description: 'Fresh air and mountain scenery create a natural backdrop for outdoor occasions.', image: `${media}/05/met02y03.webp`, alt: 'Outdoor dining surrounded by the hills' },
-  { name: 'Banquet', description: 'A dedicated indoor setting for celebrations, meetings and private gatherings.', image: `${media}/06/Gallery-1e-scaled.webp`, alt: 'The hotel dining room set for guests' },
-  { name: 'Gufa', description: 'A distinctive, intimate space for a gathering with a sense of place.', image: `${media}/06/Gallery-1a-scaled.webp`, alt: 'A warm hotel lounge with views of the valley' },
+  { name: 'Pool', description: 'Enjoy time by the outdoor pool, a relaxed setting to pause between mountain adventures.', image: `${photos}/overview-2.webp`, alt: "The outdoor pool with the mountains beyond" },
+  { name: 'Pool deck', description: 'An open-air setting beside the water for intimate gatherings and easy-going celebrations.', image: `${photos}/pool-deck.webp`, alt: "Aerial view of the pool and surrounding deck" },
+  { name: 'Lawns', description: 'Fresh air and mountain scenery create a natural backdrop for outdoor occasions.', image: `${photos}/pavilion.webp`, alt: "Lawns surrounding the pavilion with mountain views" },
+  { name: 'Banquet', description: 'A dedicated indoor setting for celebrations, meetings and private gatherings.', image: `${photos}/banquet.webp`, alt: "Banquet hall set with round tables and white chairs" },
+  { name: 'Gufa', description: 'A distinctive, intimate space for a gathering with a sense of place.', image: `${photos}/gufa.webp`, alt: "Colourful seating and Tibetan-inspired decor in Gufa" },
 ];
 
 const socialLinks = [
@@ -439,7 +452,7 @@ export default function Home() {
           <p className="nh-hero-kicker">A HIMALAYAN HIDEAWAY</p>
           <h1>Norbu The Montanna</h1>
           <p className="nh-hero-place">DHARAMSHALA <span>·</span> HIMACHAL PRADESH</p>
-          <button className="nh-hero-cta" onClick={() => scrollTo('discover')}>DISCOVER THE MOUNTAIN <span aria-hidden="true">↓</span></button>
+          <button className="nh-hero-cta" onClick={() => scrollTo('discover')}>DISCOVER THE MOUNTAINS <span aria-hidden="true">↓</span></button>
         </div>
         <div className="nh-hero-bottom">
           <button onClick={() => scrollTo('contact')}>LOCATION <span aria-hidden="true">↗</span></button>
@@ -517,9 +530,10 @@ export default function Home() {
           <h2>Moments at Norbu</h2>
         </div>
         <div className="nh-gallery-grid" aria-label="Photo gallery of Norbu The Montanna">
-          {galleryItems.map((item, index) => (
-            <figure className={`nh-gallery-item nh-gallery-item-${index + 1}`} key={item.image}>
+          {galleryItems.map((item) => (
+            <figure className="nh-gallery-item" key={item.image}>
               <img src={item.image} alt={item.alt} loading="lazy" />
+              <figcaption>{item.name}</figcaption>
             </figure>
           ))}
         </div>
@@ -654,7 +668,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="nh-events" id="meetings" style={{ backgroundImage: `linear-gradient(90deg, rgba(9, 26, 25, .82), rgba(14, 34, 33, .24)), url("${media}/05/met02y03.webp")` }}>
+      <section className="nh-events" id="meetings" style={{ backgroundImage: `linear-gradient(90deg, rgba(9, 26, 25, .82), rgba(14, 34, 33, .24)), url("${photos}/banquet.webp")` }}>
         <div className="nh-event-copy" data-reveal="left">
           <p className="nh-kicker">GATHER IN THE HIMALAYAS</p>
           <h2>Meetings &amp; events</h2>
