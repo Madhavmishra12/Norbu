@@ -63,22 +63,22 @@ const suites = [
   },
 ];
 
-const gallerySlides = [
-  `${media}/06/Gallery-1d-scaled.webp`,
-  `${media}/06/Gallery-1a-scaled.webp`,
-  `${media}/06/gallery-1b-scaled.webp`,
-  `${media}/06/Gallery-1c-scaled.webp`,
-  `${media}/06/Gallery-1e-scaled.webp`,
-  '/norbu/2026/bathroom.jpg',
+const galleryItems = [
+  { image: `${media}/06/Gallery-1a-scaled.webp`, alt: 'Mountain-facing lounge at Norbu The Montanna' },
+  { image: `${media}/05/met05y06.webp`, alt: 'The outdoor pool and hotel grounds against the mountains' },
+  { image: `${media}/04/teagardensuite.jpg`, alt: 'Guest suite with a king bed and Tibetan-inspired design' },
+  { image: '/norbu/2026/bathroom.jpg', alt: 'Freestanding bathtub in a marble bathroom with a mountain view' },
+  { image: `${media}/06/Gallery-1e-scaled.webp`, alt: 'Dining room set for guests at the hotel' },
+  { image: `${media}/05/met02y03.webp`, alt: 'Outdoor terrace and water feature at the hotel' },
 ];
 
 const experiences = [
   {
-    title: 'BARBEQUE BY THE RIVER',
-    description: 'A riverside fire pit, live music and the cool mountain air set the scene for an evening outdoors.',
-    details: 'Gather with friends beside the Lhasa river for a fireside barbecue, mountain breezes and an evening under the stars. Ask our team about availability and arrangements.',
+    title: 'BARBEQUE BY THE HOTEL LHASA LAKE',
+    description: 'A lakeside fire pit, live music and the cool mountain air set the scene for an evening outdoors.',
+    details: 'Gather with friends beside Lhasa Lake for a fireside barbecue, mountain breezes and an evening under the stars. Ask our team about availability and arrangements.',
     image: '/norbu/2026/experiences/barbeque-by-the-river.jpg',
-    alt: 'Barbeque by a riverside fire pit',
+    alt: 'Barbeque by a fire pit beside Lhasa Lake',
   },
   {
     title: 'HILLTOP LUNCH',
@@ -110,31 +110,47 @@ const experiences = [
   },
   {
     title: 'LAKESIDE EXPERIENCES',
-    description: 'Enjoy a private riverside dinner, cocktail soirée or intimate barbecue beside the water.',
-    details: 'Spend an unhurried evening by the Lhasa river with private dining, cocktails or a small barbecue arranged for your group.',
+    description: 'Enjoy a private lakeside dinner, cocktail soirée or intimate barbecue beside Lhasa Lake.',
+    details: 'Spend an unhurried evening beside Lhasa Lake with private dining, cocktails or a small barbecue arranged for your group.',
     image: '/norbu/2026/experiences/lakeside-experiences.jpg',
-    alt: 'A private dining experience beside the river',
+    alt: 'A private dining experience beside Lhasa Lake',
   },
 ];
 
 const wellnessPractices = [
-  { name: 'Yoga', image: '/norbu/2026/wellness/yoga-deck.jpg', alt: 'The hotel yoga deck with mountain views' },
-  { name: 'Meditation', image: '/norbu/2026/experiences/cosmic-conversations.jpg', alt: 'Visiting monks in the gardens' },
-  { name: 'Rebirthing & inner-child breathwork', image: `${media}/06/gallery-1b-scaled.webp`, alt: 'Mountain landscape and prayer flags' },
-  { name: 'Aura reading', image: '/norbu/2026/wellness/spa.jpg', alt: 'Spa stones arranged among green leaves' },
-  { name: 'Spiritual counselling', image: `${media}/06/meetings-solo-ilustra-scaled-1-scaled.webp`, alt: 'A terrace overlooking the mountain valley' },
-  { name: 'Chakra balancing', image: `${media}/06/Gallery-1c-scaled.webp`, alt: 'A colourful lounge inside the hotel' },
-  { name: 'Sound healing', image: `${media}/06/Gallery-1a-scaled.webp`, alt: 'A quiet lounge with mountain views' },
-  { name: 'Past-life regression', image: '/norbu/2026/experiences/lakeside-experiences.jpg', alt: 'A calm riverside setting among the hills' },
+  { name: 'Yoga', image: '/norbu/2026/wellness/yoga.jpg', alt: 'A woman practising a standing yoga pose outdoors' },
+  { name: 'Meditation', image: '/norbu/2026/wellness/meditation.jpg', alt: 'A woman seated quietly outdoors among greenery' },
+  { name: 'Rebirthing & inner-child breathwork', image: '/norbu/2026/wellness/breathwork.jpg', alt: 'A woman sitting with her eyes closed in a breathing practice' },
+  { name: 'Aura reading', image: '/norbu/2026/wellness/aura-reading.jpg', alt: 'A selection of colourful stones held in a hand' },
+  { name: 'Spiritual counselling', image: '/norbu/2026/wellness/spiritual-counselling.jpg', alt: 'A counsellor speaking with a client' },
+  { name: 'Chakra balancing', image: '/norbu/2026/wellness/chakra-balancing.jpg', alt: 'A striped stone held between two hands' },
+  { name: 'Sound healing', image: '/norbu/2026/wellness/sound-healing.jpg', alt: 'A sound practitioner using a singing bowl during a session' },
+  { name: 'Past-life regression', image: '/norbu/2026/wellness/past-life-regression.jpg', alt: 'A woman resting quietly on a yoga mat' },
 ];
 
-const kidsPlayPhotos = [
-  { image: '/norbu/2026/kids-play-area/playroom-wide.jpg', alt: 'Wide view of the indoor kids play area with a slide and climbing wall' },
-  { image: '/norbu/2026/kids-play-area/play-structure-ball-pit.jpg', alt: 'Indoor play structure with a ball pit and climbing steps' },
-  { image: '/norbu/2026/kids-play-area/indoor-slide.jpg', alt: 'Close view of the colourful indoor slide' },
-  { image: '/norbu/2026/kids-play-area/climbing-wall-slide.jpg', alt: 'Colourful climbing wall and slide in the kids playroom' },
-  { image: '/norbu/2026/kids-play-area/climbing-corner.jpg', alt: 'Illustrative indoor playroom corner with a climbing wall and soft play tunnel' },
+const weddingSlides = [
+  {
+    image: '/norbu/2026/wellness/wedding-mountains.jpg',
+    alt: 'Illustrative outdoor wedding ceremony setup against a mountain backdrop',
+  },
+  {
+    image: '/norbu/2026/wellness/wedding-ceremony.jpg',
+    alt: 'Illustrative outdoor wedding ceremony with a floral arch and mountain scenery',
+  },
+  {
+    image: '/norbu/2026/wellness/wedding-lights.jpg',
+    alt: 'Illustrative outdoor wedding reception under string lights',
+  },
+  {
+    image: '/norbu/2026/wellness/wedding-reception.jpg',
+    alt: 'Illustrative outdoor wedding reception with elegant table decorations',
+  },
 ];
+
+const kidsPlayPhoto = {
+  image: '/norbu/2026/kids-play-area/playroom-wide.jpg',
+  alt: 'Wide view of the indoor kids play area with a slide and climbing wall',
+};
 
 const astrologyReadings = [
   'Natal horoscope',
@@ -150,14 +166,6 @@ const venueSpaces = [
   { name: 'Lawns', description: 'Fresh air and mountain scenery create a natural backdrop for outdoor occasions.', image: `${media}/05/met02y03.webp`, alt: 'Outdoor dining surrounded by the hills' },
   { name: 'Banquet', description: 'A dedicated indoor setting for celebrations, meetings and private gatherings.', image: `${media}/06/Gallery-1e-scaled.webp`, alt: 'The hotel dining room set for guests' },
   { name: 'Gufa', description: 'A distinctive, intimate space for a gathering with a sense of place.', image: `${media}/06/Gallery-1a-scaled.webp`, alt: 'A warm hotel lounge with views of the valley' },
-];
-
-const meetingSlides = [
-  `${media}/06/meetings-solo-ilustra-scaled-1-scaled.webp`,
-  `${media}/05/met02y03.webp`,
-  `${media}/05/met03y04.webp`,
-  `${media}/05/met04y05.webp`,
-  `${media}/05/met05y06.webp`,
 ];
 
 const socialLinks = [
@@ -198,44 +206,11 @@ function SocialLinks({ footer = false }: { footer?: boolean }) {
   );
 }
 
-function PhotoSlider({
-  images,
-  index,
-  onChange,
-  label,
-}: {
-  images: string[];
-  index: number;
-  onChange: (next: number) => void;
-  label: string;
-}) {
-  const advance = (step: number) => onChange((index + step + images.length) % images.length);
-  return (
-    <div className="nh-photo-slider" aria-label={label}>
-      <div className={`nh-photo-frame${images[index].endsWith('/bathroom.jpg') ? ' is-contained' : ''}`} aria-live="polite">
-        <img key={images[index]} src={images[index]} alt={images[index].endsWith('/bathroom.jpg') ? 'Bathroom with freestanding bath and mountain view' : `${label} view ${index + 1}`} />
-      </div>
-      <button className="nh-gallery-arrow nh-rail-prev" onClick={() => advance(-1)} aria-label={`Previous ${label.toLowerCase()} photo`}>
-        <span aria-hidden="true">‹</span>
-      </button>
-      <button className="nh-gallery-arrow nh-rail-next" onClick={() => advance(1)} aria-label={`Next ${label.toLowerCase()} photo`}>
-        <span aria-hidden="true">›</span>
-      </button>
-      <div className="nh-rail-dots" aria-label={`${label} slide ${index + 1} of ${images.length}`}>
-        {images.map((_, dot) => (
-          <button key={dot} aria-label={`Show ${label.toLowerCase()} photos ${dot + 1}`} aria-pressed={index === dot} className={index === dot ? 'is-active' : ''} onClick={() => onChange(dot)} />
-        ))}
-      </div>
-    </div>
-  );
-}
-
 export default function Home() {
   const [heroSlide, setHeroSlide] = useState(0);
+  const [weddingSlide, setWeddingSlide] = useState(0);
   const [heroPaused, setHeroPaused] = useState(false);
   const [suiteStart, setSuiteStart] = useState(0);
-  const [galleryIndex, setGalleryIndex] = useState(0);
-  const [meetingIndex, setMeetingIndex] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
   const [sent, setSent] = useState(false);
   const [bookingOpen, setBookingOpen] = useState(false);
@@ -486,7 +461,6 @@ export default function Home() {
         <div className="nh-discover-copy" data-reveal="right">
           <p className="nh-kicker">A PLACE TO FIND YOUR PACE</p>
           <h2>Discover Norbu<br />The Montanna</h2>
-          <p className="nh-discover-lead">Something new is coming to the Kangra Valley. Timeless traditions meet contemporary comfort on the edge of the Himalayas.</p>
           <p>Settle into Dharamshala’s slower rhythm, surrounded by cedar-covered hills, mountain air and a rich Tibetan heritage. Here, every day begins with a view and leaves room for a little discovery.</p>
           <div className="nh-location-line"><span className="nh-location-mark" aria-hidden="true">⌖</span><span>Dharamshala<br /><small>Himachal Pradesh, India</small></span></div>
           <button className="nh-text-link" onClick={() => scrollTo('suites')}>EXPLORE YOUR STAY <span aria-hidden="true">↗</span></button>
@@ -538,7 +512,17 @@ export default function Home() {
       </section>
 
       <section className="nh-gallery" id="gallery">
-        <PhotoSlider images={gallerySlides} index={galleryIndex} onChange={setGalleryIndex} label="Moments in the mountains" />
+        <div className="nh-gallery-heading" data-reveal="up">
+          <p className="nh-kicker">A CLOSER LOOK</p>
+          <h2>Moments at Norbu</h2>
+        </div>
+        <div className="nh-gallery-grid" aria-label="Photo gallery of Norbu The Montanna">
+          {galleryItems.map((item, index) => (
+            <figure className={`nh-gallery-item nh-gallery-item-${index + 1}`} key={item.image}>
+              <img src={item.image} alt={item.alt} loading="lazy" />
+            </figure>
+          ))}
+        </div>
       </section>
 
       <section className="nh-experiences" id="experiences">
@@ -572,9 +556,9 @@ export default function Home() {
         </div>
         <div className="nh-wellness-grid">
           <article className="nh-wellness-card" data-reveal="left">
-            <p className="nh-kicker">LONGER RETREATS</p>
+            <p className="nh-kicker">INDIVIDUAL SERVICES &amp; RETREATS</p>
             <h3>Practices for a deeper pause</h3>
-            <p>These wellness experiences are offered as longer retreats. Please get in touch with our team for more information, planning and availability.</p>
+            <p>Each practice is available as a one-off session. If you wish, our team can also curate a longer retreat around the experiences you would like to explore. Get in touch to discuss options and availability.</p>
             <ul className="nh-wellness-practices">
               {wellnessPractices.map((practice) => (
                 <li key={practice.name}>
@@ -587,7 +571,7 @@ export default function Home() {
           <article className="nh-wellness-card nh-tibetan-card" data-reveal="right">
             <p className="nh-kicker">TIBETAN WELLNESS</p>
             <h3>Traditional knowledge</h3>
-            <p>Enquire about consultations with a Tibetan doctor and astrology services through the Men-Tsee-Khang organisation.</p>
+            <p>Available at the hotel: enquire about consultations with a Tibetan doctor and Tibetan astrology services through the Men-Tsee-Khang organisation.</p>
             <h4>Tibetan astrology readings</h4>
             <ul className="nh-reading-list">
               {astrologyReadings.map((reading) => <li key={reading}>{reading}</li>)}
@@ -618,11 +602,9 @@ export default function Home() {
           <button className="nh-kids-link" onClick={() => scrollTo('contact')}>ASK ABOUT FAMILY STAYS <span aria-hidden="true">↗</span></button>
         </div>
         <div className="nh-kids-gallery" aria-label="Photos of the indoor kids play area">
-          {kidsPlayPhotos.map((photo, index) => (
-            <figure className={`nh-kids-photo nh-kids-photo-${index + 1}`} key={photo.image}>
-              <img src={photo.image} alt={photo.alt} loading={index === 0 ? 'eager' : 'lazy'} fetchPriority={index === 0 ? 'high' : 'auto'} />
-            </figure>
-          ))}
+          <figure className="nh-kids-photo">
+            <img src={kidsPlayPhoto.image} alt={kidsPlayPhoto.alt} loading="lazy" />
+          </figure>
         </div>
       </section>
 
@@ -646,26 +628,38 @@ export default function Home() {
           ))}
         </div>
         <div className="nh-wedding-callout" id="weddings" data-reveal="up">
-          <div>
+          <div className="nh-wedding-slider" role="group" aria-roledescription="carousel" aria-label="Wedding inspiration photos">
+            <div className="nh-wedding-photo-frame">
+              <img key={weddingSlide} className="nh-wedding-photo" src={weddingSlides[weddingSlide].image} alt={weddingSlides[weddingSlide].alt} loading="lazy" />
+              <div className="nh-wedding-slide-controls">
+                <span className="nh-wedding-slide-count" aria-live="polite">{String(weddingSlide + 1).padStart(2, '0')} <i>/ {String(weddingSlides.length).padStart(2, '0')}</i></span>
+                <div className="nh-wedding-slide-dots" aria-label="Choose a wedding photo">
+                  {weddingSlides.map((slide, index) => (
+                    <button key={slide.image} type="button" aria-label={`Show wedding photo ${index + 1}`} aria-pressed={weddingSlide === index} className={weddingSlide === index ? 'is-active' : ''} onClick={() => setWeddingSlide(index)} />
+                  ))}
+                </div>
+                <div className="nh-wedding-slide-arrows">
+                  <button type="button" aria-label="Previous wedding photo" onClick={() => setWeddingSlide((weddingSlide - 1 + weddingSlides.length) % weddingSlides.length)}>←</button>
+                  <button type="button" aria-label="Next wedding photo" onClick={() => setWeddingSlide((weddingSlide + 1) % weddingSlides.length)}>→</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="nh-wedding-copy">
             <p className="nh-kicker">A DAY TO REMEMBER</p>
             <h3>Weddings in the mountains</h3>
             <p>Share your plans with us and our team can help you explore the available spaces and arrangements.</p>
+            <button onClick={() => scrollTo('contact')} aria-label="Enquire about weddings">ENQUIRE ABOUT WEDDINGS <span aria-hidden="true">↗</span></button>
           </div>
-          <button onClick={() => scrollTo('contact')} aria-label="Enquire about weddings">ENQUIRE ABOUT WEDDINGS <span aria-hidden="true">↗</span></button>
         </div>
       </section>
 
-      <section className="nh-events" id="meetings" style={{ backgroundImage: `linear-gradient(90deg, rgba(9, 26, 25, .8), rgba(14, 34, 33, .18)), url("${meetingSlides[meetingIndex]}")` }}>
+      <section className="nh-events" id="meetings" style={{ backgroundImage: `linear-gradient(90deg, rgba(9, 26, 25, .82), rgba(14, 34, 33, .24)), url("${media}/05/met02y03.webp")` }}>
         <div className="nh-event-copy" data-reveal="left">
           <p className="nh-kicker">GATHER IN THE HIMALAYAS</p>
           <h2>Meetings &amp; events</h2>
           <p>Planning a meeting or special event? Let us handle it. Against a backdrop of stunning natural beauty, Norbu The Montanna offers a thoughtful setting for gatherings of all kinds.</p>
-          <button className="nh-light-button" onClick={() => scrollTo('contact')}>TALK TO OUR TEAM <span aria-hidden="true">↗</span></button>
-        </div>
-        <div className="nh-event-controls">
-          <span>0{meetingIndex + 1} <i>/ 05</i></span>
-          <div>{meetingSlides.map((_, index) => <button key={index} aria-label={`Show event photo ${index + 1}`} aria-pressed={meetingIndex === index} className={meetingIndex === index ? 'is-active' : ''} onClick={() => setMeetingIndex(index)} />)}</div>
-          <button className="nh-event-next" aria-label="Next event photo" onClick={() => setMeetingIndex((meetingIndex + 1) % meetingSlides.length)}>→</button>
+          <button className="nh-light-button" onClick={() => scrollTo('event-spaces')}>EXPLORE EVENT SPACES <span aria-hidden="true">↗</span></button>
         </div>
       </section>
 
@@ -685,7 +679,7 @@ export default function Home() {
                 <h3>Reservations</h3>
                 <p>Reservations must be secured by credit card, cash deposit, bank transfer or an approved credit facility. Contact the hotel directly to arrange an advance deposit or guarantee and to confirm the current payment details.</p>
                 <h3>Cancellation and retention</h3>
-                <p>For cancellations, the hotel’s published policy applies: 25% of the full-stay accommodation charge plus taxes within 15 days of arrival; 50% within 10 days; and 100% within 7 days.</p>
+                <p>Cancellations made more than 21 days before arrival are free of charge. Cancellation within 21 days of arrival, or non-arrival of the guest, will be treated as a no-show. 100% retention charges apply in that case.</p>
                 <h3>Occupancy and additional guests</h3>
                 <p>Rooms are designed for two adults. Rollaway beds are subject to availability. Up to two children below 6 years may stay at no extra charge using existing bedding. Children aged 6–12 are charged INR 5,000 plus taxes with an extra bed, subject to availability. Guests above 12 are charged INR 8,000 plus taxes with an extra bed, subject to availability.</p>
                 <h3>Check-in and check-out</h3>

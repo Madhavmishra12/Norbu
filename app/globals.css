@@ -35,10 +35,12 @@ img { max-width: 100%; }
 .nh-spaces { z-index: 10; }
 .nh-events { z-index: 11; }
 .nh-footer { position: relative; z-index: 12; }
-/* The experience grid is taller than one viewport; let its rows scroll normally. */
-.norbu-site > .nh-experiences { position: relative; top: auto; }
-/* Wellness cards contain several content rows, so keep the full section in normal flow too. */
-.norbu-site > .nh-wellness { position: relative; top: auto; }
+/* Long sections need to scroll in document flow so the next sticky panel cannot cover their content. */
+.norbu-site > .nh-suites,
+.norbu-site > .nh-gallery,
+.norbu-site > .nh-experiences,
+.norbu-site > .nh-wellness,
+.norbu-site > .nh-spaces { position: relative; top: auto; }
 .nh-kicker { margin: 0 0 20px; font-size: 11px; font-weight: 600; letter-spacing: .24em; line-height: 1.6; }
 
 /* Hero and two-tier navigation */
@@ -88,8 +90,8 @@ img { max-width: 100%; }
 .nh-hero-bottom>button:last-child { justify-self: end; }
 .nh-hero-bottom>button span { margin-left: 10px; }
 .nh-hero-dots { display: flex; align-items: center; gap: 8px; }
-.nh-hero-dots button, .nh-rail-dots button, .nh-event-controls>div button { height: 2px; width: 25px; padding: 0; border: 0; background: #ffffff82; transition: width .25s, background .25s; }
-.nh-hero-dots button.is-active, .nh-rail-dots button.is-active, .nh-event-controls>div button.is-active { width: 46px; background: #fff; }
+.nh-hero-dots button { height: 2px; width: 25px; padding: 0; border: 0; background: #ffffff82; transition: width .25s, background .25s; }
+.nh-hero-dots button.is-active { width: 46px; background: #fff; }
 .nh-hero-arrow { position: absolute; z-index: 2; top: 53%; width: 45px; height: 45px; border-radius: 50%; border: 1px solid #fff8; color: #fff; background: #10212038; font-size: 24px; transition: background .2s; }
 .nh-hero-arrow:hover { background: #102120a8; }
 .nh-hero-prev { left: 3%; }
@@ -128,7 +130,7 @@ img { max-width: 100%; }
 .nh-suite-shade { position: absolute; z-index: -1; inset: 0; background: linear-gradient(180deg, #1111 20%, #101b19b0 100%); }
 .nh-suite-card-copy { position: absolute; left: 8%; right: 8%; bottom: 43px; }
 .nh-suite-count { display: block; margin-bottom: 15px; font-size: 10px; letter-spacing: .15em; }
-.nh-suite-count i, .nh-gallery-note i, .nh-event-controls i { font-style: normal; opacity: .65; }
+.nh-suite-count i { font-style: normal; opacity: .65; }
 .nh-suite-card h3 { margin: 0 0 9px; font-family: var(--nh-display); font-size: clamp(26px, 2.25vw, 37px); font-weight: 400; line-height: 1.15; }
 .nh-suite-card p { max-width: 410px; margin: 0 0 20px; color: #fff; font-size: 12px; line-height: 1.65; }
 .nh-suite-card-copy button, .nh-suite-card-copy a { display: inline-flex; align-items: center; gap: 17px; padding: 0 0 7px; border: 0; border-bottom: 1px solid #fff; color: #fff; background: transparent; font-size: 9px; letter-spacing: .16em; text-decoration: none; }
@@ -156,22 +158,18 @@ img { max-width: 100%; }
 .nh-dark-button:hover { color: var(--nh-deep); background: transparent; }
 .nh-dark-button span, .nh-light-button span { font-size: 15px; }
 
-/* Full-screen gallery carousel */
-.nh-gallery { position: relative; height: min(100svh, 1100px); min-height: 600px; padding: 0; overflow: hidden; color: #fff; background: #243b3b; }
-.nh-photo-slider { position: absolute; inset: 0; }
-.nh-photo-frame { position: absolute; inset: 0; overflow: hidden; }
-.nh-photo-frame::after { content: ''; position: absolute; inset: 45% 0 0; pointer-events: none; background: linear-gradient(180deg, transparent, rgba(0,0,0,.16)); }
-.nh-photo-frame img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; animation: nh-fade .4s ease; }
-.nh-photo-frame.is-contained { background: #203735; }
-.nh-photo-frame.is-contained img { object-fit: contain; }
-@keyframes nh-fade { from { opacity: .65; } to { opacity: 1; } }
-.nh-gallery-arrow { position: absolute; z-index: 2; top: 50%; display: flex; align-items: center; justify-content: center; width: 66px; height: 78px; padding: 0; transform: translateY(-50%); border: 0; border-radius: 0; color: #fff; background: transparent; box-shadow: none; font-size: 60px; font-weight: 300; line-height: 1; text-shadow: 0 1px 8px #0007; transition: opacity .2s; }
-.nh-gallery-arrow:hover { transform: translateY(-50%); color: #fff; background: transparent; opacity: .72; }
-.nh-rail-prev { left: 12px; }
-.nh-rail-next { right: 12px; }
-.nh-rail-dots { position: absolute; z-index: 2; bottom: clamp(22px, 4vh, 46px); left: 50%; display: flex; justify-content: center; gap: 12px; margin: 0; transform: translateX(-50%); }
-.nh-rail-dots button { width: 8px; height: 8px; padding: 0; border: 0; border-radius: 50%; background: #ffffff80; box-shadow: 0 1px 5px #0006; transition: transform .25s, background .25s; }
-.nh-rail-dots button.is-active { width: 8px; height: 8px; transform: scale(1.2); background: #fff; }
+/* Homepage photo gallery */
+.nh-gallery { padding: 92px 6vw 100px; background: var(--nh-paper); color: var(--nh-ink); }
+.nh-gallery-heading { max-width: 1440px; margin: 0 auto 38px; }
+.nh-gallery-heading .nh-kicker { margin-bottom: 10px; color: #a08351; }
+.nh-gallery-heading h2 { margin: 0; font-family: var(--nh-display); font-size: clamp(34px, 4vw, 54px); font-weight: 400; letter-spacing: -.03em; line-height: 1.1; }
+.nh-gallery-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: minmax(160px, 15vw); gap: 12px; max-width: 1440px; margin: 0 auto; }
+.nh-gallery-item { min-width: 0; min-height: 0; margin: 0; overflow: hidden; background: #e7e1d6; }
+.nh-gallery-item-1 { grid-column: span 2; grid-row: span 2; }
+.nh-gallery-item-2 { grid-row: span 2; }
+.nh-gallery-item-5, .nh-gallery-item-6 { grid-column: span 2; }
+.nh-gallery-item img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .55s cubic-bezier(.2,.7,.2,1); }
+.nh-gallery-item:hover img { transform: scale(1.035); }
 
 .nh-experiences { padding: 105px 4.1vw 110px; background: #fff; color: #57585b; }
 .nh-experiences-heading { max-width: 1120px; margin: 0 auto 150px; text-align: center; }
@@ -199,7 +197,7 @@ img { max-width: 100%; }
 /* Retreats and traditional wellness */
 .nh-wellness { padding: 0 7vw 110px; background: #f2eee5; color: var(--nh-ink); }
 .nh-wellness-heading, .nh-spaces-heading { max-width: 860px; margin: 0 auto 58px; text-align: center; }
-.nh-wellness-heading { position: relative; isolation: isolate; display: flex; min-height: clamp(320px, 36vw, 490px); flex-direction: column; align-items: center; justify-content: center; max-width: none; margin: 0 -7vw 64px; padding: 70px 7vw; background-image: linear-gradient(90deg, rgba(18, 34, 32, .72), rgba(18, 34, 32, .3)), url('/norbu/2022/06/gallery-1b-scaled.webp'); background-position: center 56%; background-size: cover; }
+.nh-wellness-heading { position: relative; isolation: isolate; display: flex; min-height: clamp(320px, 36vw, 490px); flex-direction: column; align-items: center; justify-content: center; max-width: none; margin: 0 -7vw 64px; padding: 70px 7vw; background-image: linear-gradient(90deg, rgba(18, 34, 32, .72), rgba(18, 34, 32, .3)), url('/norbu/2026/wellness/yoga-deck.jpg'); background-position: center 56%; background-size: cover; }
 .nh-wellness-heading .nh-kicker, .nh-spaces-heading .nh-kicker { color: #a08351; }
 .nh-wellness-heading h2, .nh-spaces-heading h2, .nh-amenity-copy h2 { margin: 0 0 18px; font-family: var(--nh-display); font-size: clamp(38px, 4.7vw, 62px); font-weight: 400; letter-spacing: -.03em; line-height: 1.1; color: #293b36; }
 .nh-wellness-heading h2 { color: #fff; text-shadow: 0 2px 18px #10242170; }
@@ -241,9 +239,8 @@ img { max-width: 100%; }
 .nh-kids-copy>p:not(.nh-kicker) { max-width: 430px; margin: 0 0 28px; color: #68706a; font-size: 15px; line-height: 1.8; }
 .nh-kids-link { display: inline-flex; align-items: center; gap: 13px; padding: 0 0 7px; border: 0; border-bottom: 1px solid #52625c; color: #314a43; background: transparent; font-size: 10px; font-weight: 700; letter-spacing: .13em; }
 .nh-kids-link:hover { color: #a08351; }
-.nh-kids-gallery { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(160px, 195px)); gap: 10px; }
-.nh-kids-photo { min-width: 0; min-height: 0; margin: 0; overflow: hidden; background: #e0d7c9; }
-.nh-kids-photo-1 { grid-column: span 2; grid-row: span 2; }
+.nh-kids-gallery { width: 100%; min-width: 0; }
+.nh-kids-photo { width: 100%; aspect-ratio: 4 / 3; margin: 0; overflow: hidden; background: #e0d7c9; }
 .nh-kids-photo img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .6s cubic-bezier(.2,.7,.2,1); }
 .nh-kids-photo:hover img { transform: scale(1.035); }
 
@@ -259,14 +256,26 @@ img { max-width: 100%; }
 .nh-space-card p { min-height: 65px; margin: 0 0 20px; color: #6c706a; font-size: 12px; line-height: 1.65; }
 .nh-space-card button, .nh-wedding-callout button { display: inline-flex; align-items: center; gap: 12px; padding: 0 0 6px; border: 0; border-bottom: 1px solid currentColor; color: #314a43; background: transparent; font-size: 10px; font-weight: 600; letter-spacing: .12em; }
 .nh-space-card button { margin-top: auto; cursor: pointer; }
-.nh-wedding-callout { position: relative; overflow: hidden; display: flex; align-items: center; justify-content: space-between; gap: 35px; max-width: 1440px; min-height: 250px; margin: 28px auto 0; padding: 38px 42px; background: linear-gradient(90deg, rgba(20, 38, 35, .78), rgba(20, 38, 35, .28)), url('/norbu/2022/06/meetings-solo-ilustra-scaled-1-scaled.webp') center 57% / cover; color: #fff; }
-.nh-wedding-callout>div { position: relative; z-index: 1; }
-.nh-wedding-callout .nh-kicker { margin-bottom: 10px; color: #ecd7a5; }
-.nh-wedding-callout h3 { margin: 0 0 7px; font-family: var(--nh-display); font-size: clamp(27px, 3vw, 38px); font-weight: 400; color: #fff; }
-.nh-wedding-callout p:not(.nh-kicker) { max-width: 620px; margin: 0; color: #f0f1ec; font-size: 13px; line-height: 1.65; }
-.nh-wedding-callout button { flex: 0 0 auto; }
-.nh-wedding-callout button { position: relative; z-index: 1; color: #fff; cursor: pointer; }
-.nh-wedding-callout button:hover { color: #ecd7a5; }
+.nh-wedding-callout { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(300px, .8fr); align-items: stretch; max-width: 1520px; margin: 34px auto 0; background: #e8dece; color: var(--nh-ink); }
+.nh-wedding-slider { min-width: 0; min-height: 0; }
+.nh-wedding-photo-frame { position: relative; width: 100%; aspect-ratio: 3 / 2; overflow: hidden; background: #d9d0c3; }
+.nh-wedding-photo { display: block; width: 100%; height: 100%; object-fit: contain; background: #d9d0c3; animation: nh-wedding-fade .35s ease both; }
+@keyframes nh-wedding-fade { from { opacity: .55; } to { opacity: 1; } }
+.nh-wedding-slide-controls { position: absolute; right: 0; bottom: 0; left: 0; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 20px; min-height: 66px; padding: 12px 20px; background: linear-gradient(transparent, rgba(14, 31, 29, .78)); color: #fff; }
+.nh-wedding-slide-count { font-size: 10px; font-weight: 600; letter-spacing: .12em; white-space: nowrap; }
+.nh-wedding-slide-count i { color: #ded9ce; font-style: normal; font-weight: 400; }
+.nh-wedding-slide-dots { display: flex; align-items: center; justify-content: center; gap: 9px; }
+.nh-wedding-slide-dots button { width: 7px; height: 7px; padding: 0; border: 1px solid #fff; border-radius: 50%; background: transparent; cursor: pointer; transition: transform .2s, background .2s; }
+.nh-wedding-slide-dots button.is-active { background: #fff; transform: scale(1.25); }
+.nh-wedding-slide-arrows { display: flex; gap: 7px; }
+.nh-wedding-slide-arrows button { display: grid; width: 34px; height: 34px; place-items: center; padding: 0; border: 1px solid #ffffff9c; border-radius: 50%; background: #152d2a80; color: #fff; font-size: 18px; line-height: 1; cursor: pointer; transition: background .2s, color .2s; }
+.nh-wedding-slide-arrows button:hover { background: #fff; color: #203b37; }
+.nh-wedding-copy { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: clamp(35px, 5vw, 78px); }
+.nh-wedding-copy .nh-kicker { margin-bottom: 18px; color: #a08351; }
+.nh-wedding-copy h3 { margin: 0 0 18px; font-family: var(--nh-display); font-size: clamp(38px, 4.2vw, 64px); font-weight: 400; letter-spacing: -.03em; line-height: 1.08; color: #293b36; }
+.nh-wedding-copy p:not(.nh-kicker) { max-width: 510px; margin: 0 0 34px; color: #68706a; font-size: 15px; line-height: 1.8; }
+.nh-wedding-copy button { display: inline-flex; align-items: center; gap: 12px; padding: 0 0 8px; border: 0; border-bottom: 1px solid currentColor; background: transparent; color: #314a43; font-size: 11px; font-weight: 700; letter-spacing: .12em; cursor: pointer; }
+.nh-wedding-copy button:hover { color: #a08351; }
 
 /* Events feature and contact footer */
 .nh-events { position: relative; min-height: 610px; display: flex; align-items: center; color: #fff; background-color: #203e3b; background-position: center; background-size: cover; }
@@ -276,10 +285,6 @@ img { max-width: 100%; }
 .nh-event-copy>p:not(.nh-kicker) { max-width: 500px; margin: 0 0 28px; color: #f5f5ed; font-size: 15px; line-height: 1.75; }
 .nh-light-button { color: #fff; border-color: #fff; background: transparent; }
 .nh-light-button:hover { color: var(--nh-deep); background: #fff; }
-.nh-event-controls { position: absolute; bottom: 28px; left: 6%; right: 6%; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 25px; }
-.nh-event-controls>span { color: #fff; font-size: 10px; letter-spacing: .14em; }
-.nh-event-controls>div { display: flex; justify-content: center; gap: 8px; }
-.nh-event-controls>button { width: 38px; height: 38px; border: 1px solid #fff9; border-radius: 50%; color: #fff; background: #fff1; font-size: 20px; }
 .nh-footer { padding: 70px 7.5% 24px; background: var(--nh-deep); color: #fff; }
 .nh-footer-top { display: grid; grid-template-columns: .83fr 1.17fr; gap: 12%; max-width: 1320px; margin: 0 auto; padding-bottom: 60px; }
 .nh-footer-logo { display: inline-flex; width: 165px; height: 59px; margin-bottom: 32px; }
@@ -362,13 +367,17 @@ img { max-width: 100%; }
   .nh-suite-card-copy { left: 7%; right: 7%; bottom: 34px; }
   .nh-suite-card p { font-size: 11px; }
   .nh-dining, .nh-dining-illustration { min-height: 500px; }
+  .nh-gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: minmax(180px, 32vw); }
+  .nh-gallery-item-1 { grid-column: span 2; grid-row: auto; }
+  .nh-gallery-item-2 { grid-row: auto; }
+  .nh-gallery-item-5 { grid-column: auto; }
+  .nh-gallery-item-6 { grid-column: span 2; }
   .nh-experiences-heading { margin-bottom: 80px; }
   .nh-experience-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .nh-wellness-grid { grid-template-columns: 1fr 1fr; }
   .nh-space-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .nh-amenities { gap: 5vw; padding-right: 7vw; padding-left: 7vw; }
   .nh-kids { grid-template-columns: .75fr 1.25fr; gap: 4vw; padding-right: 5vw; padding-left: 5vw; }
-  .nh-kids-gallery { grid-template-rows: repeat(2, minmax(140px, 180px)); }
   .nh-footer-top { gap: 7%; }
 }
 
@@ -442,11 +451,14 @@ img { max-width: 100%; }
   .nh-namak-logo { width: 160px; height: 33px; margin-bottom: 21px; }
   .nh-dining-copy h2 { font-size: 48px; }
   .nh-dining-copy>p:not(.nh-kicker) { font-size: 13px; line-height: 1.75; }
-  .nh-gallery { height: 100svh; min-height: 420px; }
-  .nh-gallery-arrow { width: 42px; height: 64px; font-size: 48px; }
-  .nh-rail-prev { left: 4px; }
-  .nh-rail-next { right: 4px; }
-  .nh-rail-dots { bottom: 22px; gap: 10px; }
+  .nh-gallery { padding: 62px 18px 68px; }
+  .nh-gallery-heading { margin-bottom: 26px; }
+  .nh-gallery-heading h2 { font-size: 37px; }
+  .nh-gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: minmax(125px, 31vw); gap: 8px; }
+  .nh-gallery-item-1 { grid-column: span 2; grid-row: auto; }
+  .nh-gallery-item-2 { grid-row: auto; }
+  .nh-gallery-item-5 { grid-column: auto; }
+  .nh-gallery-item-6 { grid-column: span 2; }
   .nh-experiences { padding: 62px 18px 72px; }
   .nh-experiences-heading { margin-bottom: 42px; }
   .nh-experiences-heading h2 { margin-bottom: 16px; font-size: clamp(22px, 6vw, 30px); letter-spacing: .1em; }
@@ -477,24 +489,21 @@ img { max-width: 100%; }
   .nh-kids { grid-template-columns: 1fr; gap: 32px; padding: 60px 20px; }
   .nh-kids-copy h2 { font-size: 42px; }
   .nh-kids-copy>p:not(.nh-kicker) { font-size: 13px; line-height: 1.75; }
-  .nh-kids-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: 220px repeat(2, 140px); gap: 8px; }
-  .nh-kids-photo-1 { grid-column: span 2; grid-row: auto; }
   .nh-spaces { padding: 68px 18px 54px; }
   .nh-space-grid { grid-template-columns: 1fr 1fr; }
   .nh-space-card-copy { padding: 18px 14px 20px; }
   .nh-space-card h3 { margin-top: 20px; font-size: 25px; }
   .nh-space-card p { min-height: 75px; font-size: 11px; }
-  .nh-wedding-callout { align-items: flex-start; flex-direction: column; gap: 22px; padding: 26px 22px; }
-  .nh-wedding-callout p:not(.nh-kicker) { font-size: 12px; }
+  .nh-wedding-callout { grid-template-columns: 1fr; margin-top: 20px; }
+  .nh-wedding-slide-controls { grid-template-columns: auto 1fr auto; gap: 12px; min-height: 54px; padding: 8px 12px; }
+  .nh-wedding-slide-arrows button { width: 31px; height: 31px; }
+  .nh-wedding-copy { padding: 30px 23px 34px; }
+  .nh-wedding-copy h3 { font-size: 40px; }
+  .nh-wedding-copy p:not(.nh-kicker) { margin-bottom: 25px; font-size: 13px; }
   .nh-events { min-height: 560px; background-position: center; }
   .nh-event-copy { width: 85%; margin-left: 8%; padding: 70px 0 105px; }
   .nh-event-copy h2 { font-size: 48px; }
   .nh-event-copy>p:not(.nh-kicker) { font-size: 13px; line-height: 1.7; }
-  .nh-event-controls { left: 20px; right: 20px; bottom: 20px; gap: 12px; }
-  .nh-event-controls>div { gap: 4px; }
-  .nh-event-controls>div button { width: 12px; }
-  .nh-event-controls>div button.is-active { width: 24px; }
-  .nh-event-controls>button { width: 34px; height: 34px; }
   .nh-footer { padding: 52px 25px 20px; }
   .nh-footer-top { display: flex; flex-direction: column; gap: 50px; padding-bottom: 42px; }
   .nh-footer-logo { width: 145px; height: 53px; margin-bottom: 25px; }
