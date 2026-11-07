@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev --port 3005 --webpack",
     "build": "next build",
-    "start": "next start"
+    "start": "node ./node_modules/next/dist/bin/next start --port ${PORT:-3000}"
   },
   "dependencies": {
     "next": "^16.4.4",
