@@ -166,7 +166,7 @@ img { max-width: 100%; }
 .nh-gallery-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; max-width: 1440px; margin: 0 auto; }
 .nh-gallery-item { min-width: 0; min-height: 0; margin: 0; overflow: hidden; background: #e7e1d6; }
 .nh-gallery-item img { display: block; width: 100%; height: clamp(150px, 20vw, 290px); object-fit: cover; transition: transform .55s cubic-bezier(.2,.7,.2,1); }
-.nh-gallery-item figcaption { padding: 13px 4px 4px; color: #293b36; font-family: var(--nh-display); font-size: clamp(16px, 1.4vw, 21px); line-height: 1.3; }
+.nh-gallery-item figcaption { padding: 13px 4px 4px; color: #293b36; font-family: inherit; font-size: clamp(12px, .95vw, 15px); font-weight: 500; letter-spacing: .12em; line-height: 1.5; text-align: center; text-transform: uppercase; }
 .nh-gallery-item:hover img { transform: scale(1.035); }
 
 .nh-experiences { padding: 105px 4.1vw 110px; background: #fff; color: #57585b; }
@@ -211,7 +211,7 @@ img { max-width: 100%; }
 .nh-wellness-practices img { display: block; width: 64px; height: 54px; object-fit: cover; background: #e8ddce; }
 .nh-wellness-practices span { min-width: 0; }
 .nh-reading-list li { padding: 12px 0; border-bottom: 1px solid #e5e0d7; color: #3e4a45; font-size: 13px; line-height: 1.5; }
-.nh-tibetan-card { background: #e8ddce; border-color: #e8ddce; }
+.nh-tibetan-card { background: #dce5df; border-color: #dce5df; }
 .nh-tibetan-card h4 { margin: 27px 0 5px; color: #35443d; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
 .nh-reading-list { margin: 0 0 25px; padding: 0; list-style: none; }
 .nh-tibetan-card .nh-text-link { color: #29413d; }

@@ -29,7 +29,7 @@ const suites = [
   {
     name: 'Presidential Suite',
     description: 'Live it up yeti-style in our stunning presidential suite. Luxurious interiors, a deep soak tub, panoramic mountain views, a private bar, a large terrace and your personal butler.',
-    image: `${photos}/presidential-terrace.webp`,
+    image: `${media}/04/yetisabode.jpg`,
     anchor: 'yetisab',
   },
   {
@@ -161,7 +161,7 @@ const weddingSlides = [
 ];
 
 const kidsPlayPhoto = {
-  image: '/norbu/2026/kids-play-area/playroom-wide.jpg',
+  image: '/norbu/2026/kids-play-area/playroom-selected.jpg',
   alt: 'Wide view of the indoor kids play area with a slide and climbing wall',
 };
 
@@ -183,7 +183,7 @@ const venueSpaces = [
 
 const socialLinks = [
   { label: 'WhatsApp', href: 'https://wa.link/2s1udm', icon: 'whatsapp' },
-  { label: 'Instagram', href: 'https://www.instagram.com/norbuhotels/', icon: 'instagram' },
+  { label: 'Instagram', href: 'https://www.instagram.com/norbuthemontanna.dharamshala/', icon: 'instagram' },
 ];
 
 function SocialIcon({ name }: { name: string }) {
@@ -541,7 +541,7 @@ export default function Home() {
 
       <section className="nh-experiences" id="experiences">
         <div className="nh-experiences-heading" data-reveal="up">
-          <h2>STILLNESS IN <strong>THE MOUNTAINS</strong></h2>
+          <h2>EXPERIENCE <strong>THE MOUNTAINS</strong></h2>
           <p>Experience a sense of calm through nature-inspired moments within the property. From quiet outdoor pursuits to unhurried leisure, each experience reflects the serenity of the hills. Simple yet immersive, these moments invite you to slow down and take in the quiet beauty of the mountains.</p>
         </div>
         <div className="nh-experience-grid">
@@ -681,7 +681,7 @@ export default function Home() {
         <div className="nh-footer-top">
           <div className="nh-footer-contact" data-reveal="up">
             <a className="nh-footer-logo" href="#home"><img src={`${media}/03/Recurso-2-300x106.png`} alt="Norbu The Montanna" /></a>
-            <p className="nh-kicker">COME FIND YOUR MOUNTAIN</p>
+            <p className="nh-kicker">COME FIND YOUR ENERGY</p>
             <a className="nh-footer-phone" href="tel:+918894055112">+91 8894055112</a>
             <a className="nh-footer-email" href="mailto:reservations@norbuhotels.com">reservations@norbuhotels.com</a>
             <address>Village Banordu,<br />Dharamshala,<br />Himachal Pradesh, 176052<br />India</address>
