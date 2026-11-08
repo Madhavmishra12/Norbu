@@ -47,7 +47,7 @@ const suites = [
   {
     name: 'Tea Garden View Villa',
     description: 'A peaceful hideaway surrounded by the colour and quiet of Dharamshala’s tea gardens.',
-    image: `${media}/04/teagardensuite.jpg`,
+    image: '/norbu/2026/tea-garden-view.jpg',
     anchor: 'tea-garden',
   },
   {
@@ -57,9 +57,9 @@ const suites = [
     anchor: 'tea-experience',
   },
   {
-    name: 'Pawcations Room',
+    name: 'Happy Paws Room',
     description: 'A welcoming retreat for you and your four-legged companion, with thoughtful comforts and room to unwind together.',
-    image: '/norbu/2026/pawcations-room.jpg',
+    image: `${photos}/room-view.webp`,
     anchor: 'happy-paws',
   },
 ];
@@ -489,7 +489,7 @@ export default function Home() {
         <div className="nh-suite-carousel" aria-roledescription="carousel" aria-label="Norbu rooms and suites">
           <div className="nh-suite-track">
             {visibleSuites.map((suite, slot) => (
-              <article className={`nh-suite-card nh-suite-card-${slot}${suite.anchor === 'happy-paws' ? ' nh-suite-card-pawcations' : ''}`} key={`${suite.anchor}-${slot}`} data-reveal="up" style={{ transitionDelay: `${slot * 90}ms` }}>
+              <article className={`nh-suite-card nh-suite-card-${slot}${suite.anchor === 'tea-garden' ? ' nh-suite-card-tea-garden' : ''}`} key={`${suite.anchor}-${slot}`} data-reveal="up" style={{ transitionDelay: `${slot * 90}ms` }}>
                 <img src={suite.image} alt={suite.name} />
                 <div className="nh-suite-shade" />
                 <div className="nh-suite-card-copy">
